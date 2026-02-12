@@ -1,0 +1,7 @@
+name: dash0
+description: This registry contains the semantic conventions for Dash0.
+semconv_version: 0.1.0
+schema_base_url: https://github.com/dash0hq/dash0-semantic-conventions/tree/main/model
+dependencies:
+  - name: otel
+    registry_path: https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v1.39.0.zip[model]

@@ -1,0 +1,35 @@
+groups:
+  - id: event.dash0.deployment
+    type: event
+    name: dash0.deployment
+    stability: development
+    brief: >
+      Marks the deployment of a service version to an environment.
+    note: |
+      A `dash0.deployment` event SHOULD be emitted once per deployment, after
+      the deployment has completed (successfully or not). It is intended to be
+      sent from CI/CD pipelines (e.g., a GitHub Action).
+
+    attributes:
+      - ref: service.name
+        requirement_level: required
+      - ref: service.version
+        requirement_level: required
+
+      - ref: deployment.environment.name
+        requirement_level: recommended
+      - ref: deployment.status
+        requirement_level: recommended
+      - ref: deployment.name
+        requirement_level: recommended
+      - ref: deployment.id
+        requirement_level: recommended
+
+      - ref: service.namespace
+        requirement_level: opt_in
+      - ref: vcs.repository.url.full
+        requirement_level: opt_in
+      - ref: vcs.ref.head.revision
+        requirement_level: opt_in
+      - ref: vcs.ref.head.name
+        requirement_level: opt_in
