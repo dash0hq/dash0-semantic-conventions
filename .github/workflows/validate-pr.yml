@@ -1,0 +1,21 @@
+name: Validate PRs
+
+on:
+  pull_request:
+
+jobs:
+  validate-regsitry:
+    name: Validate Registry
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup Weaver
+        uses: open-telemetry/weaver/.github/actions/setup-weaver@6efae3022af925deab04aa70924cd501443fb7f9 # v0.21.2
+
+      - name: Check model
+        run: weaver registry check -r ./model --diagnostic-format gh_workflow_command
+
+      - name: Resolve registry
+        run: weaver registry resolve -r ./model -o resolved.json
+
