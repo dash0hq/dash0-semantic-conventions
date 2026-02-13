@@ -27,27 +27,35 @@ jobs:
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 'lts/*'
+
       - name: Setup Weaver
         uses: open-telemetry/weaver/.github/actions/setup-weaver@6efae3022af925deab04aa70924cd501443fb7f9 # v0.21.2
 
       - name: Run valid live-check tests
         run: |
           failed=0
-          count=$(find tests/valid -name '*.json' | wc -l)
+          count=$(find tests/valid -name '*.json5' | wc -l)
           if [ "$count" -eq 0 ]; then
             echo "::error::No valid test files found"
             exit 1
           fi
-          for file in $(find tests/valid -name '*.json' | sort); do
+          for file in $(find tests/valid -name '*.json5' | sort); do
             echo "::group::Checking: $file"
+            tmpfile=$(mktemp --suffix=.json)
+            npx json5 "$file" > "$tmpfile"
             if weaver registry live-check -r ./model \
-                --input-source "$file" --input-format json \
+                --input-source "$tmpfile" --input-format json \
                 --diagnostic-format gh_workflow_command; then
               echo "PASS: $file"
             else
               echo "::error::FAIL: $file should pass but didn't"
               failed=1
             fi
+            rm "$tmpfile"
             echo "::endgroup::"
           done
           exit $failed
@@ -55,20 +63,23 @@ jobs:
       - name: Run invalid live-check tests
         run: |
           failed=0
-          count=$(find tests/invalid -name '*.json' | wc -l)
+          count=$(find tests/invalid -name '*.json5' | wc -l)
           if [ "$count" -eq 0 ]; then
             echo "::error::No invalid test files found"
             exit 1
           fi
-          for file in $(find tests/invalid -name '*.json' | sort); do
+          for file in $(find tests/invalid -name '*.json5' | sort); do
             echo "::group::Checking: $file"
+            tmpfile=$(mktemp --suffix=.json)
+            npx json5 "$file" > "$tmpfile"
             if weaver registry live-check -r ./model \
-                --input-source "$file" --input-format json; then
+                --input-source "$tmpfile" --input-format json; then
               echo "::error::FAIL: $file should fail but passed"
               failed=1
             else
               echo "PASS: $file (correctly rejected)"
             fi
+            rm "$tmpfile"
             echo "::endgroup::"
           done
           exit $failed

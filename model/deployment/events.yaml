@@ -18,7 +18,7 @@ groups:
       the deployment has completed (successfully or not). It is intended to be
       sent from CI/CD pipelines (e.g., a GitHub Action).
 
-      A deployment MUST be associated with a `service` resource and SHOULD be assiciated with a `deployment` resource.
+      A deployment MUST be associated with a `service` resource and SHOULD be associated with a `deployment` resource.
       This can not be fully expressed in the schema, but Dash0 requires the following resource attributes to be set on the events resource:
       * `service.name`
       

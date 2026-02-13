@@ -1,0 +1,20 @@
+// Minimal valid deployment event.
+// Only the required resource attribute (service.name) is provided.
+// All optional attributes are omitted to test the baseline case.
+[
+  {
+    "resource": {
+      "attributes": [
+        { "name": "service.name", "value": "my-service" },
+      ],
+    },
+  },
+  {
+    "log": {
+      "event_name": "dash0.deployment",
+      "body": "",
+      "severity_number": 9,
+      "attributes": [],
+    },
+  },
+]

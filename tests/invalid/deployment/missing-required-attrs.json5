@@ -1,0 +1,18 @@
+// This is just an example failing case. We currently can't model required resource attributes.
+[
+  {
+    "resource": {
+      "attributes": [
+        { "name": "service.name", "value": 5 },
+      ],
+    },
+  },
+  {
+    "log": {
+      "event_name": "dash0.deployment",
+      "body": "",
+      "severity_number": 9,
+      "attributes": [],
+    },
+  },
+]
