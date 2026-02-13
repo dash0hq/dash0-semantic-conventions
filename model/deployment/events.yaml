@@ -1,3 +1,11 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+imports:
+  entities:
+    - service
+    - service.namespace
+    - deployment
+
 groups:
   - id: event.dash0.deployment
     type: event

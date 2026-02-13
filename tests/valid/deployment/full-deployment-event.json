@@ -17,7 +17,7 @@
       "body": "",
       "severity_number": 9,
       "attributes": [
-        { "name": "deployment.status", "value": "successful" },
+        { "name": "deployment.status", "value": "succeeded" },
         { "name": "vcs.repository.url.full", "value": "https://github.com/example/my-service" },
         { "name": "vcs.ref.head.revision", "value": "a1b2c3d4e5f6" },
         { "name": "vcs.ref.head.name", "value": "main" }

@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+# Note these entities exist to as a compatibility layer to bridge gaps in the resource specification of the otel semconv
+groups:
+  - id: dash0.deployment
+    type: entity
+    stability: development
+    name: deployment
+    brief: >
+      Compat deployment entity, allowing additional optional attributes to pass validation
+    attributes:
+      - ref: deployment.name
+        requirement_level: recommended
+      - ref: deployment.id
+        requirement_level: recommended

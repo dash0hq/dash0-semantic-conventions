@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
 name: Validate PRs
 
 on:
@@ -14,7 +16,7 @@ jobs:
         uses: open-telemetry/weaver/.github/actions/setup-weaver@6efae3022af925deab04aa70924cd501443fb7f9 # v0.21.2
 
       - name: Check model
-        run: weaver registry check -r ./model --diagnostic-format gh_workflow_command
+        run: weaver registry check -r ./model
 
       - name: Resolve registry
         run: weaver registry resolve -r ./model -o resolved.json
