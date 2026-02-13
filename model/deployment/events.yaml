@@ -10,23 +10,22 @@ groups:
       the deployment has completed (successfully or not). It is intended to be
       sent from CI/CD pipelines (e.g., a GitHub Action).
 
-    attributes:
-      - ref: service.name
-        requirement_level: required
-      - ref: service.version
-        requirement_level: required
+      A deployment MUST be associated with a `service` resource and SHOULD be assiciated with a `deployment` resource.
+      This can not be fully expressed in the schema, but Dash0 requires the following resource attributes to be set on the events resource:
+      * `service.name`
+      
+      Additionally the following resource attributes SHOULD be set:
+      * `service.version
+      * `deployment.environment.name`
+      * `deployment.name`
+      * `deployment.id
 
-      - ref: deployment.environment.name
-        requirement_level: recommended
+      Finally a users may want to set the following resource attributes:
+      * `service.namespace`
+    attributes:
       - ref: deployment.status
         requirement_level: recommended
-      - ref: deployment.name
-        requirement_level: recommended
-      - ref: deployment.id
-        requirement_level: recommended
 
-      - ref: service.namespace
-        requirement_level: opt_in
       - ref: vcs.repository.url.full
         requirement_level: opt_in
       - ref: vcs.ref.head.revision

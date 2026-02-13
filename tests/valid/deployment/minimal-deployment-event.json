@@ -2,8 +2,7 @@
   {
     "resource": {
       "attributes": [
-        { "name": "service.name", "value": "my-service" },
-        { "name": "service.version", "value": "1.2.3" }
+        { "name": "service.name", "value": "my-service" }
       ]
     }
   },
