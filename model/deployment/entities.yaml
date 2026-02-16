@@ -2,7 +2,7 @@
 
 # Note weaver requires all used resource attributes to be defined on an entity to pass validation.
 # The current iteration of the deployment resource does not include optional deployment attributes.
-# This entity exists to as a compatibility layer to allow 
+# This entity exists to as a compatibility layer to allow
 groups:
   - id: dash0.deployment
     type: entity
