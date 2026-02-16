@@ -1,8 +1,10 @@
 # SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
 
-name: Validate PRs
+name: Validate
 
 on:
+  push:
+    branches: [main]
   pull_request:
 
 jobs:
