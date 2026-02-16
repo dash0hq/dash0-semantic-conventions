@@ -28,8 +28,7 @@ groups:
       * `deployment.name`
       * `deployment.id
 
-      Finally a users may want to set the following resource attributes:
-      * `service.namespace`
+      Finally if a `service.namespace` is set on the target resource, it MUST be set on the events resource as well.
     attributes:
       - ref: deployment.status
         requirement_level: recommended
