@@ -8,7 +8,7 @@ groups:
     attributes:
       - id: dash0.resource.id
         type: string
-        stability: development
+        stability: stable
         brief: >
           Unique identifier for the resource in Dash0.
         note: |
@@ -19,7 +19,7 @@ groups:
 
       - id: dash0.resource.hash
         type: string
-        stability: development
+        stability: stable
         brief: >
           Hash over all resource attributes of the incoming telemetry payload.
         note: |
@@ -33,7 +33,7 @@ groups:
 
       - id: dash0.resource.name
         type: string
-        stability: development
+        stability: stable
         brief: >
           Human-readable name for the resource.
         note: |
@@ -46,7 +46,7 @@ groups:
 
       - id: dash0.resource.type
         type: string
-        stability: development
+        stability: stable
         brief: >
           Classification of the resource kind.
         note: |

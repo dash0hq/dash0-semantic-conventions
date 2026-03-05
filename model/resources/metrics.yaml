@@ -7,14 +7,28 @@ groups:
   - id: metric.dash0.resources
     type: metric
     metric_name: dash0.resources
-    stability: development
+    stability: stable
     brief: >
       Number of distinct resources observed by Dash0.
     note: |
       `dash0.resources` is a synthetic metric: it is not stored as a metric time
       series, but computed on-the-fly from resource data across all signal types.
 
+      Deprecated PromQL alias: `dash0_resources`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: gauge
+    unit: "{resource}"
+
+  - id: metric.dash0_resources
+    type: metric
+    metric_name: dash0_resources
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.resources
+    brief: >
+      Deprecated Prometheus alias for `dash0.resources`.
     instrument: gauge
     unit: "{resource}"

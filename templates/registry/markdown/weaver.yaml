@@ -1,29 +1,38 @@
 templates:
   - pattern: attributes_readme.md.j2
-    filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("attribute_group.dash0."))) | group_by(.id | split(".") | .[2]) | map({id: .[0].id | split(".") | .[2], groups: .})'
+    filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("attributes.dash0."))) | group_by(.id | split(".") | .[2]) | map({id: .[0].id | split(".") | .[2], groups: .})'
     application_mode: single
     file_name: attributes/README.md
   - pattern: attribute_namespace.md.j2
-    filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("attribute_group.dash0."))) | group_by(.id | split(".") | .[2]) | map({id: .[0].id | split(".") | .[2], groups: .})'
+    filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("attributes.dash0."))) | group_by(.id | split(".") | .[2]) | map({id: .[0].id | split(".") | .[2], groups: .})'
     application_mode: each
     file_name: attributes/{{ ctx.id | lower | kebab_case }}.md
   - pattern: registry_readme.md.j2
     filter: >-
       {
-        has_attributes: ([.groups[] | select(.type == "attribute_group" and (.id | startswith("attribute_group.dash0.")))] | length > 0),
-        has_entities: ([.groups[] | select(.type == "entity" and (.id | startswith("entity.dash0.")))] | length > 0),
-        has_events: ([.groups[] | select(.type == "event" and (.id | startswith("event.dash0.")))] | length > 0)
+        has_attributes: ([.groups[] | select(.type == "attribute_group" and (.id | startswith("attributes.dash0.")))] | length > 0),
+        has_entities: ([.groups[] | select(.type == "entity" and (.id | startswith("entity.internal.dash0.")))] | length > 0),
+        has_events: ([.groups[] | select(.type == "event" and (.id | startswith("event.dash0.")))] | length > 0),
+        has_metrics: ([.groups[] | select(.type == "metric" and (.metric_name | startswith("dash0.")))] | length > 0)
       }
     application_mode: single
     file_name: README.md
   - pattern: entity_readme.md.j2
-    filter: '.groups | map(select(.type == "entity")) | map(select(.id | startswith("entity.dash0."))) | group_by(.name | split(".") | .[0:2] | join(".")) | map({id: .[0].id | split(".") | .[2], groups: .})'
+    filter: '.groups | map(select(.type == "entity")) | map(select(.id | startswith("entity.internal.dash0."))) | group_by(.name | split(".") | .[0:2] | join(".")) | map({id: .[0].id | split(".") | .[2], groups: .})'
     application_mode: single
     file_name: "entities/README.md"
   - pattern: entity_namespace.md.j2
-    filter: '.groups | map(select(.type == "entity")) | map(select(.id | startswith("entity.dash0."))) | group_by(.name | split(".") | .[0:2] | join(".")) | map({id: .[0].id | split(".") | .[2], groups: .})'
+    filter: '.groups | map(select(.type == "entity")) | map(select(.id | startswith("entity.internal.dash0."))) | group_by(.name | split(".") | .[0:2] | join(".")) | map({id: .[0].id | split(".") | .[2], groups: .})'
     application_mode: each
     file_name: "entities/{{ ctx.id | kebab_case }}.md"
+  - pattern: metric_readme.md.j2
+    filter: '.groups | map(select(.type == "metric")) | map(select(.metric_name | startswith("dash0."))) | group_by(.metric_name | split(".") | .[1]) | map({id: .[0].metric_name | split(".") | .[1], groups: .})'
+    application_mode: single
+    file_name: "metrics/README.md"
+  - pattern: metric_namespace.md.j2
+    filter: '.groups | map(select(.type == "metric")) | map(select(.metric_name | startswith("dash0."))) | group_by(.metric_name | split(".") | .[1]) | map({id: .[0].metric_name | split(".") | .[1], groups: .})'
+    application_mode: each
+    file_name: "metrics/{{ ctx.id | kebab_case }}.md"
   - pattern: event_readme.md.j2
     filter: '.groups | map(select(.type == "event")) | map(select(.id | startswith("event.dash0."))) | group_by(.name | split(".") | .[0:2] | join(".")) | map({id: .[0].id | split(".") | .[2], groups: .})'
     application_mode: single

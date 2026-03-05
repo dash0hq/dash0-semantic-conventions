@@ -7,15 +7,29 @@ groups:
   - id: metric.dash0.synthetic_check.runs
     type: metric
     metric_name: dash0.synthetic_check.runs
-    stability: development
+    stability: stable
     brief: >
       Counts the number of synthetic check runs.
     note: |
       `dash0.synthetic_check.runs` is a synthetic metric computed on-the-fly from
       the synthetic check execution data.
 
+      Deprecated PromQL alias: `dash0_synthetic_check_runs_total`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{run}"
+
+  - id: metric.dash0_synthetic_check_runs_total
+    type: metric
+    metric_name: dash0_synthetic_check_runs_total
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.synthetic_check.runs
+    brief: >
+      Deprecated Prometheus alias for `dash0.synthetic_check.runs`.
     instrument: counter
     unit: "{run}"
 
@@ -25,15 +39,33 @@ groups:
   - id: metric.dash0.synthetic_check.http.dns.duration
     type: metric
     metric_name: dash0.synthetic_check.http.dns.duration
-    stability: development
+    stability: stable
     brief: >
       Distribution of DNS resolution durations for synthetic HTTP checks.
     note: |
       `dash0.synthetic_check.http.dns.duration` is a synthetic metric computed
       on-the-fly from the synthetic check execution data.
 
+      Deprecated PromQL aliases: `dash0_synthetic_check_http_dns_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_dns_duration_seconds_sum`, `dash0_synthetic_check_http_dns_duration_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_synthetic_check_http_dns_duration_seconds
+    type: metric
+    metric_name: dash0_synthetic_check_http_dns_duration_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.synthetic_check.http.dns.duration
+    brief: >
+      Deprecated Prometheus alias for `dash0.synthetic_check.http.dns.duration`.
+    note: |
+      Exposed in Prometheus as `dash0_synthetic_check_http_dns_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_dns_duration_seconds_sum`, and `dash0_synthetic_check_http_dns_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
@@ -43,15 +75,33 @@ groups:
   - id: metric.dash0.synthetic_check.http.connection.duration
     type: metric
     metric_name: dash0.synthetic_check.http.connection.duration
-    stability: development
+    stability: stable
     brief: >
       Distribution of TCP connection durations for synthetic HTTP checks.
     note: |
       `dash0.synthetic_check.http.connection.duration` is a synthetic metric
       computed on-the-fly from the synthetic check execution data.
 
+      Deprecated PromQL aliases: `dash0_synthetic_check_http_connection_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_connection_duration_seconds_sum`, `dash0_synthetic_check_http_connection_duration_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_synthetic_check_http_connection_duration_seconds
+    type: metric
+    metric_name: dash0_synthetic_check_http_connection_duration_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.synthetic_check.http.connection.duration
+    brief: >
+      Deprecated Prometheus alias for `dash0.synthetic_check.http.connection.duration`.
+    note: |
+      Exposed in Prometheus as `dash0_synthetic_check_http_connection_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_connection_duration_seconds_sum`, and `dash0_synthetic_check_http_connection_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
@@ -61,15 +111,33 @@ groups:
   - id: metric.dash0.synthetic_check.http.ssl.duration
     type: metric
     metric_name: dash0.synthetic_check.http.ssl.duration
-    stability: development
+    stability: stable
     brief: >
       Distribution of TLS handshake durations for synthetic HTTP checks.
     note: |
       `dash0.synthetic_check.http.ssl.duration` is a synthetic metric computed
       on-the-fly from the synthetic check execution data.
 
+      Deprecated PromQL aliases: `dash0_synthetic_check_http_ssl_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_ssl_duration_seconds_sum`, `dash0_synthetic_check_http_ssl_duration_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_synthetic_check_http_ssl_duration_seconds
+    type: metric
+    metric_name: dash0_synthetic_check_http_ssl_duration_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.synthetic_check.http.ssl.duration
+    brief: >
+      Deprecated Prometheus alias for `dash0.synthetic_check.http.ssl.duration`.
+    note: |
+      Exposed in Prometheus as `dash0_synthetic_check_http_ssl_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_ssl_duration_seconds_sum`, and `dash0_synthetic_check_http_ssl_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
@@ -79,15 +147,33 @@ groups:
   - id: metric.dash0.synthetic_check.http.request.duration
     type: metric
     metric_name: dash0.synthetic_check.http.request.duration
-    stability: development
+    stability: stable
     brief: >
       Distribution of HTTP request send durations for synthetic HTTP checks.
     note: |
       `dash0.synthetic_check.http.request.duration` is a synthetic metric computed
       on-the-fly from the synthetic check execution data.
 
+      Deprecated PromQL aliases: `dash0_synthetic_check_http_request_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_request_duration_seconds_sum`, `dash0_synthetic_check_http_request_duration_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_synthetic_check_http_request_duration_seconds
+    type: metric
+    metric_name: dash0_synthetic_check_http_request_duration_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.synthetic_check.http.request.duration
+    brief: >
+      Deprecated Prometheus alias for `dash0.synthetic_check.http.request.duration`.
+    note: |
+      Exposed in Prometheus as `dash0_synthetic_check_http_request_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_request_duration_seconds_sum`, and `dash0_synthetic_check_http_request_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
@@ -97,15 +183,33 @@ groups:
   - id: metric.dash0.synthetic_check.http.response.duration
     type: metric
     metric_name: dash0.synthetic_check.http.response.duration
-    stability: development
+    stability: stable
     brief: >
       Distribution of HTTP response receive durations for synthetic HTTP checks.
     note: |
       `dash0.synthetic_check.http.response.duration` is a synthetic metric computed
       on-the-fly from the synthetic check execution data.
 
+      Deprecated PromQL aliases: `dash0_synthetic_check_http_response_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_response_duration_seconds_sum`, `dash0_synthetic_check_http_response_duration_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_synthetic_check_http_response_duration_seconds
+    type: metric
+    metric_name: dash0_synthetic_check_http_response_duration_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.synthetic_check.http.response.duration
+    brief: >
+      Deprecated Prometheus alias for `dash0.synthetic_check.http.response.duration`.
+    note: |
+      Exposed in Prometheus as `dash0_synthetic_check_http_response_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_response_duration_seconds_sum`, and `dash0_synthetic_check_http_response_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
@@ -115,14 +219,32 @@ groups:
   - id: metric.dash0.synthetic_check.http.total.duration
     type: metric
     metric_name: dash0.synthetic_check.http.total.duration
-    stability: development
+    stability: stable
     brief: >
       Distribution of total HTTP transaction durations for synthetic HTTP checks.
     note: |
       `dash0.synthetic_check.http.total.duration` is a synthetic metric computed
       on-the-fly from the synthetic check execution data.
 
+      Deprecated PromQL aliases: `dash0_synthetic_check_http_total_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_total_duration_seconds_sum`, `dash0_synthetic_check_http_total_duration_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_synthetic_check_http_total_duration_seconds
+    type: metric
+    metric_name: dash0_synthetic_check_http_total_duration_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.synthetic_check.http.total.duration
+    brief: >
+      Deprecated Prometheus alias for `dash0.synthetic_check.http.total.duration`.
+    note: |
+      Exposed in Prometheus as `dash0_synthetic_check_http_total_duration_seconds_bucket`,
+      `dash0_synthetic_check_http_total_duration_seconds_sum`, and `dash0_synthetic_check_http_total_duration_seconds_count`.
     instrument: histogram
     unit: "s"

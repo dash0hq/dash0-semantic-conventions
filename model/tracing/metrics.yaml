@@ -7,7 +7,7 @@ groups:
   - id: metric.dash0.spans
     type: metric
     metric_name: dash0.spans
-    stability: development
+    stability: stable
     brief: >
       Counts the number of spans ingested by Dash0.
     note: |
@@ -30,7 +30,7 @@ groups:
   - id: metric.dash0_spans_total
     type: metric
     metric_name: dash0_spans_total
-    stability: development
+    stability: stable
     deprecated:
       reason: renamed
       renamed_to: dash0.spans
@@ -45,7 +45,7 @@ groups:
   - id: metric.dash0.spans.duration
     type: metric
     metric_name: dash0.spans.duration
-    stability: development
+    stability: stable
     brief: >
       Distribution of span durations as a histogram.
     note: |
@@ -67,7 +67,7 @@ groups:
   - id: metric.dash0_spans_duration_seconds
     type: metric
     metric_name: dash0_spans_duration_seconds
-    stability: development
+    stability: stable
     deprecated:
       reason: renamed
       renamed_to: dash0.spans.duration
@@ -85,7 +85,7 @@ groups:
   - id: metric.dash0.span.events
     type: metric
     metric_name: dash0.span.events
-    stability: development
+    stability: stable
     brief: >
       Counts the number of span events ingested by Dash0.
     note: |
@@ -93,7 +93,21 @@ groups:
       series, but computed on-the-fly from the ingested tracing data. It can be
       filtered and grouped by any span event or resource attribute.
 
+      Deprecated PromQL alias: `dash0_span_events_total`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{span_event}"
+
+  - id: metric.dash0_span_events_total
+    type: metric
+    metric_name: dash0_span_events_total
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.span.events
+    brief: >
+      Deprecated Prometheus alias for `dash0.span.events`.
     instrument: counter
     unit: "{span_event}"

@@ -8,7 +8,7 @@ groups:
     attributes:
       - id: dash0.operation.name
         type: string
-        stability: development
+        stability: stable
         brief: >
           Human-readable name for the logical operation a span belongs to.
         note: |
@@ -22,7 +22,7 @@ groups:
 
       - id: dash0.operation.type
         type: string
-        stability: development
+        stability: stable
         brief: >
           The type of the logical operation a span belongs to.
         note: |

@@ -17,28 +17,28 @@ groups:
     attributes:
       - id: otel.span.name
         type: string
-        stability: development
+        stability: stable
         brief: >
           The original span name as provided by the instrumentation.
         examples: ["GET /api/users", "db.query", "grpc.service/method"]
 
       - id: otel.span.kind
         type: string
-        stability: development
+        stability: stable
         brief: >
           The span kind, as defined by the OpenTelemetry specification.
         examples: ["SERVER", "CLIENT", "INTERNAL", "PRODUCER", "CONSUMER"]
 
       - id: otel.span.status.code
         type: string
-        stability: development
+        stability: stable
         brief: >
           The span status code, as defined by the OpenTelemetry specification.
         examples: ["UNSET", "OK", "ERROR"]
 
       - id: otel.span.status.message
         type: string
-        stability: development
+        stability: stable
         brief: >
           Optional message accompanying the span status.
         examples: ["OK", "connection refused"]
@@ -51,21 +51,21 @@ groups:
     attributes:
       - id: otel.trace.id
         type: string
-        stability: development
+        stability: stable
         brief: >
           The trace ID in hex-encoded format.
         examples: ["4bf92f3577b34da6a3ce929d0e0e4736"]
 
       - id: otel.span.id
         type: string
-        stability: development
+        stability: stable
         brief: >
           The span ID in hex-encoded format.
         examples: ["00f067aa0ba902b7"]
 
       - id: otel.parent.id
         type: string
-        stability: development
+        stability: stable
         brief: >
           The parent span ID in hex-encoded format.
         examples: ["a1b2c3d4e5f60718"]
@@ -78,7 +78,7 @@ groups:
     attributes:
       - id: otel.span.event.name
         type: string
-        stability: development
+        stability: stable
         brief: >
           Name of the span event.
         examples: ["exception", "log"]
@@ -91,14 +91,14 @@ groups:
     attributes:
       - id: otel.log.body
         type: string
-        stability: development
+        stability: stable
         brief: >
           The log record body text.
         examples: ["Application started successfully", "Error: connection refused"]
 
       - id: otel.log.severity.number
         type: int
-        stability: development
+        stability: stable
         brief: >
           OTel severity number (1-24).
         note: |
@@ -107,7 +107,7 @@ groups:
 
       - id: otel.log.severity.range
         type: string
-        stability: development
+        stability: stable
         brief: >
           Aggregated severity range derived from the severity number.
         note: |
@@ -117,7 +117,7 @@ groups:
 
       - id: otel.log.severity.text
         type: string
-        stability: development
+        stability: stable
         brief: >
           Severity text as provided by the instrumentation.
         examples: ["INFO", "ERROR", "WARN", "DEBUG"]
@@ -130,27 +130,27 @@ groups:
     attributes:
       - id: otel.metric.name
         type: string
-        stability: development
+        stability: stable
         brief: >
           The metric instrument name.
         examples: ["http.server.request.duration", "process.cpu.time"]
 
       - id: otel.metric.type
         type: string
-        stability: development
+        stability: stable
         brief: >
           The OTel metric instrument type.
         examples: ["sum", "gauge", "histogram", "exponential_histogram", "summary"]
 
       - id: otel.metric.unit
         type: string
-        stability: development
+        stability: stable
         brief: >
           The metric unit of measurement.
         examples: ["s", "By", "1", "{request}"]
 
       - id: otel.metric.overflow
         type: boolean
-        stability: development
+        stability: stable
         brief: >
           Indicates that cardinality limits were exceeded and some attributes were dropped.

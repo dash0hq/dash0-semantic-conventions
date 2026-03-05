@@ -7,7 +7,7 @@ groups:
   - id: metric.dash0.logs
     type: metric
     metric_name: dash0.logs
-    stability: development
+    stability: stable
     brief: >
       Counts the number of log records ingested by Dash0.
     note: |
@@ -25,7 +25,7 @@ groups:
   - id: metric.dash0_logs_total
     type: metric
     metric_name: dash0_logs_total
-    stability: development
+    stability: stable
     deprecated:
       reason: renamed
       renamed_to: dash0.logs

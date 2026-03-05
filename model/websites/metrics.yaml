@@ -7,7 +7,7 @@ groups:
   - id: metric.dash0.web.events
     type: metric
     metric_name: dash0.web.events
-    stability: development
+    stability: stable
     brief: >
       Counts the number of web (RUM) events ingested by Dash0.
     note: |
@@ -25,7 +25,7 @@ groups:
   - id: metric.dash0_web_events_total
     type: metric
     metric_name: dash0_web_events_total
-    stability: development
+    stability: stable
     deprecated:
       reason: renamed
       renamed_to: dash0.web.events
@@ -40,7 +40,7 @@ groups:
   - id: metric.dash0.web.bounces
     type: metric
     metric_name: dash0.web.bounces
-    stability: development
+    stability: stable
     brief: >
       Counts the number of bounces on monitored websites.
     note: |
@@ -50,8 +50,22 @@ groups:
       `dash0.web.bounces` is a synthetic metric computed on-the-fly from the
       ingested web event data.
 
+      Deprecated PromQL alias: `dash0_web_bounces_total`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{bounce}"
+
+  - id: metric.dash0_web_bounces_total
+    type: metric
+    metric_name: dash0_web_bounces_total
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.bounces
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.bounces`.
     instrument: counter
     unit: "{bounce}"
 
@@ -61,15 +75,29 @@ groups:
   - id: metric.dash0.web.errors
     type: metric
     metric_name: dash0.web.errors
-    stability: development
+    stability: stable
     brief: >
       Counts failed network requests, JavaScript issues, or other client-side errors.
     note: |
       `dash0.web.errors` is a synthetic metric computed on-the-fly from the ingested
       web event data.
 
+      Deprecated PromQL alias: `dash0_web_errors_total`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{error}"
+
+  - id: metric.dash0_web_errors_total
+    type: metric
+    metric_name: dash0_web_errors_total
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.errors
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.errors`.
     instrument: counter
     unit: "{error}"
 
@@ -79,7 +107,7 @@ groups:
   - id: metric.dash0.web.page_views
     type: metric
     metric_name: dash0.web.page_views
-    stability: development
+    stability: stable
     brief: >
       Counts the number of page views on monitored websites.
     note: |
@@ -88,8 +116,22 @@ groups:
       `dash0.web.page_views` is a synthetic metric computed on-the-fly from the
       ingested web event data.
 
+      Deprecated PromQL alias: `dash0_web_page_views_total`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{page_view}"
+
+  - id: metric.dash0_web_page_views_total
+    type: metric
+    metric_name: dash0_web_page_views_total
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.page_views
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.page_views`.
     instrument: counter
     unit: "{page_view}"
 
@@ -99,15 +141,29 @@ groups:
   - id: metric.dash0.web.requests
     type: metric
     metric_name: dash0.web.requests
-    stability: development
+    stability: stable
     brief: >
       Counts HTTP requests from frontend applications.
     note: |
       `dash0.web.requests` is a synthetic metric computed on-the-fly from the
       ingested web event data.
 
+      Deprecated PromQL alias: `dash0_web_requests_total`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{request}"
+
+  - id: metric.dash0_web_requests_total
+    type: metric
+    metric_name: dash0_web_requests_total
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.requests
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.requests`.
     instrument: counter
     unit: "{request}"
 
@@ -117,15 +173,33 @@ groups:
   - id: metric.dash0.web.requests.duration
     type: metric
     metric_name: dash0.web.requests.duration
-    stability: development
+    stability: stable
     brief: >
       Distribution of HTTP request durations from frontend applications.
     note: |
       `dash0.web.requests.duration` is a synthetic metric computed on-the-fly from
       the ingested web event data.
 
+      Deprecated PromQL aliases: `dash0_web_requests_duration_seconds_bucket`,
+      `dash0_web_requests_duration_seconds_sum`, `dash0_web_requests_duration_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_web_requests_duration_seconds
+    type: metric
+    metric_name: dash0_web_requests_duration_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.requests.duration
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.requests.duration`.
+    note: |
+      Exposed in Prometheus as `dash0_web_requests_duration_seconds_bucket`,
+      `dash0_web_requests_duration_seconds_sum`, and `dash0_web_requests_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
@@ -135,7 +209,7 @@ groups:
   - id: metric.dash0.web.sessions
     type: metric
     metric_name: dash0.web.sessions
-    stability: development
+    stability: stable
     brief: >
       Counts the number of user sessions on monitored websites.
     note: |
@@ -144,8 +218,22 @@ groups:
       `dash0.web.sessions` is a synthetic metric computed on-the-fly from the
       ingested web event data.
 
+      Deprecated PromQL alias: `dash0_web_sessions_total`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{session}"
+
+  - id: metric.dash0_web_sessions_total
+    type: metric
+    metric_name: dash0_web_sessions_total
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.sessions
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.sessions`.
     instrument: counter
     unit: "{session}"
 
@@ -155,15 +243,33 @@ groups:
   - id: metric.dash0.web.sessions.duration
     type: metric
     metric_name: dash0.web.sessions.duration
-    stability: development
+    stability: stable
     brief: >
       Distribution of user session durations on monitored websites.
     note: |
       `dash0.web.sessions.duration` is a synthetic metric computed on-the-fly from
       the ingested web event data.
 
+      Deprecated PromQL aliases: `dash0_web_sessions_duration_seconds_bucket`,
+      `dash0_web_sessions_duration_seconds_sum`, `dash0_web_sessions_duration_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_web_sessions_duration_seconds
+    type: metric
+    metric_name: dash0_web_sessions_duration_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.sessions.duration
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.sessions.duration`.
+    note: |
+      Exposed in Prometheus as `dash0_web_sessions_duration_seconds_bucket`,
+      `dash0_web_sessions_duration_seconds_sum`, and `dash0_web_sessions_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
@@ -173,15 +279,29 @@ groups:
   - id: metric.dash0.web.users
     type: metric
     metric_name: dash0.web.users
-    stability: development
+    stability: stable
     brief: >
       Counts unique users who visited monitored websites.
     note: |
       `dash0.web.users` is a synthetic metric computed on-the-fly from the ingested
       web event data.
 
+      Deprecated PromQL alias: `dash0_web_users_total`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{user}"
+
+  - id: metric.dash0_web_users_total
+    type: metric
+    metric_name: dash0_web_users_total
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.users
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.users`.
     instrument: counter
     unit: "{user}"
 
@@ -191,7 +311,7 @@ groups:
   - id: metric.dash0.web.vitals.cls
     type: metric
     metric_name: dash0.web.vitals.cls
-    stability: development
+    stability: stable
     brief: >
       Distribution of Cumulative Layout Shift (CLS) scores.
     note: |
@@ -201,8 +321,26 @@ groups:
       `dash0.web.vitals.cls` is a synthetic metric computed on-the-fly from the
       ingested web event data.
 
+      Deprecated PromQL aliases: `dash0_web_vitals_cls_bucket`,
+      `dash0_web_vitals_cls_sum`, `dash0_web_vitals_cls_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "1"
+
+  - id: metric.dash0_web_vitals_cls
+    type: metric
+    metric_name: dash0_web_vitals_cls
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.vitals.cls
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.vitals.cls`.
+    note: |
+      Exposed in Prometheus as `dash0_web_vitals_cls_bucket`,
+      `dash0_web_vitals_cls_sum`, and `dash0_web_vitals_cls_count`.
     instrument: histogram
     unit: "1"
 
@@ -212,7 +350,7 @@ groups:
   - id: metric.dash0.web.vitals.inp
     type: metric
     metric_name: dash0.web.vitals.inp
-    stability: development
+    stability: stable
     brief: >
       Distribution of Interaction to Next Paint (INP) latencies.
     note: |
@@ -222,8 +360,26 @@ groups:
       `dash0.web.vitals.inp` is a synthetic metric computed on-the-fly from the
       ingested web event data.
 
+      Deprecated PromQL aliases: `dash0_web_vitals_inp_seconds_bucket`,
+      `dash0_web_vitals_inp_seconds_sum`, `dash0_web_vitals_inp_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_web_vitals_inp_seconds
+    type: metric
+    metric_name: dash0_web_vitals_inp_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.vitals.inp
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.vitals.inp`.
+    note: |
+      Exposed in Prometheus as `dash0_web_vitals_inp_seconds_bucket`,
+      `dash0_web_vitals_inp_seconds_sum`, and `dash0_web_vitals_inp_seconds_count`.
     instrument: histogram
     unit: "s"
 
@@ -233,7 +389,7 @@ groups:
   - id: metric.dash0.web.vitals.lcp
     type: metric
     metric_name: dash0.web.vitals.lcp
-    stability: development
+    stability: stable
     brief: >
       Distribution of Largest Contentful Paint (LCP) latencies.
     note: |
@@ -243,7 +399,25 @@ groups:
       `dash0.web.vitals.lcp` is a synthetic metric computed on-the-fly from the
       ingested web event data.
 
+      Deprecated PromQL aliases: `dash0_web_vitals_lcp_seconds_bucket`,
+      `dash0_web_vitals_lcp_seconds_sum`, `dash0_web_vitals_lcp_seconds_count`.
+
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_web_vitals_lcp_seconds
+    type: metric
+    metric_name: dash0_web_vitals_lcp_seconds
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.vitals.lcp
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.vitals.lcp`.
+    note: |
+      Exposed in Prometheus as `dash0_web_vitals_lcp_seconds_bucket`,
+      `dash0_web_vitals_lcp_seconds_sum`, and `dash0_web_vitals_lcp_seconds_count`.
     instrument: histogram
     unit: "s"

@@ -8,7 +8,7 @@ groups:
     attributes:
       - id: dash0.log.message
         type: string
-        stability: development
+        stability: stable
         brief: >
           Extracted or normalised log message text.
         note: |
@@ -20,7 +20,7 @@ groups:
 
       - id: dash0.log.pattern
         type: string
-        stability: development
+        stability: stable
         brief: >
           Identifier of the log pattern template matched by this log record.
         note: |
@@ -32,7 +32,7 @@ groups:
 
       - id: dash0.log.ai.attributes_inferred
         type: boolean
-        stability: development
+        stability: stable
         brief: >
           Indicates that log attributes were inferred by the AI log parser.
         note: |
@@ -43,7 +43,7 @@ groups:
 
       - id: dash0.log.ai.message_inferred
         type: boolean
-        stability: development
+        stability: stable
         brief: >
           Indicates that the log message was inferred by the AI log parser.
         note: |
@@ -54,7 +54,7 @@ groups:
 
       - id: dash0.log.ai.severity_inferred
         type: boolean
-        stability: development
+        stability: stable
         brief: >
           Indicates that the log severity was inferred by the AI log parser.
         note: |

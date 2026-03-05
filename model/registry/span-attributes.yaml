@@ -8,7 +8,7 @@ groups:
     attributes:
       - id: dash0.span.name
         type: string
-        stability: development
+        stability: stable
         brief: >
           Dash0-normalised name for a span.
         note: |
@@ -21,7 +21,7 @@ groups:
 
       - id: dash0.span.type
         type: string
-        stability: development
+        stability: stable
         brief: >
           Classification of the span type.
         note: |

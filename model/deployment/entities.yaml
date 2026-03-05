@@ -9,7 +9,7 @@ groups:
     stability: development
     name: deployment
     brief: >
-      Compat deployment entity, allowing additional optional attributes to pass validation
+      Mock entity for compatibility with Weaver, allowing additional optional attributes to pass validation
     attributes:
       - ref: deployment.name
         requirement_level: recommended
