@@ -1,0 +1,156 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+# Attributes that map OTLP protocol fields into queryable attributes in Dash0.
+# These are not user-set attributes; they are derived from the structure of the
+# incoming OTLP payloads (span fields, log record fields, metric descriptors, etc.).
+#
+# Attributes already defined by OTel semconv (e.g. otel.scope.name,
+# otel.scope.version, otel.event.name) are imported from the upstream registry
+# and NOT redeclared here.
+
+groups:
+  # ── Span ─────────────────────────────────────────
+  - id: registry.otel.span
+    type: attribute_group
+    display_name: OTel Span Attributes
+    brief: OTLP span fields mapped to queryable attributes.
+    attributes:
+      - id: otel.span.name
+        type: string
+        stability: development
+        brief: >
+          The original span name as provided by the instrumentation.
+        examples: ["GET /api/users", "db.query", "grpc.service/method"]
+
+      - id: otel.span.kind
+        type: string
+        stability: development
+        brief: >
+          The span kind, as defined by the OpenTelemetry specification.
+        examples: ["SERVER", "CLIENT", "INTERNAL", "PRODUCER", "CONSUMER"]
+
+      - id: otel.span.status.code
+        type: string
+        stability: development
+        brief: >
+          The span status code, as defined by the OpenTelemetry specification.
+        examples: ["UNSET", "OK", "ERROR"]
+
+      - id: otel.span.status.message
+        type: string
+        stability: development
+        brief: >
+          Optional message accompanying the span status.
+        examples: ["OK", "connection refused"]
+
+  # ── Span ID / Trace ID ──────────────────────────
+  - id: registry.otel.trace
+    type: attribute_group
+    display_name: OTel Trace Context Attributes
+    brief: W3C Trace Context fields mapped to queryable attributes.
+    attributes:
+      - id: otel.trace.id
+        type: string
+        stability: development
+        brief: >
+          The trace ID in hex-encoded format.
+        examples: ["4bf92f3577b34da6a3ce929d0e0e4736"]
+
+      - id: otel.span.id
+        type: string
+        stability: development
+        brief: >
+          The span ID in hex-encoded format.
+        examples: ["00f067aa0ba902b7"]
+
+      - id: otel.parent.id
+        type: string
+        stability: development
+        brief: >
+          The parent span ID in hex-encoded format.
+        examples: ["a1b2c3d4e5f60718"]
+
+  # ── Span Events ─────────────────────────────────
+  - id: registry.otel.span.event
+    type: attribute_group
+    display_name: OTel Span Event Attributes
+    brief: OTLP span event fields mapped to queryable attributes.
+    attributes:
+      - id: otel.span.event.name
+        type: string
+        stability: development
+        brief: >
+          Name of the span event.
+        examples: ["exception", "log"]
+
+  # ── Log ──────────────────────────────────────────
+  - id: registry.otel.log
+    type: attribute_group
+    display_name: OTel Log Attributes
+    brief: OTLP log record fields mapped to queryable attributes.
+    attributes:
+      - id: otel.log.body
+        type: string
+        stability: development
+        brief: >
+          The log record body text.
+        examples: ["Application started successfully", "Error: connection refused"]
+
+      - id: otel.log.severity.number
+        type: int
+        stability: development
+        brief: >
+          OTel severity number (1-24).
+        note: |
+          Maps to severity ranges: 1-4 TRACE, 5-8 DEBUG, 9-12 INFO,
+          13-16 WARN, 17-20 ERROR, 21-24 FATAL.
+
+      - id: otel.log.severity.range
+        type: string
+        stability: development
+        brief: >
+          Aggregated severity range derived from the severity number.
+        note: |
+          Computed by Dash0 from `otel.log.severity.number`. Useful for
+          filtering and grouping logs by broad severity level.
+        examples: ["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"]
+
+      - id: otel.log.severity.text
+        type: string
+        stability: development
+        brief: >
+          Severity text as provided by the instrumentation.
+        examples: ["INFO", "ERROR", "WARN", "DEBUG"]
+
+  # ── Metric ───────────────────────────────────────
+  - id: registry.otel.metric
+    type: attribute_group
+    display_name: OTel Metric Attributes
+    brief: OTLP metric descriptor fields mapped to queryable attributes.
+    attributes:
+      - id: otel.metric.name
+        type: string
+        stability: development
+        brief: >
+          The metric instrument name.
+        examples: ["http.server.request.duration", "process.cpu.time"]
+
+      - id: otel.metric.type
+        type: string
+        stability: development
+        brief: >
+          The OTel metric instrument type.
+        examples: ["sum", "gauge", "histogram", "exponential_histogram", "summary"]
+
+      - id: otel.metric.unit
+        type: string
+        stability: development
+        brief: >
+          The metric unit of measurement.
+        examples: ["s", "By", "1", "{request}"]
+
+      - id: otel.metric.overflow
+        type: boolean
+        stability: development
+        brief: >
+          Indicates that cardinality limits were exceeded and some attributes were dropped.

@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: registry.dash0.operation
+    type: attribute_group
+    display_name: Dash0 Operation Attributes
+    brief: Operation attributes assigned by Dash0 at ingestion time.
+    attributes:
+      - id: dash0.operation.name
+        type: string
+        stability: development
+        brief: >
+          Human-readable name for the logical operation a span belongs to.
+        note: |
+          Derived at ingestion time from span attributes using pattern templates defined by
+          [operation naming rules](https://www.dash0.com/documentation/dash0/key-concepts/operation-names)
+          (e.g., `GET /api/users` for HTTP, `SELECT ... FROM my-table` for database).
+          Cardinality reduction is applied automatically.
+
+          Can be overridden by setting the attribute before telemetry reaches Dash0.
+        examples: ["GET /api/users", "SELECT ... FROM orders", "publish orders-topic"]
+
+      - id: dash0.operation.type
+        type: string
+        stability: development
+        brief: >
+          The type of the logical operation a span belongs to.
+        note: |
+          Determined at ingestion time by evaluating span attributes against a prioritised
+          set of [operation naming rules](https://www.dash0.com/documentation/dash0/key-concepts/operation-names).
+          Cannot be overridden by users; Dash0 always computes it from the span data.
+        examples: ["http", "db", "rpc", "messaging", "headless", "rum", "unknown"]

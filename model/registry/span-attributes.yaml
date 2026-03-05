@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: registry.dash0.span
+    type: attribute_group
+    display_name: Dash0 Span Attributes
+    brief: Span attributes assigned by Dash0 at ingestion time.
+    attributes:
+      - id: dash0.span.name
+        type: string
+        stability: development
+        brief: >
+          Dash0-normalised name for a span.
+        note: |
+          Computed at ingestion time from span attributes using the same
+          [operation naming rules](https://www.dash0.com/documentation/dash0/key-concepts/operation-names)
+          that drive `dash0.operation.name`. While `dash0.operation.name` identifies the
+          logical operation, `dash0.span.name` is the per-span normalised name with
+          cardinality reduction applied (e.g., path parameters replaced with `:id`).
+        examples: ["GET /api/product-offers/:id", "SELECT ... FROM my-table WHERE ..."]
+
+      - id: dash0.span.type
+        type: string
+        stability: development
+        brief: >
+          Classification of the span type.
+        note: |
+          Assigned at ingestion time using the same rule evaluation that produces
+          `dash0.operation.type`. Values are normalised to lowercase.
+        examples: ["http", "db", "rpc", "messaging"]

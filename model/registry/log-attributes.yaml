@@ -1,0 +1,64 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: registry.dash0.log
+    type: attribute_group
+    display_name: Dash0 Log Attributes
+    brief: Log attributes assigned by Dash0 at ingestion time.
+    attributes:
+      - id: dash0.log.message
+        type: string
+        stability: development
+        brief: >
+          Extracted or normalised log message text.
+        note: |
+          Set by the Dash0 log parser. May differ from the raw log body when AI-based
+          message extraction is applied (indicated by `dash0.log.ai.message_inferred`).
+
+          See [AI log patterns](https://www.dash0.com/documentation/dash0/logging/ai-log-patterns).
+        examples: ["Connection refused to host db-primary:5432"]
+
+      - id: dash0.log.pattern
+        type: string
+        stability: development
+        brief: >
+          Identifier of the log pattern template matched by this log record.
+        note: |
+          Assigned by the Dash0 log grouping processor when a log record matches a known
+          pattern template. Useful for filtering and grouping recurring log messages.
+
+          See [AI log patterns](https://www.dash0.com/documentation/dash0/logging/ai-log-patterns).
+        examples: ["Error occurred", "Connection refused to host *"]
+
+      - id: dash0.log.ai.attributes_inferred
+        type: boolean
+        stability: development
+        brief: >
+          Indicates that log attributes were inferred by the AI log parser.
+        note: |
+          When `true`, the `dash0.log.attribute.*` attributes on this log record were
+          extracted automatically by the AI-powered log parser.
+
+          See [AI log patterns](https://www.dash0.com/documentation/dash0/logging/ai-log-patterns).
+
+      - id: dash0.log.ai.message_inferred
+        type: boolean
+        stability: development
+        brief: >
+          Indicates that the log message was inferred by the AI log parser.
+        note: |
+          When `true`, `dash0.log.message` was extracted from the raw log body by the
+          AI-powered log parser rather than taken verbatim.
+
+          See [AI log patterns](https://www.dash0.com/documentation/dash0/logging/ai-log-patterns).
+
+      - id: dash0.log.ai.severity_inferred
+        type: boolean
+        stability: development
+        brief: >
+          Indicates that the log severity was inferred by the AI log parser.
+        note: |
+          When `true`, the OTel severity number on this log record was inferred from the
+          log content rather than provided by the instrumentation.
+
+          See [AI log patterns](https://www.dash0.com/documentation/dash0/logging/ai-log-patterns).

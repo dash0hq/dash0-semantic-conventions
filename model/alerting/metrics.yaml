@@ -1,0 +1,102 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.check.status
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.status
+    type: metric
+    metric_name: dash0.check.status
+    stability: development
+    brief: >
+      Encodes the current state of a check as an enum.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+      The value represents the check's overall status (e.g., ok, degraded, critical).
+    instrument: gauge
+    unit: "{enum}"
+
+  # ──────────────────────────────────────────────
+  # dash0.check.evaluation.outcome
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.evaluation.outcome
+    type: metric
+    metric_name: dash0.check.evaluation.outcome
+    stability: development
+    brief: >
+      Encodes the outcome of check evaluations as an enum.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+    instrument: gauge
+    unit: "{enum}"
+
+  # ──────────────────────────────────────────────
+  # dash0.check.evaluation.value
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.evaluation.value
+    type: metric
+    metric_name: dash0.check.evaluation.value
+    stability: development
+    brief: >
+      The value returned by a check evaluation.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+    instrument: gauge
+    unit: "1"
+
+  # ──────────────────────────────────────────────
+  # dash0.check.threshold.critical
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.threshold.critical
+    type: metric
+    metric_name: dash0.check.threshold.critical
+    stability: development
+    brief: >
+      Threshold above or below which a check evaluation counts as critical.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+    instrument: gauge
+    unit: "1"
+
+  # ──────────────────────────────────────────────
+  # dash0.check.threshold.degraded
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.threshold.degraded
+    type: metric
+    metric_name: dash0.check.threshold.degraded
+    stability: development
+    brief: >
+      Threshold above or below which a check evaluation counts as degraded.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+    instrument: gauge
+    unit: "1"
+
+  # ──────────────────────────────────────────────
+  # dash0.check.enablement_conditions.value
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.enablement_conditions.value
+    type: metric
+    metric_name: dash0.check.enablement_conditions.value
+    stability: development
+    brief: >
+      Whether the check enablement conditions were met.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+      The value is a boolean encoded as 0 or 1.
+    instrument: gauge
+    unit: "{bool}"
+
+  # ──────────────────────────────────────────────
+  # dash0.issue.status
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.issue.status
+    type: metric
+    metric_name: dash0.issue.status
+    stability: development
+    brief: >
+      Encodes the current issue status as an enum.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+    instrument: gauge
+    unit: "{enum}"

@@ -1,0 +1,128 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.synthetic_check.runs
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.synthetic_check.runs
+    type: metric
+    metric_name: dash0.synthetic_check.runs
+    stability: development
+    brief: >
+      Counts the number of synthetic check runs.
+    note: |
+      `dash0.synthetic_check.runs` is a synthetic metric computed on-the-fly from
+      the synthetic check execution data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{run}"
+
+  # ──────────────────────────────────────────────
+  # dash0.synthetic_check.http.dns.duration
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.synthetic_check.http.dns.duration
+    type: metric
+    metric_name: dash0.synthetic_check.http.dns.duration
+    stability: development
+    brief: >
+      Distribution of DNS resolution durations for synthetic HTTP checks.
+    note: |
+      `dash0.synthetic_check.http.dns.duration` is a synthetic metric computed
+      on-the-fly from the synthetic check execution data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  # ──────────────────────────────────────────────
+  # dash0.synthetic_check.http.connection.duration
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.synthetic_check.http.connection.duration
+    type: metric
+    metric_name: dash0.synthetic_check.http.connection.duration
+    stability: development
+    brief: >
+      Distribution of TCP connection durations for synthetic HTTP checks.
+    note: |
+      `dash0.synthetic_check.http.connection.duration` is a synthetic metric
+      computed on-the-fly from the synthetic check execution data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  # ──────────────────────────────────────────────
+  # dash0.synthetic_check.http.ssl.duration
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.synthetic_check.http.ssl.duration
+    type: metric
+    metric_name: dash0.synthetic_check.http.ssl.duration
+    stability: development
+    brief: >
+      Distribution of TLS handshake durations for synthetic HTTP checks.
+    note: |
+      `dash0.synthetic_check.http.ssl.duration` is a synthetic metric computed
+      on-the-fly from the synthetic check execution data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  # ──────────────────────────────────────────────
+  # dash0.synthetic_check.http.request.duration
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.synthetic_check.http.request.duration
+    type: metric
+    metric_name: dash0.synthetic_check.http.request.duration
+    stability: development
+    brief: >
+      Distribution of HTTP request send durations for synthetic HTTP checks.
+    note: |
+      `dash0.synthetic_check.http.request.duration` is a synthetic metric computed
+      on-the-fly from the synthetic check execution data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  # ──────────────────────────────────────────────
+  # dash0.synthetic_check.http.response.duration
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.synthetic_check.http.response.duration
+    type: metric
+    metric_name: dash0.synthetic_check.http.response.duration
+    stability: development
+    brief: >
+      Distribution of HTTP response receive durations for synthetic HTTP checks.
+    note: |
+      `dash0.synthetic_check.http.response.duration` is a synthetic metric computed
+      on-the-fly from the synthetic check execution data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  # ──────────────────────────────────────────────
+  # dash0.synthetic_check.http.total.duration
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.synthetic_check.http.total.duration
+    type: metric
+    metric_name: dash0.synthetic_check.http.total.duration
+    stability: development
+    brief: >
+      Distribution of total HTTP transaction durations for synthetic HTTP checks.
+    note: |
+      `dash0.synthetic_check.http.total.duration` is a synthetic metric computed
+      on-the-fly from the synthetic check execution data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"

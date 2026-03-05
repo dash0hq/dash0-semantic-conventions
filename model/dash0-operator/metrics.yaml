@@ -1,0 +1,63 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+# Metrics emitted by the Dash0 Kubernetes operator.
+# These metrics are used for self-monitoring and are not part of the
+# public-facing product metrics.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.operator.manager.*
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.operator.manager.active_workers
+    type: metric
+    metric_name: dash0.operator.manager.active_workers
+    stability: development
+    brief: >
+      Number of currently active workers in the Dash0 operator manager.
+    instrument: gauge
+    unit: "{worker}"
+
+  - id: metric.dash0.operator.manager.allocated_workers
+    type: metric
+    metric_name: dash0.operator.manager.allocated_workers
+    stability: development
+    brief: >
+      Number of allocated workers in the Dash0 operator manager.
+    instrument: gauge
+    unit: "{worker}"
+
+  - id: metric.dash0.operator.manager.max_concurrent_reconciles
+    type: metric
+    metric_name: dash0.operator.manager.max_concurrent_reconciles
+    stability: development
+    brief: >
+      Maximum number of concurrent reconcile loops allowed.
+    instrument: gauge
+    unit: "{reconcile}"
+
+  - id: metric.dash0.operator.manager.reconcile_errors_total
+    type: metric
+    metric_name: dash0.operator.manager.reconcile_errors_total
+    stability: development
+    brief: >
+      Total number of reconcile errors.
+    instrument: counter
+    unit: "{error}"
+
+  - id: metric.dash0.operator.manager.reconcile_time_seconds
+    type: metric
+    metric_name: dash0.operator.manager.reconcile_time_seconds
+    stability: development
+    brief: >
+      Distribution of reconcile loop durations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0.operator.manager.reconcile_total
+    type: metric
+    metric_name: dash0.operator.manager.reconcile_total
+    stability: development
+    brief: >
+      Total number of reconcile loops completed.
+    instrument: counter
+    unit: "{reconcile}"

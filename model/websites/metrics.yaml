@@ -1,0 +1,249 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.web.events
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.events
+    type: metric
+    metric_name: dash0.web.events
+    stability: development
+    brief: >
+      Counts the number of web (RUM) events ingested by Dash0.
+    note: |
+      `dash0.web.events` is a synthetic metric: it is not stored as a metric time
+      series, but computed on-the-fly from the ingested web event data. It can be
+      filtered and grouped by any web event or resource attribute.
+
+      Deprecated PromQL alias: `dash0_web_events_total`.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{web_event}"
+
+  - id: metric.dash0_web_events_total
+    type: metric
+    metric_name: dash0_web_events_total
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.web.events
+    brief: >
+      Deprecated Prometheus alias for `dash0.web.events`.
+    instrument: counter
+    unit: "{web_event}"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.bounces
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.bounces
+    type: metric
+    metric_name: dash0.web.bounces
+    stability: development
+    brief: >
+      Counts the number of bounces on monitored websites.
+    note: |
+      A bounce happens when someone lands on a page and leaves without clicking or
+      interacting.
+
+      `dash0.web.bounces` is a synthetic metric computed on-the-fly from the
+      ingested web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{bounce}"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.errors
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.errors
+    type: metric
+    metric_name: dash0.web.errors
+    stability: development
+    brief: >
+      Counts failed network requests, JavaScript issues, or other client-side errors.
+    note: |
+      `dash0.web.errors` is a synthetic metric computed on-the-fly from the ingested
+      web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{error}"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.page_views
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.page_views
+    type: metric
+    metric_name: dash0.web.page_views
+    stability: development
+    brief: >
+      Counts the number of page views on monitored websites.
+    note: |
+      Page views count every time a page is loaded or navigated to.
+
+      `dash0.web.page_views` is a synthetic metric computed on-the-fly from the
+      ingested web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{page_view}"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.requests
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.requests
+    type: metric
+    metric_name: dash0.web.requests
+    stability: development
+    brief: >
+      Counts HTTP requests from frontend applications.
+    note: |
+      `dash0.web.requests` is a synthetic metric computed on-the-fly from the
+      ingested web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{request}"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.requests.duration
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.requests.duration
+    type: metric
+    metric_name: dash0.web.requests.duration
+    stability: development
+    brief: >
+      Distribution of HTTP request durations from frontend applications.
+    note: |
+      `dash0.web.requests.duration` is a synthetic metric computed on-the-fly from
+      the ingested web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.sessions
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.sessions
+    type: metric
+    metric_name: dash0.web.sessions
+    stability: development
+    brief: >
+      Counts the number of user sessions on monitored websites.
+    note: |
+      A session represents a single visit to your website.
+
+      `dash0.web.sessions` is a synthetic metric computed on-the-fly from the
+      ingested web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{session}"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.sessions.duration
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.sessions.duration
+    type: metric
+    metric_name: dash0.web.sessions.duration
+    stability: development
+    brief: >
+      Distribution of user session durations on monitored websites.
+    note: |
+      `dash0.web.sessions.duration` is a synthetic metric computed on-the-fly from
+      the ingested web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.users
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.users
+    type: metric
+    metric_name: dash0.web.users
+    stability: development
+    brief: >
+      Counts unique users who visited monitored websites.
+    note: |
+      `dash0.web.users` is a synthetic metric computed on-the-fly from the ingested
+      web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{user}"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.vitals.cls
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.vitals.cls
+    type: metric
+    metric_name: dash0.web.vitals.cls
+    stability: development
+    brief: >
+      Distribution of Cumulative Layout Shift (CLS) scores.
+    note: |
+      CLS tracks unexpected content shifts during page load. A lower score
+      indicates a more visually stable page.
+
+      `dash0.web.vitals.cls` is a synthetic metric computed on-the-fly from the
+      ingested web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "1"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.vitals.inp
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.vitals.inp
+    type: metric
+    metric_name: dash0.web.vitals.inp
+    stability: development
+    brief: >
+      Distribution of Interaction to Next Paint (INP) latencies.
+    note: |
+      INP captures the time from user interaction to visual update. A lower value
+      indicates better responsiveness.
+
+      `dash0.web.vitals.inp` is a synthetic metric computed on-the-fly from the
+      ingested web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  # ──────────────────────────────────────────────
+  # dash0.web.vitals.lcp
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.web.vitals.lcp
+    type: metric
+    metric_name: dash0.web.vitals.lcp
+    stability: development
+    brief: >
+      Distribution of Largest Contentful Paint (LCP) latencies.
+    note: |
+      LCP marks the time for the largest visible content element to load. A lower
+      value indicates faster perceived page load.
+
+      `dash0.web.vitals.lcp` is a synthetic metric computed on-the-fly from the
+      ingested web event data.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"

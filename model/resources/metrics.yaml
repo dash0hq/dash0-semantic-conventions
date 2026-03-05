@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.resources
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.resources
+    type: metric
+    metric_name: dash0.resources
+    stability: development
+    brief: >
+      Number of distinct resources observed by Dash0.
+    note: |
+      `dash0.resources` is a synthetic metric: it is not stored as a metric time
+      series, but computed on-the-fly from resource data across all signal types.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: gauge
+    unit: "{resource}"

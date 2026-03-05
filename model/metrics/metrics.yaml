@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.metrics.datapoints
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.metrics.datapoints
+    type: metric
+    metric_name: dash0.metrics.datapoints
+    stability: development
+    brief: >
+      Counts the number of metric data points ingested by Dash0.
+    note: |
+      `dash0.metrics.datapoints` is a synthetic metric: it is not stored as a metric
+      time series, but computed on-the-fly from the ingested metrics data. It can be
+      filtered and grouped by any metric or resource attribute.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{metric_datapoint}"

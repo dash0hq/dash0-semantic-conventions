@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.spans.red
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.spans.red
+    type: metric
+    metric_name: dash0.spans.red
+    stability: development
+    brief: >
+      Exponential histogram of span durations used for RED (Rate, Errors, Duration) metrics.
+    note: |
+      `dash0.spans.red` is generated the basis of 100% of received spans, before any sampling
+      is applied. Unlike the synthetic `dash0.spans.duration` metric, `dash0.spans.red` is
+      stored as a real metric time series with a fixed set of attributes.
+
+      The metric uses an exponential histogram instrument, which provides high
+      accuracy across a wide range of durations without requiring predefined bucket
+      boundaries.
+
+      This metrics exists only in conjunction with Intelligent Edge.
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: service.name
+        requirement_level: required
+      - ref: otel.span.kind
+        requirement_level: required
+      - ref: otel.span.status.code
+        requirement_level: required
+      - ref: dash0.operation.type
+        requirement_level: required
+      - ref: dash0.operation.name
+        requirement_level: required

@@ -1,0 +1,99 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.spans
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.spans
+    type: metric
+    metric_name: dash0.spans
+    stability: development
+    brief: >
+      Counts the number of spans ingested by Dash0.
+    note: |
+      `dash0.spans` is a synthetic metric: it is not stored as a metric time series,
+      but computed on-the-fly from the ingested span data. It can be filtered and
+      grouped by any span or resource attribute.
+
+      Because it is derived from 100 % of the ingested spans (before sampling), it
+      provides accurate request-rate figures regardless of the sampling configuration.
+
+      Deprecated PromQL alias: `dash0_spans_total`.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations, e.g.
+      `sum by (service_name) ({otel_metric_name="dash0.spans"})` yields one
+      time series per value of `service.name`.
+    instrument: counter
+    unit: "{span}"
+
+  - id: metric.dash0_spans_total
+    type: metric
+    metric_name: dash0_spans_total
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.spans
+    brief: >
+      Deprecated Prometheus alias for `dash0.spans`.
+    instrument: counter
+    unit: "{span}"
+
+  # ──────────────────────────────────────────────
+  # dash0.spans.duration
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.spans.duration
+    type: metric
+    metric_name: dash0.spans.duration
+    stability: development
+    brief: >
+      Distribution of span durations as a histogram.
+    note: |
+      `dash0.spans.duration` is a synthetic metric: it is not stored as a metric
+      time series, but computed on-the-fly from the ingested span data. It can be
+      filtered and grouped by any span or resource attribute.
+
+      Because it is derived from 100 % of the ingested spans (before sampling), it
+      provides accurate latency distributions regardless of the sampling configuration.
+
+      Deprecated PromQL aliases: `dash0_spans_duration_seconds_bucket`,
+      `dash0_spans_duration_seconds_sum`, `dash0_spans_duration_seconds_count`.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: histogram
+    unit: "s"
+
+  - id: metric.dash0_spans_duration_seconds
+    type: metric
+    metric_name: dash0_spans_duration_seconds
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.spans.duration
+    brief: >
+      Deprecated Prometheus alias for `dash0.spans.duration`.
+    note: |
+      Exposed in Prometheus as `dash0_spans_duration_seconds_bucket`,
+      `dash0_spans_duration_seconds_sum`, and `dash0_spans_duration_seconds_count`.
+    instrument: histogram
+    unit: "s"
+
+  # ──────────────────────────────────────────────
+  # dash0.span.events
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.span.events
+    type: metric
+    metric_name: dash0.span.events
+    stability: development
+    brief: >
+      Counts the number of span events ingested by Dash0.
+    note: |
+      `dash0.span.events` is a synthetic metric: it is not stored as a metric time
+      series, but computed on-the-fly from the ingested tracing data. It can be
+      filtered and grouped by any span event or resource attribute.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{span_event}"

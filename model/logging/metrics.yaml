@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.logs
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.logs
+    type: metric
+    metric_name: dash0.logs
+    stability: development
+    brief: >
+      Counts the number of log records ingested by Dash0.
+    note: |
+      `dash0.logs` is a synthetic metric: it is not stored as a metric time series,
+      but computed on-the-fly from the ingested log data. It can be filtered and
+      grouped by any log or resource attribute.
+
+      Deprecated PromQL alias: `dash0_logs_total`.
+
+      Synthetic metrics do not expose attributes by default. Attributes are
+      materialised through PromQL aggregations.
+    instrument: counter
+    unit: "{log}"
+
+  - id: metric.dash0_logs_total
+    type: metric
+    metric_name: dash0_logs_total
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.logs
+    brief: >
+      Deprecated Prometheus alias for `dash0.logs`.
+    instrument: counter
+    unit: "{log}"

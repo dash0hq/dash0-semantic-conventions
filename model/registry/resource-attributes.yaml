@@ -1,0 +1,57 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: registry.dash0.resource
+    type: attribute_group
+    display_name: Dash0 Resource Attributes
+    brief: Resource attributes assigned by Dash0 at ingestion time.
+    attributes:
+      - id: dash0.resource.id
+        type: string
+        stability: development
+        brief: >
+          Unique identifier for the resource in Dash0.
+        note: |
+          Computed at ingestion time by applying [resource equality rules](https://www.dash0.com/documentation/dash0/key-concepts/resouce-equality).
+          Two telemetry items with the same `dash0.resource.id` are considered to originate
+          from the same logical resource, even if their full attribute sets differ.
+        examples: ["12958705279560104980"]
+
+      - id: dash0.resource.hash
+        type: string
+        stability: development
+        brief: >
+          Hash over all resource attributes of the incoming telemetry payload.
+        note: |
+          Computed at ingestion time by hashing all resource attributes in a deterministic
+          (sorted) order. It is the most fine-grained resource identifier: each unique set of
+          resource attributes produces a different hash.
+
+          See [resource equality](https://www.dash0.com/documentation/dash0/key-concepts/resouce-equality)
+          for how `dash0.resource.hash` relates to `dash0.resource.id`.
+        examples: ["9283745019283745019"]
+
+      - id: dash0.resource.name
+        type: string
+        stability: development
+        brief: >
+          Human-readable name for the resource.
+        note: |
+          Derived at ingestion time from resource attributes using a precedence hierarchy
+          (e.g., Kubernetes pod name, container name, service name). Can be overridden by
+          setting the attribute before telemetry reaches Dash0.
+
+          See [identify resources by name and type](https://www.dash0.com/documentation/dash0/monitoring/resources/identify-resources-by-name-and-type).
+        examples: ["my-service-pod-abc123", "checkout-service"]
+
+      - id: dash0.resource.type
+        type: string
+        stability: development
+        brief: >
+          Classification of the resource kind.
+        note: |
+          Assigned at ingestion time based on the presence of technology-specific resource
+          attributes. For example, the presence of `k8s.pod.uid` results in type `k8s.pod`.
+
+          See [identify resources by name and type](https://www.dash0.com/documentation/dash0/monitoring/resources/identify-resources-by-name-and-type).
+        examples: ["k8s.pod", "k8s.deployment", "host", "container", "aws.lambda", "gcp.cloud.run", "vercel.project", "browser"]
