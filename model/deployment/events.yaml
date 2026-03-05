@@ -5,6 +5,8 @@ imports:
     - service
     - service.namespace
     - deployment
+    - vcs.repo
+    - vcs.ref
 
 groups:
   - id: event.dash0.deployment
@@ -21,15 +23,20 @@ groups:
       A deployment MUST be associated with a `service` resource and SHOULD be associated with a `deployment` resource.
       This can not be fully expressed in the schema, but Dash0 requires the following resource attributes to be set on the events resource:
       * `service.name`
+      * `service.namespace` (if set on the target resource)
       
       Additionally the following resource attributes SHOULD be set:
-      * `service.version
+      * `service.version`
       * `deployment.environment.name`
       * `deployment.name`
-      * `deployment.id
+      * `deployment.id`
 
-      Finally a users may want to set the following resource attributes:
-      * `service.namespace`
+# Disabled entity_associations because they are currently not specific enough yet (cant define requirement_level)
+#    entity_associations:
+#      - service
+#      - service.namespace
+#      - deployment
+
     attributes:
       - ref: deployment.status
         requirement_level: recommended

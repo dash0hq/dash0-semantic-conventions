@@ -1,8 +1,10 @@
 # SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
 
-name: Validate PRs
+name: Validate
 
 on:
+  push:
+    branches: [main]
   pull_request:
 
 jobs:
@@ -83,3 +85,22 @@ jobs:
             echo "::endgroup::"
           done
           exit $failed
+
+  generate-docs:
+    name: Generate Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup Weaver
+        uses: open-telemetry/weaver/.github/actions/setup-weaver@6efae3022af925deab04aa70924cd501443fb7f9 # v0.21.2
+
+      - name: Generate registry documentation
+        run: weaver registry generate --registry=./model --templates=./templates markdown ./docs/
+
+      - name: Upload documentation artifact
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: registry-docs
+          path: ./docs/
+          if-no-files-found: warn
