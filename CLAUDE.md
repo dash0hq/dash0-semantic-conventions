@@ -44,3 +44,11 @@ The metric definitions were produced by:
 - Synthetic metrics (scope `dash0.metric.synthetic`) do **not** declare attributes. Attributes are materialised dynamically through PromQL aggregations.
 - Deprecated Prometheus aliases (e.g., `dash0_spans_total`) get their own metric group entry with `deprecated: { reason: renamed, renamed_to: <otel_name> }`.
 - Every metric **must** have a `unit` field compliant with [UCUM](https://ucum.org/).
+
+## README.md maintenance
+
+The `Conventions` section in `README.md` is a hand-maintained summary. When adding, removing, or renaming attributes, metrics, or events in the `model/` directory, update the corresponding entry in `README.md`:
+
+- **Attributes** — List every attribute by its full name (e.g., `dash0.resource.id`, not just `id`).
+- **Events** — One bullet per event, with event name and a short description.
+- **Metrics** — One bullet per functional area, listing the canonical OTel metric names. Do not list deprecated PromQL aliases.
