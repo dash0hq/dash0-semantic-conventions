@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: attributes.dash0.metric
+    type: attribute_group
+    display_name: Metric Data Point Attributes
+    brief: >
+      All attributes available on metric data points in Dash0.
+    attributes:
+      - ref: otel.metric.name
+      - ref: otel.metric.type
+      - ref: otel.metric.unit
+      - ref: otel.metric.overflow
+      - ref: otel.scope.name
+      - ref: otel.scope.version

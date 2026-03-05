@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: attributes.dash0.log
+    type: attribute_group
+    display_name: Log Record Attributes
+    brief: >
+      All attributes available on log records in Dash0.
+    attributes:
+      - ref: otel.event.name
+      - ref: otel.log.body
+      - ref: otel.log.severity.number
+      - ref: otel.log.severity.range
+      - ref: otel.log.severity.text
+      - ref: dash0.log.message
+      - ref: dash0.log.pattern
+      - ref: dash0.log.ai.attributes_inferred
+      - ref: dash0.log.ai.message_inferred
+      - ref: dash0.log.ai.severity_inferred

@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: attributes.dash0.span
+    type: attribute_group
+    display_name: Span Attributes
+    brief: >
+      All attributes available on spans in Dash0.
+    attributes:
+      - ref: otel.trace.id
+      - ref: otel.span.id
+      - ref: otel.parent.id
+      - ref: otel.span.name
+      - ref: otel.span.kind
+      - ref: otel.span.status.code
+      - ref: otel.span.status.message
+      - ref: otel.scope.name
+      - ref: otel.scope.version
+      - ref: dash0.span.name
+      - ref: dash0.span.type
+      - ref: dash0.operation.name
+      - ref: dash0.operation.type

@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: attributes.dash0.web_event
+    type: attribute_group
+    display_name: Web Event Attributes
+    brief: >
+      All attributes available on web events in Dash0.
+    attributes:
+      - ref: otel.event.name
+      - ref: otel.scope.name
+      - ref: otel.scope.version
