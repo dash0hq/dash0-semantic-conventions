@@ -97,7 +97,7 @@
   /* Main content */
   main {
     flex: 1;
-    max-width: 920px;
+    min-width: 0;
     padding: 2.5rem 3.5rem;
     overflow-x: auto;
   }
@@ -115,6 +115,26 @@
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border-subtle);
     letter-spacing: -0.01em;
+  }
+  main a[href*="app.dash0.com/goto"] {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+    opacity: 0.85;
+    transition: opacity 0.15s, background 0.15s;
+  }
+  main h2 a[href*="app.dash0.com/goto"] {
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  main a[href*="app.dash0.com/goto"]:hover {
+    opacity: 1;
+    background: var(--accent-dim);
   }
   main h3 {
     font-size: 1.05rem;
@@ -266,7 +286,10 @@
         // Rewrite .md links to hash links
         content.querySelectorAll('a[href]').forEach(a => {
           const href = a.getAttribute('href');
-          if (href && !href.startsWith('http')) {
+          if (href && href.startsWith('http')) {
+            a.setAttribute('target', '_blank');
+            a.setAttribute('rel', 'noopener noreferrer');
+          } else if (href) {
             const match = href.match(/^(.+\.md)(#.*)?$/);
             if (match) {
               const base = path.substring(0, path.lastIndexOf('/') + 1);

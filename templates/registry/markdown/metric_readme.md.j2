@@ -13,13 +13,13 @@ The metrics registry is the catalog of available Dash0 metrics.
 >
 > The following registry overview is a work in progress.
 
-| Namespace | Metric | Instrument | Unit | Stability |
-| --------- | ------ | ---------- | ---- | --------- |
+| Namespace | Metric | Instrument | Unit | Stability | |
+| --------- | ------ | ---------- | ---- | --------- | --- |
 {%- import 'stability.j2' as stability -%}
 {%- import 'metric_macros.j2' as metrics -%}
 {%- for bundle in ctx %}
 {%- for group in bundle.groups | sort(attribute='metric_name') -%}
     {%- set my_file_name = bundle.id | kebab_case ~ ".md#" ~ (group.metric_name | kebab_case) %}
-| {{ bundle.id | title_case | acronym if loop.first }} | [{{ group.metric_name }}]({{my_file_name}}) | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ stability.badge(group.stability, group.deprecated) | trim }} |
+| {{ bundle.id | title_case | acronym if loop.first }} | [{{ group.metric_name }}]({{my_file_name}}) | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ stability.badge(group.stability, group.deprecated) | trim }} | [Open in Dash0](https://app.dash0.com/goto/metrics/explorer?metric_name={{ group.metric_name }}) |
 {%- endfor %}
 {%- endfor %}

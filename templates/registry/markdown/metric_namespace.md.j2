@@ -11,7 +11,7 @@
 
 # {{ ctx.id | title_case | acronym }}
 {% for group in ctx.groups | sort(attribute='metric_name') %}
-## `{{ group.metric_name }}`
+## `{{ group.metric_name }}` [Open in Dash0](https://app.dash0.com/goto/metrics/explorer?metric_name={{ group.metric_name }})
 {%- if group.deprecated %}
 
 > [!WARNING]

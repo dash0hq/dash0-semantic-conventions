@@ -20,3 +20,7 @@ groups:
       - ref: dash0.span.type
       - ref: dash0.operation.name
       - ref: dash0.operation.type
+      - ref: dash0.resource.id
+      - ref: dash0.resource.hash
+      - ref: dash0.resource.name
+      - ref: dash0.resource.type

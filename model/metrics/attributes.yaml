@@ -13,3 +13,7 @@ groups:
       - ref: otel.metric.overflow
       - ref: otel.scope.name
       - ref: otel.scope.version
+      - ref: dash0.resource.id
+      - ref: dash0.resource.hash
+      - ref: dash0.resource.name
+      - ref: dash0.resource.type

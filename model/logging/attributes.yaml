@@ -17,3 +17,7 @@ groups:
       - ref: dash0.log.ai.attributes_inferred
       - ref: dash0.log.ai.message_inferred
       - ref: dash0.log.ai.severity_inferred
+      - ref: dash0.resource.id
+      - ref: dash0.resource.hash
+      - ref: dash0.resource.name
+      - ref: dash0.resource.type
