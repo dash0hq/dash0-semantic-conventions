@@ -9,6 +9,6 @@
 
 {{ event.header(e) | trim }}
 
-{{ at.generate(e.attributes, [], "/docs/registry/attributes", e.lineage.attributes) }}
+{{ at.generate(e.attributes, [], "https://opentelemetry.io/docs/specs/semconv/attributes-registry", e.lineage.attributes) }}
 {{ event.body(e.body) }}
 {% endfor %}

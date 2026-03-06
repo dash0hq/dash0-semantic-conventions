@@ -29,6 +29,6 @@
 {{ group.note }}
 {%- endif %}
 {%- if group.attributes %}
-{{ at.generate(group.attributes, [], "/docs/registry/attributes", group.lineage.attributes) }}
+{{ at.generate(group.attributes, [], "https://opentelemetry.io/docs/specs/semconv/attributes-registry", group.lineage.attributes) }}
 {%- endif %}
 {% endfor %}

@@ -37,6 +37,16 @@ templates:
     filter: '.groups | map(select(.type == "event")) | map(select(.id | startswith("event.dash0."))) | group_by(.name | split(".") | .[0:2] | join(".")) | map({id: .[0].id | split(".") | .[2], groups: .})'
     application_mode: single
     file_name: "events/README.md"
+  - pattern: index.html.j2
+    filter: >-
+      {
+        attribute_bundles: [.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("attributes.dash0."))) | group_by(.id | split(".") | .[2]) | .[] | {id: .[0].id | split(".") | .[2]}],
+        entity_bundles: [.groups | map(select(.type == "entity")) | map(select(.id | startswith("entity.internal.dash0."))) | group_by(.name | split(".") | .[0:2] | join(".")) | .[] | {id: .[0].id | split(".") | .[2]}],
+        event_bundles: [.groups | map(select(.type == "event")) | map(select(.id | startswith("event.dash0."))) | group_by(.name | split(".") | .[0:2] | join(".")) | .[] | {id: .[0].id | split(".") | .[2]}],
+        metric_bundles: [.groups | map(select(.type == "metric")) | map(select(.metric_name | startswith("dash0."))) | group_by(.metric_name | split(".") | .[1]) | .[] | {id: .[0].metric_name | split(".") | .[1]}]
+      }
+    application_mode: single
+    file_name: "index.html"
   - pattern: event_namespace.md.j2
     filter: '.groups | map(select(.type == "event")) | map(select(.id | startswith("event.dash0."))) | group_by(.name | split(".") | .[0:2] | join(".")) | map({id: .[0].id | split(".") | .[2], groups: .})'
     application_mode: each

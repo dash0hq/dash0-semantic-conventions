@@ -31,7 +31,7 @@ jobs:
         uses: open-telemetry/weaver/.github/actions/setup-weaver@6efae3022af925deab04aa70924cd501443fb7f9 # v0.21.2
 
       - name: Generate registry documentation
-        run: weaver registry generate --registry=./model --templates=./templates markdown ./docs/
+        run: ./scripts/generate-docs.sh
 
       - name: Configure Pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0

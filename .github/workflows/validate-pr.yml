@@ -96,7 +96,7 @@ jobs:
         uses: open-telemetry/weaver/.github/actions/setup-weaver@6efae3022af925deab04aa70924cd501443fb7f9 # v0.21.2
 
       - name: Generate registry documentation
-        run: weaver registry generate --registry=./model --templates=./templates markdown ./docs/
+        run: ./scripts/generate-docs.sh
 
       - name: Upload documentation artifact
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
