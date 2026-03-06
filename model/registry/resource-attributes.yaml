@@ -6,6 +6,16 @@ groups:
     display_name: Dash0 Resource Attributes
     brief: Resource attributes assigned by Dash0 at ingestion time.
     attributes:
+      - id: dash0.auth.token
+        type: string
+        stability: stable
+        brief: >
+          Last 7 digits of the authentication token used to submit the telemetry to Dash0.
+        note: |
+          Set at ingestion time by the Dash0 backend.
+          Useful for identifying which token was used when multiple authentication tokens are in use.
+        examples: ["abc1234"]
+
       - id: dash0.resource.id
         type: string
         stability: stable
