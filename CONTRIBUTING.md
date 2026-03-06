@@ -1,5 +1,4 @@
-Contributing
-============
+# Contributing
 
 ## Prerequisites
 
@@ -7,9 +6,10 @@ Contributing
 - [OTel Weaver](https://github.com/open-telemetry/weaver) (v0.21.2+)
 - Node.js (LTS) — used for converting JSON5 test data
 
-## Making Changes to the Model
+## Making changes to the model
 
-The semantic conventions are defined as YAML files under the `model/` directory, using the [OpenTelemetry Weaver](https://github.com/open-telemetry/weaver) registry format.
+The semantic conventions are defined as YAML files under the `model/` directory.
+They use the [OpenTelemetry Weaver](https://github.com/open-telemetry/weaver) registry format.
 
 - `model/registry_manifest.yaml` — Registry manifest declaring dependencies (e.g., on OTel semantic conventions).
 - `model/<domain>/entities.yaml` — Entity definitions.
@@ -21,7 +21,7 @@ When adding or modifying conventions:
 2. Run `weaver registry check -r ./model` to validate the model.
 3. Add or update test data under `tests/`.
 
-## Test Data
+## Test data
 
 Test data lives under the `tests/` directory as [JSON5](https://json5.org/) files:
 
@@ -30,7 +30,7 @@ Test data lives under the `tests/` directory as [JSON5](https://json5.org/) file
 
 When adding a new event or entity, add at least one valid and one invalid test case.
 
-## Validating Locally
+## Validating locally
 
 Check the registry model for correctness:
 
@@ -66,7 +66,7 @@ for file in $(find tests/invalid -name '*.json5' | sort); do
 done
 ```
 
-## Pull Requests
+## Pull requests
 
 All pull requests are validated in CI, which runs:
 

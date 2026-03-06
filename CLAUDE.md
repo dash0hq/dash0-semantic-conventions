@@ -45,6 +45,21 @@ The metric definitions were produced by:
 - Deprecated Prometheus aliases (e.g., `dash0_spans_total`) get their own metric group entry with `deprecated: { reason: renamed, renamed_to: <otel_name> }`.
 - Every metric **must** have a `unit` field compliant with [UCUM](https://ucum.org/).
 
+## Prose rules
+
+Follow these rules when writing or editing prose in this project.
+
+- **One sentence per line** (semantic line breaks).
+  Each sentence starts on its own line; do not wrap mid-sentence.
+- Separate paragraphs with a single blank line.
+- Section headers use sentence case (e.g., "Key conventions").
+- Use inline Markdown links: `[visible text](url)`.
+  Link the most specific relevant term, not generic phrases.
+- Fence code blocks with triple backticks and a language identifier (e.g., ` ```yaml `).
+- End sentences with full stops.
+- Use the **Oxford comma** (e.g., "spans, logs, and metrics").
+- Write numbers as digits and spell out "percent" (e.g., "10 percent").
+
 ## README.md maintenance
 
 The `Conventions` section in `README.md` is a hand-maintained summary. When adding, removing, or renaming attributes, metrics, or events in the `model/` directory, update the corresponding entry in `README.md`:

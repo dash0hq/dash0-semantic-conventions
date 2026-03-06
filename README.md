@@ -1,7 +1,11 @@
 # Dash0 Semantic Conventions
 
 This repository contains the semantic conventions for [Dash0](https://www.dash0.com).
-The conventions are defined using the [OpenTelemetry Weaver](https://github.com/open-telemetry/weaver) registry format and build on top of the [OpenTelemetry Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/).
+The conventions are defined using the [OpenTelemetry Weaver](https://github.com/open-telemetry/weaver) registry format.
+They build on top of the [OpenTelemetry Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/).
+
+The full registry documentation is published at [dash0hq.github.io/dash0-semantic-conventions](https://dash0hq.github.io/dash0-semantic-conventions/).
+This is a temporary location; the content will be merged into the [Dash0 Docs](https://docs.dash0.com) in a future release.
 
 ## Conventions
 
