@@ -20,9 +20,8 @@ Currently, the following namespaces exist:
 {%- import 'stability.j2' as stability -%}
 {%- import 'metric_macros.j2' as metrics -%}
 {%- for bundle in ctx %}
-| {{ bundle.id | title_case | acronym }} | | | | |
 {%- for group in bundle.groups | sort(attribute='metric_name') -%}
     {%- set my_file_name = bundle.id | kebab_case ~ ".md#" ~ (group.metric_name | kebab_case) %}
-| | [{{ group.metric_name }}]({{my_file_name}}) | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ stability.badge(group.stability, group.deprecated) | trim }} |
+| {{ bundle.id | title_case | acronym if loop.first }} | [{{ group.metric_name }}]({{my_file_name}}) | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ stability.badge(group.stability, group.deprecated) | trim }} |
 {%- endfor %}
 {%- endfor %}

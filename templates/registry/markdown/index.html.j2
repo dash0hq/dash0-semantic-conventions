@@ -258,7 +258,7 @@
 (function() {
   const content = document.getElementById('content');
 
-  function loadPage(path) {
+  function loadPage(path, fragment) {
     fetch(path)
       .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(md => {
@@ -266,24 +266,36 @@
         // Rewrite .md links to hash links
         content.querySelectorAll('a[href]').forEach(a => {
           const href = a.getAttribute('href');
-          if (href && href.endsWith('.md') && !href.startsWith('http')) {
-            const base = path.substring(0, path.lastIndexOf('/') + 1);
-            const resolved = new URL(href, location.origin + '/' + base).pathname.replace(/^\//, '');
-            a.setAttribute('href', '#' + resolved);
+          if (href && !href.startsWith('http')) {
+            const match = href.match(/^(.+\.md)(#.*)?$/);
+            if (match) {
+              const base = path.substring(0, path.lastIndexOf('/') + 1);
+              const resolved = new URL(match[1], location.origin + '/' + base).pathname.replace(/^\//, '');
+              a.setAttribute('href', '#' + resolved + (match[2] || ''));
+            }
           }
         });
         // Update active nav link
         document.querySelectorAll('nav a').forEach(a => {
           a.classList.toggle('active', a.getAttribute('href') === '#' + path);
         });
+        if (fragment) {
+          const el = document.getElementById(fragment);
+          if (el) { el.scrollIntoView(); return; }
+        }
         window.scrollTo(0, 0);
       })
       .catch(() => { content.innerHTML = '<p>Page not found.</p>'; });
   }
 
   function onHashChange() {
-    const path = location.hash.slice(1) || 'README.md';
-    loadPage(path);
+    const raw = location.hash.slice(1) || 'README.md';
+    const parts = raw.match(/^(.+\.md)(?:#(.*))?$/);
+    if (parts) {
+      loadPage(parts[1], parts[2]);
+    } else {
+      loadPage(raw);
+    }
   }
 
   window.addEventListener('hashchange', onHashChange);
