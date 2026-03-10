@@ -20,6 +20,12 @@ groups:
       - ref: dash0.span.type
       - ref: dash0.operation.name
       - ref: dash0.operation.type
+      - ref: dash0.trace.origin.type
+      - ref: dash0.trace.origin.web.session.id
+      - ref: dash0.trace.origin.web.event.id
+      - ref: dash0.trace.origin.synthetic_check.check_id
+      - ref: dash0.trace.origin.synthetic_check.attempt_id
+      - ref: dash0.trace.origin.synthetic_check.follow_redirect
       - ref: dash0.auth.token
       - ref: dash0.resource.id
       - ref: dash0.resource.hash

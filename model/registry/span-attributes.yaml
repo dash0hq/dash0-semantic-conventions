@@ -28,3 +28,75 @@ groups:
           Assigned at ingestion time using the same rule evaluation that produces
           `dash0.operation.type`. Values are normalised to lowercase.
         examples: ["http", "db", "rpc", "messaging"]
+
+  - id: registry.dash0.trace.origin
+    type: attribute_group
+    display_name: Dash0 Trace Origin Attributes
+    brief: >
+      Attributes describing the origin of a trace, assigned at ingestion time
+      by analysing the trace ID structure.
+    attributes:
+      - id: dash0.trace.origin.type
+        type: string
+        stability: stable
+        brief: >
+          Classification of the trace origin.
+        note: |
+          Determined at ingestion time by inspecting well-known prefixes in the trace ID.
+          Traces whose ID starts with `d042` are classified as `WEB` (browser/RUM).
+          Traces whose ID starts with `d0synt` (hex-encoded) are classified as `SYNTHETIC_CHECK`.
+          All other traces receive the value `UNKNOWN`.
+        examples: ["WEB", "SYNTHETIC_CHECK", "UNKNOWN"]
+
+      - id: dash0.trace.origin.web.session.id
+        type: string
+        stability: stable
+        brief: >
+          Identifier of the browser session that initiated the trace.
+        note: |
+          Extracted from bytes 3–11 of the trace ID for web traces (prefix `d042`).
+          Only set when `dash0.trace.origin.type` is `WEB`.
+        examples: ["001464d0c7bb671e", "00ce3d462fd28166"]
+
+      - id: dash0.trace.origin.web.event.id
+        type: string
+        stability: stable
+        brief: >
+          Original parent span ID from the browser, typically a web event.
+        note: |
+          On server root spans of web traces, the parent span ID is removed from the span
+          and stored as this attribute instead.
+          Only set when `dash0.trace.origin.type` is `WEB` and CRC32 checksum validation of
+          the trace ID passes.
+        examples: ["df7459ddb13b0399"]
+
+      - id: dash0.trace.origin.synthetic_check.check_id
+        type: string
+        stability: stable
+        brief: >
+          Unique identifier of the synthetic check that generated the trace.
+        note: |
+          Extracted from bytes 6–12 of the trace ID for synthetic-check traces (prefix `d0synt`).
+          Only set when `dash0.trace.origin.type` is `SYNTHETIC_CHECK`.
+        examples: ["64617368-3073-796e-7468-1234567890ab"]
+
+      - id: dash0.trace.origin.synthetic_check.attempt_id
+        type: string
+        stability: stable
+        brief: >
+          Attempt identifier for the synthetic check execution.
+        note: |
+          Extracted from bytes 12–16 of the trace ID for synthetic-check traces.
+          Only set when `dash0.trace.origin.type` is `SYNTHETIC_CHECK`.
+        examples: ["11112222"]
+
+      - id: dash0.trace.origin.synthetic_check.follow_redirect
+        type: int
+        stability: stable
+        brief: >
+          Index of the redirect followed for the synthetic check request.
+        note: |
+          Extracted from byte 7 of the parent span ID on server root spans of synthetic-check traces.
+          Only set when `dash0.trace.origin.type` is `SYNTHETIC_CHECK` and the span matches the
+          synthetic-check client span pattern.
+        examples: [0, 2]
