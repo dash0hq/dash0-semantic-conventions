@@ -12,22 +12,19 @@ model/
   registry_manifest.yaml          # Registry manifest with OTel semconv dependency
   <namespace>                     # Different folders, organize by functional area
 tests/
-  valid/                          # JSON5 test data expected to pass validation
-  invalid/                        # JSON5 test data expected to fail validation
+  valid/                          # JSON test data expected to pass validation
+  invalid/                        # JSON test data expected to fail validation
 ```
 
 ## Validation
 
-Validate the registry model using dockerized Weaver:
+All validation and testing runs via Docker through the `Makefile`.
 
 ```sh
-docker run --rm -v "$(pwd)/model:/model" fa4f1c6954ec registry check -r /model
-```
-
-Or if Weaver is installed locally:
-
-```sh
-weaver registry check -r ./model
+make check          # validate the registry model
+make test           # run all live-check tests
+make test-valid     # run only valid test cases
+make test-invalid   # run only invalid test cases
 ```
 
 ## Metric documentation workflow
@@ -44,6 +41,13 @@ The metric definitions were produced by:
 - Synthetic metrics (scope `dash0.metric.synthetic`) do **not** declare attributes. Attributes are materialised dynamically through PromQL aggregations.
 - Deprecated Prometheus aliases (e.g., `dash0_spans_total`) get their own metric group entry with `deprecated: { reason: renamed, renamed_to: <otel_name> }`.
 - Every metric **must** have a `unit` field compliant with [UCUM](https://ucum.org/).
+
+## Test data maintenance
+
+When adding, removing, or renaming test files under `tests/valid/` or `tests/invalid/`, update `tests/README.md`:
+
+- Each test file must have a row in the README table for its domain section.
+- The description should explain what the test exercises and why it is expected to pass or fail.
 
 ## Prose rules
 

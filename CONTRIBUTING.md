@@ -3,8 +3,7 @@
 ## Prerequisites
 
 - Signing the [Contributor License Agreement](https://github.com/cla-assistant/cla-assistant)
-- [OTel Weaver](https://github.com/open-telemetry/weaver) (v0.21.2+)
-- Node.js (LTS) — used for converting JSON5 test data
+- Docker
 
 ## Making changes to the model
 
@@ -18,12 +17,13 @@ They use the [OpenTelemetry Weaver](https://github.com/open-telemetry/weaver) re
 When adding or modifying conventions:
 
 1. Edit or create the relevant YAML files under `model/`.
-2. Run `weaver registry check -r ./model` to validate the model.
+2. Run `make check` to validate the model.
 3. Add or update test data under `tests/`.
+4. Run `make test` to verify all test data.
 
 ## Test data
 
-Test data lives under the `tests/` directory as [JSON5](https://json5.org/) files:
+Test data lives under the `tests/` directory as plain JSON files:
 
 - `tests/valid/` — Samples that must pass validation.
 - `tests/invalid/` — Samples that must fail validation.
@@ -32,38 +32,31 @@ When adding a new event or entity, add at least one valid and one invalid test c
 
 ## Validating locally
 
+All validation runs via Docker through the provided `Makefile`.
+
 Check the registry model for correctness:
 
 ```sh
-weaver registry check -r ./model
+make check
 ```
 
-Resolve the full registry (including OTel dependencies):
+Resolve the full registry (including OTel dependencies) into `resolved.json`:
 
 ```sh
-weaver registry resolve -r ./model -o resolved.json
+make resolve
 ```
 
-Run the live-check tests against valid test data:
+Run all live-check tests (valid and invalid):
 
 ```sh
-for file in $(find tests/valid -name '*.json5' | sort); do
-  tmpfile=$(mktemp --suffix=.json)
-  npx json5 "$file" > "$tmpfile"
-  weaver registry live-check -r ./model --input-source "$tmpfile" --input-format json
-  rm "$tmpfile"
-done
+make test
 ```
 
-Run the live-check tests against invalid test data (each file should be rejected):
+You can also run only the valid or invalid suite:
 
 ```sh
-for file in $(find tests/invalid -name '*.json5' | sort); do
-  tmpfile=$(mktemp --suffix=.json)
-  npx json5 "$file" > "$tmpfile"
-  weaver registry live-check -r ./model --input-source "$tmpfile" --input-format json
-  rm "$tmpfile"
-done
+make test-valid
+make test-invalid
 ```
 
 ## Pull requests
