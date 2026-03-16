@@ -1,17 +1,29 @@
 # SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
 
-# Note weaver requires all used resource attributes to be defined on an entity to pass validation.
-# The current iteration of the deployment resource does not include optional deployment attributes.
-# This entity exists to as a compatibility layer to allow
+# Note: We want to require for deployment events both the service identity (service.name with
+# optionally service.namespace and service.version) and the deployment identity (deployment.name,
+# deployment.environment.name, deployment.id).
+# Unfortunately, the `entioty_associations` field is a "one of" semantics, meaning that, if we
+# associate with both the service and the deployment, any log event satisfying *either* will pass
+# validation.
 groups:
-  - id: entity.internal.dash0.deployment
+  - id: "dash0.deployment"
     type: entity
     stability: development
-    name: deployment
+    name: deployment-resource-attributes
     brief: >
-      Mock entity for compatibility with Weaver, allowing additional optional attributes to pass validation
+      Entity describing which resource attributes are required and which recommended to be set on
+      a `dash0.deployment` event.
     attributes:
+      - ref: service.name
+        requirement_level: required
+      - ref: service.namespace
+        requirement_level: recommended
+      - ref: service.version
+        requirement_level: recommended
       - ref: deployment.name
+        requirement_level: recommended
+      - ref: deployment.environment.name
         requirement_level: recommended
       - ref: deployment.id
         requirement_level: recommended

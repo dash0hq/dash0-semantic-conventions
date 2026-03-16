@@ -1,13 +1,5 @@
 # SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
 
-imports:
-  entities:
-    - service
-    - service.namespace
-    - deployment
-    - vcs.repo
-    - vcs.ref
-
 groups:
   - id: event.dash0.deployment
     type: event
@@ -31,11 +23,8 @@ groups:
       * `deployment.name`
       * `deployment.id`
 
-# Disabled entity_associations because they are currently not specific enough yet (cant define requirement_level)
-#    entity_associations:
-#      - service
-#      - service.namespace
-#      - deployment
+    entity_associations:
+      - entity.internal.dash0.deployment
 
     attributes:
       - ref: deployment.status
