@@ -8,6 +8,8 @@ project_root="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 weaver_image="$(cat "${SCRIPT_DIR}/../weaver.image")"
 
 docker run --rm \
+  --user "$(id -u):$(id -g)" \
+  -e HOME=/tmp \
   -v "${project_root}/model:/model" \
   -v "${project_root}:/out" \
   "$weaver_image" \
