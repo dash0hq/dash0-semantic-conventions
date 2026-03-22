@@ -59,6 +59,21 @@ make test-valid
 make test-invalid
 ```
 
+## Previewing the documentation site
+
+Generate the documentation from the model and templates, then serve it locally:
+
+```sh
+make serve-docs
+```
+
+This regenerates the Markdown files in `docs/` and starts a local server at `http://localhost:8000`.
+To regenerate without serving:
+
+```sh
+make generate-docs
+```
+
 ## Pull requests
 
 All pull requests are validated in CI, which runs:

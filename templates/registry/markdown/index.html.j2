@@ -216,6 +216,53 @@
     color: var(--fg-secondary);
   }
 
+  /* GitHub-style alerts (via marked-alert) */
+  main .markdown-alert {
+    border-left: 3px solid;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--fg-secondary);
+  }
+  main .markdown-alert .markdown-alert-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  main .markdown-alert .markdown-alert-title svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    fill: currentColor;
+  }
+  main .markdown-alert-note {
+    border-left-color: #478be6;
+    background: rgba(71, 139, 230, 0.1);
+  }
+  main .markdown-alert-note .markdown-alert-title { color: #478be6; }
+  main .markdown-alert-tip {
+    border-left-color: #3fb950;
+    background: rgba(63, 185, 80, 0.1);
+  }
+  main .markdown-alert-tip .markdown-alert-title { color: #3fb950; }
+  main .markdown-alert-important {
+    border-left-color: #a371f7;
+    background: rgba(163, 113, 247, 0.1);
+  }
+  main .markdown-alert-important .markdown-alert-title { color: #a371f7; }
+  main .markdown-alert-warning {
+    border-left-color: #d29922;
+    background: rgba(210, 153, 34, 0.1);
+  }
+  main .markdown-alert-warning .markdown-alert-title { color: #d29922; }
+  main .markdown-alert-caution {
+    border-left-color: #f85149;
+    background: rgba(248, 81, 73, 0.1);
+  }
+  main .markdown-alert-caution .markdown-alert-title { color: #f85149; }
+
   /* Lists */
   main ul, main ol { margin: 0.6rem 0 0.6rem 1.5rem; color: var(--fg-secondary); }
   main li { margin: 0.3rem 0; line-height: 1.7; }
@@ -274,7 +321,9 @@
   <div id="content"><p id="loading">Loading...</p></div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked-alert/dist/index.umd.js"></script>
 <script>
+marked.use(markedAlert());
 (function() {
   const content = document.getElementById('content');
 
