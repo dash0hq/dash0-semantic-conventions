@@ -21,4 +21,4 @@ groups:
           away from span events, which [OpenTelemetry is deprecating](https://opentelemetry.io/blog/2025/span-events-vs-links/)
           in favour of log records linked with trace context.
 
-          See [Span event to log record conversion](https://www.dash0.com/changelog/span-event-to-log-record-conversion).
+          See [Span event to log record conversion](https://www.dash0.com/docs/dash0/telemetry/tracing/span-events-to-logs).
