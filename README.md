@@ -16,6 +16,7 @@ This is a temporary location; the content will be merged into the [Dash0 Docs](h
 - **Span** — Span identity: `dash0.span.name`, `dash0.span.type`.
 - **Trace Origin** — Trace origin classification and context: `dash0.trace.origin.type`, `dash0.trace.origin.web.session.id`, `dash0.trace.origin.web.event.id`, `dash0.trace.origin.synthetic_check.check_id`, `dash0.trace.origin.synthetic_check.attempt_id`, `dash0.trace.origin.synthetic_check.follow_redirect`.
 - **Log** — Log enrichment: `dash0.log.message`, `dash0.log.pattern`, `dash0.log.ai.attributes_inferred`, `dash0.log.ai.message_inferred`, `dash0.log.ai.severity_inferred`.
+- **Span Event** — Span event conversion: `dash0.span_event.converted`.
 - **OTLP Field Mappings** — Dash0-specific mappings of OTLP protocol fields to queryable attributes: `otel.trace.id`, `otel.span.id`, `otel.parent.id`, `otel.span.name`, `otel.span.kind`, `otel.span.status.code`, `otel.span.status.message`, `otel.span.event.name`, `otel.log.body`, `otel.log.severity.number`, `otel.log.severity.range`, `otel.log.severity.text`, `otel.metric.name`, `otel.metric.type`, `otel.metric.unit`, `otel.metric.overflow`.
 
 ### Events
