@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: registry.dash0.span_event
+    type: attribute_group
+    display_name: Dash0 Span Event Attributes
+    brief: Attributes related to span event processing by Dash0.
+    attributes:
+      - id: dash0.span_event.converted
+        type: boolean
+        stability: stable
+        brief: >
+          Indicates that this log record was automatically converted from a span event.
+        note: |
+          When `true`, this log record was created by the Dash0 ingestion pipeline from
+          a span event.
+          The resulting log record carries the correct trace context so it correlates with
+          the original span.
+
+          This conversion is an opt-in, per-dataset setting that helps with the transition
+          away from span events, which [OpenTelemetry is deprecating](https://opentelemetry.io/blog/2025/span-events-vs-links/)
+          in favour of log records linked with trace context.
+
+          See [Span event to log record conversion](https://www.dash0.com/changelog/span-event-to-log-record-conversion).
