@@ -4,7 +4,7 @@ groups:
   - id: registry.dash0.resource
     type: attribute_group
     display_name: Dash0 Resource Attributes
-    brief: Resource attributes assigned by Dash0 at ingestion time.
+    brief: Resource attributes assigned by Dash0 at ingestion time or during collection.
     attributes:
       - id: dash0.auth.token
         type: string
@@ -65,3 +65,46 @@ groups:
 
           See [identify resources by name and type](https://www.dash0.com/documentation/dash0/monitoring/resources/identify-resources-by-name-and-type).
         examples: ["k8s.pod", "k8s.deployment", "host", "container", "aws.lambda", "gcp.cloud.run", "vercel.project", "browser"]
+
+      - id: dash0.operator.collector_managed_by
+        type: string
+        stability: stable
+        brief: >
+          A marker attribute for telemetry collected by the Dash0 Kubernetes operator.
+        note: |
+          The collectors managed by the Dash0 Kubernetes operator add this resource attribute to all telemetry.
+          If set, the value is always "dash0-operator".
+        examples: ["dash0-operator"]
+
+      - id: dash0.operator.collector_role
+        type: string
+        stability: stable
+        brief: >
+          The type of collector that collected the telemetry for this resource.
+        note: |
+          The Dash0 Kubernetes operator manages two types of OpenTelemetry collectors, a DaemonSet for node-local telemetry and
+          a Deployment for collecting Kubernetes events and cluster-wide metrics.
+          This attribute shows which collector type collected a particular telemetry signal.
+          If set, the value is either "daemonset" or "deployment".
+          Coalesced resources might combine telemetry from the DaemonSet collector as well as the Deployment collector, hence they
+          might have both values.
+        examples: ["daemonset", "deployment"]
+
+      - id: dash0.operator.uid
+        type: string
+        stability: stable
+        brief: >
+          A UUID uniquely identifying the operator installation that produced the telemetry.
+        note: |
+          The collectors managed by the Dash0 Kubernetes operator add this resource attribute to all telemetry.
+          It is stable across the life-time of the cluster.
+        examples: ["e70c4b03-7e8d-432d-b2cd-addff593076e"]
+
+      - id: dash0.operator.version
+        type: string
+        stability: stable
+        brief: >
+          The version of the Dash0 Kubernetes operator which collected the telemetry.
+        note: |
+          The collectors managed by the Dash0 Kubernetes operator add this resource attribute to all telemetry.
+        examples: ["0.135.0"]
