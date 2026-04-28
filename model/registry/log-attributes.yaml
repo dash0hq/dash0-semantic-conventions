@@ -62,3 +62,14 @@ groups:
           log content rather than provided by the instrumentation.
 
           See [AI log patterns](https://www.dash0.com/documentation/dash0/logging/ai-log-patterns).
+
+      - id: dash0.monitoring.telemetry_collection_issue
+        type: boolean
+        stability: stable
+        brief: >
+          A marker for log messages which indicate a possible telemetry collection issue.
+        note: |
+          When `true`, the log message points to a possible problem in the telemetry collection.
+          Examples include:
+          - the Dash0 operator cannot instrument a workload for telemetry collection
+          - the Dash0 operator reports an issue setting up the OpenTelemetry collectors

@@ -27,3 +27,4 @@ groups:
       - ref: dash0.operator.collector_role
       - ref: dash0.operator.uid
       - ref: dash0.operator.version
+      - ref: dash0.monitoring.telemetry_collection_issue
