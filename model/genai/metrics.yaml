@@ -2,554 +2,592 @@
 
 groups:
   # ──────────────────────────────────────────────
-  # dash0.genai.conversation.count
+  # dash0.gen_ai.conversations
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.conversation.count
+  - id: metric.dash0.gen_ai.conversations
     type: metric
-    metric_name: dash0.genai.conversation.count
+    metric_name: dash0.gen_ai.conversations
     stability: stable
     brief: >
       Counts the number of GenAI conversations ingested by Dash0.
     note: |
-      `dash0.genai.conversation.count` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.conversations` is a synthetic metric computed on-the-fly
       from the ingested span data.
 
-      Deprecated PromQL alias: `dash0_genai_conversation_count_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_conversations_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{conversation}"
 
-  - id: metric.dash0_genai_conversation_count_total
+  - id: metric.dash0_gen_ai_conversations_total
     type: metric
-    metric_name: dash0_genai_conversation_count_total
+    metric_name: dash0_gen_ai_conversations_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.conversation.count
+      renamed_to: dash0.gen_ai.conversations
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.conversation.count`.
+      Deprecated Prometheus alias for `dash0.gen_ai.conversations`.
     instrument: counter
     unit: "{conversation}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.conversation.duration
+  # dash0.gen_ai.conversations.duration
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.conversation.duration
+  - id: metric.dash0.gen_ai.conversations.duration
     type: metric
-    metric_name: dash0.genai.conversation.duration
+    metric_name: dash0.gen_ai.conversations.duration
     stability: stable
     brief: >
       Distribution of GenAI conversation durations.
     note: |
-      `dash0.genai.conversation.duration` is a synthetic metric computed
+      `dash0.gen_ai.conversations.duration` is a synthetic metric computed
       on-the-fly from the ingested span data.
 
-      Deprecated PromQL aliases: `dash0_genai_conversation_duration_seconds_bucket`,
-      `dash0_genai_conversation_duration_seconds_sum`, `dash0_genai_conversation_duration_seconds_count`.
+      Deprecated PromQL aliases: `dash0_gen_ai_conversations_duration_seconds_bucket`,
+      `dash0_gen_ai_conversations_duration_seconds_sum`, `dash0_gen_ai_conversations_duration_seconds_count`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: histogram
     unit: "s"
 
-  - id: metric.dash0_genai_conversation_duration_seconds
+  - id: metric.dash0_gen_ai_conversations_duration_seconds
     type: metric
-    metric_name: dash0_genai_conversation_duration_seconds
+    metric_name: dash0_gen_ai_conversations_duration_seconds
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.conversation.duration
+      renamed_to: dash0.gen_ai.conversations.duration
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.conversation.duration`.
+      Deprecated Prometheus alias for `dash0.gen_ai.conversations.duration`.
     note: |
-      Exposed in Prometheus as `dash0_genai_conversation_duration_seconds_bucket`,
-      `dash0_genai_conversation_duration_seconds_sum`, and `dash0_genai_conversation_duration_seconds_count`.
+      Exposed in Prometheus as `dash0_gen_ai_conversations_duration_seconds_bucket`,
+      `dash0_gen_ai_conversations_duration_seconds_sum`, and `dash0_gen_ai_conversations_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.conversation.errors
+  # dash0.gen_ai.conversations.errors
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.conversation.errors
+  - id: metric.dash0.gen_ai.conversations.errors
     type: metric
-    metric_name: dash0.genai.conversation.errors
+    metric_name: dash0.gen_ai.conversations.errors
     stability: stable
     brief: >
       Counts GenAI conversations that ended in an error.
     note: |
-      `dash0.genai.conversation.errors` is a synthetic metric computed
+      `dash0.gen_ai.conversations.errors` is a synthetic metric computed
       on-the-fly from the ingested span data.
 
-      Deprecated PromQL alias: `dash0_genai_conversation_errors_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_conversations_errors_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{error}"
 
-  - id: metric.dash0_genai_conversation_errors_total
+  - id: metric.dash0_gen_ai_conversations_errors_total
     type: metric
-    metric_name: dash0_genai_conversation_errors_total
+    metric_name: dash0_gen_ai_conversations_errors_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.conversation.errors
+      renamed_to: dash0.gen_ai.conversations.errors
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.conversation.errors`.
+      Deprecated Prometheus alias for `dash0.gen_ai.conversations.errors`.
     instrument: counter
     unit: "{error}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.chat.count
+  # dash0.gen_ai.chats
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.chat.count
+  - id: metric.dash0.gen_ai.chats
     type: metric
-    metric_name: dash0.genai.chat.count
+    metric_name: dash0.gen_ai.chats
     stability: stable
     brief: >
       Counts the number of GenAI chat operations ingested by Dash0.
     note: |
-      `dash0.genai.chat.count` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.chats` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span with `gen_ai.operation.name=chat` contributes a single count.
 
-      Deprecated PromQL alias: `dash0_genai_chat_count_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_chats_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{chat}"
 
-  - id: metric.dash0_genai_chat_count_total
+  - id: metric.dash0_gen_ai_chats_total
     type: metric
-    metric_name: dash0_genai_chat_count_total
+    metric_name: dash0_gen_ai_chats_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.chat.count
+      renamed_to: dash0.gen_ai.chats
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.chat.count`.
+      Deprecated Prometheus alias for `dash0.gen_ai.chats`.
     instrument: counter
     unit: "{chat}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.chat.duration
+  # dash0.gen_ai.chats.duration
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.chat.duration
+  - id: metric.dash0.gen_ai.chats.duration
     type: metric
-    metric_name: dash0.genai.chat.duration
+    metric_name: dash0.gen_ai.chats.duration
     stability: stable
     brief: >
       Distribution of GenAI chat operation durations.
     note: |
-      `dash0.genai.chat.duration` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.chats.duration` is a synthetic metric computed on-the-fly
       from the ingested span data.
       The duration is the duration of each individual span with
       `gen_ai.operation.name=chat`.
 
-      Deprecated PromQL aliases: `dash0_genai_chat_duration_seconds_bucket`,
-      `dash0_genai_chat_duration_seconds_sum`, `dash0_genai_chat_duration_seconds_count`.
+      Deprecated PromQL aliases: `dash0_gen_ai_chats_duration_seconds_bucket`,
+      `dash0_gen_ai_chats_duration_seconds_sum`, `dash0_gen_ai_chats_duration_seconds_count`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: histogram
     unit: "s"
 
-  - id: metric.dash0_genai_chat_duration_seconds
+  - id: metric.dash0_gen_ai_chats_duration_seconds
     type: metric
-    metric_name: dash0_genai_chat_duration_seconds
+    metric_name: dash0_gen_ai_chats_duration_seconds
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.chat.duration
+      renamed_to: dash0.gen_ai.chats.duration
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.chat.duration`.
+      Deprecated Prometheus alias for `dash0.gen_ai.chats.duration`.
     note: |
-      Exposed in Prometheus as `dash0_genai_chat_duration_seconds_bucket`,
-      `dash0_genai_chat_duration_seconds_sum`, and `dash0_genai_chat_duration_seconds_count`.
+      Exposed in Prometheus as `dash0_gen_ai_chats_duration_seconds_bucket`,
+      `dash0_gen_ai_chats_duration_seconds_sum`, and `dash0_gen_ai_chats_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.chat.errors
+  # dash0.gen_ai.chats.errors
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.chat.errors
+  - id: metric.dash0.gen_ai.chats.errors
     type: metric
-    metric_name: dash0.genai.chat.errors
+    metric_name: dash0.gen_ai.chats.errors
     stability: stable
     brief: >
       Counts GenAI chat operations that ended in an error.
     note: |
-      `dash0.genai.chat.errors` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.chats.errors` is a synthetic metric computed on-the-fly
       from the ingested span data.
       A span with `gen_ai.operation.name=chat` contributes when its status
       indicates an error.
 
-      Deprecated PromQL alias: `dash0_genai_chat_errors_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_chats_errors_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{error}"
 
-  - id: metric.dash0_genai_chat_errors_total
+  - id: metric.dash0_gen_ai_chats_errors_total
     type: metric
-    metric_name: dash0_genai_chat_errors_total
+    metric_name: dash0_gen_ai_chats_errors_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.chat.errors
+      renamed_to: dash0.gen_ai.chats.errors
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.chat.errors`.
+      Deprecated Prometheus alias for `dash0.gen_ai.chats.errors`.
     instrument: counter
     unit: "{error}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.tool_call.count
+  # dash0.gen_ai.tool_calls
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.tool_call.count
+  - id: metric.dash0.gen_ai.tool_calls
     type: metric
-    metric_name: dash0.genai.tool_call.count
+    metric_name: dash0.gen_ai.tool_calls
     stability: stable
     brief: >
       Counts the number of GenAI tool call operations ingested by Dash0.
     note: |
-      `dash0.genai.tool_call.count` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.tool_calls` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span with `gen_ai.operation.name=execute_tool` contributes a single count.
 
-      Deprecated PromQL alias: `dash0_genai_tool_call_count_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_tool_calls_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{tool_call}"
 
-  - id: metric.dash0_genai_tool_call_count_total
+  - id: metric.dash0_gen_ai_tool_calls_total
     type: metric
-    metric_name: dash0_genai_tool_call_count_total
+    metric_name: dash0_gen_ai_tool_calls_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.tool_call.count
+      renamed_to: dash0.gen_ai.tool_calls
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.tool_call.count`.
+      Deprecated Prometheus alias for `dash0.gen_ai.tool_calls`.
     instrument: counter
     unit: "{tool_call}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.tool_call.duration
+  # dash0.gen_ai.tool_calls.duration
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.tool_call.duration
+  - id: metric.dash0.gen_ai.tool_calls.duration
     type: metric
-    metric_name: dash0.genai.tool_call.duration
+    metric_name: dash0.gen_ai.tool_calls.duration
     stability: stable
     brief: >
       Distribution of GenAI tool call operation durations.
     note: |
-      `dash0.genai.tool_call.duration` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.tool_calls.duration` is a synthetic metric computed on-the-fly
       from the ingested span data.
       The duration is the duration of each individual span with
       `gen_ai.operation.name=execute_tool`.
 
-      Deprecated PromQL aliases: `dash0_genai_tool_call_duration_seconds_bucket`,
-      `dash0_genai_tool_call_duration_seconds_sum`, `dash0_genai_tool_call_duration_seconds_count`.
+      Deprecated PromQL aliases: `dash0_gen_ai_tool_calls_duration_seconds_bucket`,
+      `dash0_gen_ai_tool_calls_duration_seconds_sum`, `dash0_gen_ai_tool_calls_duration_seconds_count`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: histogram
     unit: "s"
 
-  - id: metric.dash0_genai_tool_call_duration_seconds
+  - id: metric.dash0_gen_ai_tool_calls_duration_seconds
     type: metric
-    metric_name: dash0_genai_tool_call_duration_seconds
+    metric_name: dash0_gen_ai_tool_calls_duration_seconds
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.tool_call.duration
+      renamed_to: dash0.gen_ai.tool_calls.duration
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.tool_call.duration`.
+      Deprecated Prometheus alias for `dash0.gen_ai.tool_calls.duration`.
     note: |
-      Exposed in Prometheus as `dash0_genai_tool_call_duration_seconds_bucket`,
-      `dash0_genai_tool_call_duration_seconds_sum`, and `dash0_genai_tool_call_duration_seconds_count`.
+      Exposed in Prometheus as `dash0_gen_ai_tool_calls_duration_seconds_bucket`,
+      `dash0_gen_ai_tool_calls_duration_seconds_sum`, and `dash0_gen_ai_tool_calls_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.tool_call.errors
+  # dash0.gen_ai.tool_calls.errors
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.tool_call.errors
+  - id: metric.dash0.gen_ai.tool_calls.errors
     type: metric
-    metric_name: dash0.genai.tool_call.errors
+    metric_name: dash0.gen_ai.tool_calls.errors
     stability: stable
     brief: >
       Counts GenAI tool call operations that ended in an error.
     note: |
-      `dash0.genai.tool_call.errors` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.tool_calls.errors` is a synthetic metric computed on-the-fly
       from the ingested span data.
       A span with `gen_ai.operation.name=execute_tool` contributes when its status
       indicates an error.
 
-      Deprecated PromQL alias: `dash0_genai_tool_call_errors_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_tool_calls_errors_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{error}"
 
-  - id: metric.dash0_genai_tool_call_errors_total
+  - id: metric.dash0_gen_ai_tool_calls_errors_total
     type: metric
-    metric_name: dash0_genai_tool_call_errors_total
+    metric_name: dash0_gen_ai_tool_calls_errors_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.tool_call.errors
+      renamed_to: dash0.gen_ai.tool_calls.errors
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.tool_call.errors`.
+      Deprecated Prometheus alias for `dash0.gen_ai.tool_calls.errors`.
     instrument: counter
     unit: "{error}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.subagent.count
+  # dash0.gen_ai.subagents
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.subagent.count
+  - id: metric.dash0.gen_ai.subagents
     type: metric
-    metric_name: dash0.genai.subagent.count
+    metric_name: dash0.gen_ai.subagents
     stability: stable
     brief: >
       Counts the number of GenAI subagent invocations ingested by Dash0.
     note: |
-      `dash0.genai.subagent.count` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.subagents` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span with `gen_ai.operation.name=invoke_agent` contributes a single count.
 
-      Deprecated PromQL alias: `dash0_genai_subagent_count_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_subagents_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{subagent}"
 
-  - id: metric.dash0_genai_subagent_count_total
+  - id: metric.dash0_gen_ai_subagents_total
     type: metric
-    metric_name: dash0_genai_subagent_count_total
+    metric_name: dash0_gen_ai_subagents_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.subagent.count
+      renamed_to: dash0.gen_ai.subagents
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.subagent.count`.
+      Deprecated Prometheus alias for `dash0.gen_ai.subagents`.
     instrument: counter
     unit: "{subagent}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.subagent.duration
+  # dash0.gen_ai.subagents.duration
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.subagent.duration
+  - id: metric.dash0.gen_ai.subagents.duration
     type: metric
-    metric_name: dash0.genai.subagent.duration
+    metric_name: dash0.gen_ai.subagents.duration
     stability: stable
     brief: >
       Distribution of GenAI subagent invocation durations.
     note: |
-      `dash0.genai.subagent.duration` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.subagents.duration` is a synthetic metric computed on-the-fly
       from the ingested span data.
       The duration is the duration of each individual span with
       `gen_ai.operation.name=invoke_agent`.
 
-      Deprecated PromQL aliases: `dash0_genai_subagent_duration_seconds_bucket`,
-      `dash0_genai_subagent_duration_seconds_sum`, `dash0_genai_subagent_duration_seconds_count`.
+      Deprecated PromQL aliases: `dash0_gen_ai_subagents_duration_seconds_bucket`,
+      `dash0_gen_ai_subagents_duration_seconds_sum`, `dash0_gen_ai_subagents_duration_seconds_count`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: histogram
     unit: "s"
 
-  - id: metric.dash0_genai_subagent_duration_seconds
+  - id: metric.dash0_gen_ai_subagents_duration_seconds
     type: metric
-    metric_name: dash0_genai_subagent_duration_seconds
+    metric_name: dash0_gen_ai_subagents_duration_seconds
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.subagent.duration
+      renamed_to: dash0.gen_ai.subagents.duration
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.subagent.duration`.
+      Deprecated Prometheus alias for `dash0.gen_ai.subagents.duration`.
     note: |
-      Exposed in Prometheus as `dash0_genai_subagent_duration_seconds_bucket`,
-      `dash0_genai_subagent_duration_seconds_sum`, and `dash0_genai_subagent_duration_seconds_count`.
+      Exposed in Prometheus as `dash0_gen_ai_subagents_duration_seconds_bucket`,
+      `dash0_gen_ai_subagents_duration_seconds_sum`, and `dash0_gen_ai_subagents_duration_seconds_count`.
     instrument: histogram
     unit: "s"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.subagent.errors
+  # dash0.gen_ai.subagents.errors
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.subagent.errors
+  - id: metric.dash0.gen_ai.subagents.errors
     type: metric
-    metric_name: dash0.genai.subagent.errors
+    metric_name: dash0.gen_ai.subagents.errors
     stability: stable
     brief: >
       Counts GenAI subagent invocations that ended in an error.
     note: |
-      `dash0.genai.subagent.errors` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.subagents.errors` is a synthetic metric computed on-the-fly
       from the ingested span data.
       A span with `gen_ai.operation.name=invoke_agent` contributes when its status
       indicates an error.
 
-      Deprecated PromQL alias: `dash0_genai_subagent_errors_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_subagents_errors_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{error}"
 
-  - id: metric.dash0_genai_subagent_errors_total
+  - id: metric.dash0_gen_ai_subagents_errors_total
     type: metric
-    metric_name: dash0_genai_subagent_errors_total
+    metric_name: dash0_gen_ai_subagents_errors_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.subagent.errors
+      renamed_to: dash0.gen_ai.subagents.errors
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.subagent.errors`.
+      Deprecated Prometheus alias for `dash0.gen_ai.subagents.errors`.
     instrument: counter
     unit: "{error}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.tokens.input
+  # dash0.gen_ai.tokens.input
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.tokens.input
+  - id: metric.dash0.gen_ai.tokens.input
     type: metric
-    metric_name: dash0.genai.tokens.input
+    metric_name: dash0.gen_ai.tokens.input
     stability: stable
     brief: >
       Total GenAI input tokens consumed.
     note: |
-      `dash0.genai.tokens.input` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.tokens.input` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span contributes the value of its `gen_ai.usage.input_tokens`
       attribute to the per-bucket sum.
 
-      Deprecated PromQL alias: `dash0_genai_tokens_input_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_tokens_input_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{token}"
 
-  - id: metric.dash0_genai_tokens_input_total
+  - id: metric.dash0_gen_ai_tokens_input_total
     type: metric
-    metric_name: dash0_genai_tokens_input_total
+    metric_name: dash0_gen_ai_tokens_input_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.tokens.input
+      renamed_to: dash0.gen_ai.tokens.input
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.tokens.input`.
+      Deprecated Prometheus alias for `dash0.gen_ai.tokens.input`.
     instrument: counter
     unit: "{token}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.tokens.output
+  # dash0.gen_ai.tokens.output
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.tokens.output
+  - id: metric.dash0.gen_ai.tokens.output
     type: metric
-    metric_name: dash0.genai.tokens.output
+    metric_name: dash0.gen_ai.tokens.output
     stability: stable
     brief: >
       Total GenAI output tokens generated.
     note: |
-      `dash0.genai.tokens.output` is a synthetic metric computed on-the-fly
+      `dash0.gen_ai.tokens.output` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span contributes the value of its `gen_ai.usage.output_tokens`
       attribute to the per-bucket sum.
 
-      Deprecated PromQL alias: `dash0_genai_tokens_output_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_tokens_output_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{token}"
 
-  - id: metric.dash0_genai_tokens_output_total
+  - id: metric.dash0_gen_ai_tokens_output_total
     type: metric
-    metric_name: dash0_genai_tokens_output_total
+    metric_name: dash0_gen_ai_tokens_output_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.tokens.output
+      renamed_to: dash0.gen_ai.tokens.output
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.tokens.output`.
+      Deprecated Prometheus alias for `dash0.gen_ai.tokens.output`.
     instrument: counter
     unit: "{token}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.cache_tokens.input
+  # dash0.gen_ai.cache_tokens.input
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.cache_tokens.input
+  - id: metric.dash0.gen_ai.cache_tokens.input
     type: metric
-    metric_name: dash0.genai.cache_tokens.input
+    metric_name: dash0.gen_ai.cache_tokens.input
     stability: stable
     brief: >
       Total GenAI input tokens served from cache.
     note: |
-      `dash0.genai.cache_tokens.input` is a synthetic metric computed
+      `dash0.gen_ai.cache_tokens.input` is a synthetic metric computed
       on-the-fly from the ingested span data.
       Each span contributes the value of its
       `gen_ai.usage.cache_read.input_tokens` attribute to the per-bucket
       sum.
 
-      Deprecated PromQL alias: `dash0_genai_cache_tokens_input_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_cache_tokens_input_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{token}"
 
-  - id: metric.dash0_genai_cache_tokens_input_total
+  - id: metric.dash0_gen_ai_cache_tokens_input_total
     type: metric
-    metric_name: dash0_genai_cache_tokens_input_total
+    metric_name: dash0_gen_ai_cache_tokens_input_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.cache_tokens.input
+      renamed_to: dash0.gen_ai.cache_tokens.input
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.cache_tokens.input`.
+      Deprecated Prometheus alias for `dash0.gen_ai.cache_tokens.input`.
     instrument: counter
     unit: "{token}"
 
   # ──────────────────────────────────────────────
-  # dash0.genai.cache_tokens.output
+  # dash0.gen_ai.cache_tokens.output
   # ──────────────────────────────────────────────
-  - id: metric.dash0.genai.cache_tokens.output
+  - id: metric.dash0.gen_ai.cache_tokens.output
     type: metric
-    metric_name: dash0.genai.cache_tokens.output
+    metric_name: dash0.gen_ai.cache_tokens.output
     stability: stable
     brief: >
       Total GenAI output tokens served from cache.
     note: |
-      `dash0.genai.cache_tokens.output` is a synthetic metric computed
+      `dash0.gen_ai.cache_tokens.output` is a synthetic metric computed
       on-the-fly from the ingested span data.
       Each span contributes the value of its
       `gen_ai.usage.cache_read.output_tokens` attribute to the per-bucket
       sum.
 
-      Deprecated PromQL alias: `dash0_genai_cache_tokens_output_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_cache_tokens_output_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "{token}"
 
-  - id: metric.dash0_genai_cache_tokens_output_total
+  - id: metric.dash0_gen_ai_cache_tokens_output_total
     type: metric
-    metric_name: dash0_genai_cache_tokens_output_total
+    metric_name: dash0_gen_ai_cache_tokens_output_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.genai.cache_tokens.output
+      renamed_to: dash0.gen_ai.cache_tokens.output
     brief: >
-      Deprecated Prometheus alias for `dash0.genai.cache_tokens.output`.
+      Deprecated Prometheus alias for `dash0.gen_ai.cache_tokens.output`.
     instrument: counter
     unit: "{token}"
+
+  # ──────────────────────────────────────────────
+  # dash0.gen_ai.conversations.info
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.gen_ai.conversations.info
+    type: metric
+    metric_name: dash0.gen_ai.conversations.info
+    stability: stable
+    brief: >
+      Identity / metadata mapping for a GenAI conversation.
+    note: |
+      `dash0.gen_ai.conversations.info` is a synthetic metric computed on-the-fly
+      from the ingested span data. The value is always `1`; the info-style
+      series exists to carry the conversation's metadata labels
+      (`gen_ai.conversation.id`, `gen_ai.agent.name`, `gen_ai.provider.name`,
+      `gen_ai.request.model`, `service.name`) so display-layer queries can
+      join other GenAI metrics against it via PromQL `group_left`.
+
+      Mirrors the pattern established by `dash0.slo.info` (ENG-7637). Not
+      intended for alerting or trending — use the per-span counters /
+      histograms (`dash0.gen_ai.chats.*`, `dash0.gen_ai.tokens.*`, etc.) for
+      that.
+
+      Deprecated PromQL alias: `dash0_gen_ai_conversations_info`.
+    instrument: gauge
+    unit: "1"
+
+  - id: metric.dash0_gen_ai_conversations_info
+    type: metric
+    metric_name: dash0_gen_ai_conversations_info
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.gen_ai.conversations.info
+    brief: >
+      Deprecated Prometheus alias for `dash0.gen_ai.conversations.info`.
+    instrument: gauge
+    unit: "1"
