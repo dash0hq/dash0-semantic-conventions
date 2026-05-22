@@ -421,38 +421,38 @@ groups:
     unit: "{token}"
 
   # ──────────────────────────────────────────────
-  # dash0.gen_ai.cost
+  # dash0.gen_ai.usage.cost
   # ──────────────────────────────────────────────
-  - id: metric.dash0.gen_ai.cost
+  - id: metric.dash0.gen_ai.usage.cost
     type: metric
-    metric_name: dash0.gen_ai.cost
+    metric_name: dash0.gen_ai.usage.cost
     stability: stable
     brief: >
       Total USD cost attributed to GenAI spans.
     note: |
-      `dash0.gen_ai.cost` is a synthetic metric computed on-the-fly from the
-      ingested span data.
+      `dash0.gen_ai.usage.cost` is a synthetic metric computed on-the-fly from
+      the ingested span data.
       Each span contributes the value of its `dash0.gen_ai.usage.cost`
       attribute (USD, float64) to the per-bucket sum. The cost attribute is
       written by the `dash0genaicost` collector processor from the span's
       model and token counts.
 
-      Deprecated PromQL alias: `dash0_gen_ai_cost_total`.
+      Deprecated PromQL alias: `dash0_gen_ai_usage_cost_total`.
 
       Synthetic metrics do not expose attributes by default. Attributes are
       materialised through PromQL aggregations.
     instrument: counter
     unit: "USD"
 
-  - id: metric.dash0_gen_ai_cost_total
+  - id: metric.dash0_gen_ai_usage_cost_total
     type: metric
-    metric_name: dash0_gen_ai_cost_total
+    metric_name: dash0_gen_ai_usage_cost_total
     stability: stable
     deprecated:
       reason: renamed
-      renamed_to: dash0.gen_ai.cost
+      renamed_to: dash0.gen_ai.usage.cost
     brief: >
-      Deprecated Prometheus alias for `dash0.gen_ai.cost`.
+      Deprecated Prometheus alias for `dash0.gen_ai.usage.cost`.
     instrument: counter
     unit: "USD"
 
