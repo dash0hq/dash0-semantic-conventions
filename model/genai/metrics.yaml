@@ -433,9 +433,7 @@ groups:
       `dash0.gen_ai.usage.cost` is a synthetic metric computed on-the-fly from
       the ingested span data.
       Each span contributes the value of its `dash0.gen_ai.usage.cost`
-      attribute (USD, float64) to the per-bucket sum. The cost attribute is
-      written by the `dash0genaicost` collector processor from the span's
-      model and token counts.
+      attribute (USD, float64) to the per-bucket sum.
 
       Deprecated PromQL alias: `dash0_gen_ai_usage_cost_total`.
 
