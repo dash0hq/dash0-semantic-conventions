@@ -1,0 +1,78 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.spam_filters.logs
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.spam_filters.logs
+    type: metric
+    metric_name: dash0.spam_filters.logs
+    stability: development
+    brief: >
+      The number of log records dropped by spam filters.
+    note: |
+      Emitted by the Dash0 telemetry ingestion pipeline when [spam filters](https://www.dash0.com/documentation/dash0/cost-control/spam-filters) drop log records.
+      Each data point is attributed to exactly one spam filter via the `dash0.spam_filter.id` attribute.
+      Recorded as operational telemetry; it does not count towards the ingestion of the organization it is reported for.
+    instrument: counter
+    unit: "{log}"
+    attributes:
+      - ref: dash0.spam_filter.id
+        requirement_level: required
+
+  # ──────────────────────────────────────────────
+  # dash0.spam_filters.spans
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.spam_filters.spans
+    type: metric
+    metric_name: dash0.spam_filters.spans
+    stability: development
+    brief: >
+      The number of spans dropped by spam filters.
+    note: |
+      Emitted by the Dash0 telemetry ingestion pipeline when [spam filters](https://www.dash0.com/documentation/dash0/cost-control/spam-filters) drop spans.
+      Each data point is attributed to exactly one spam filter via the `dash0.spam_filter.id` attribute.
+      Recorded as operational telemetry; it does not count towards the ingestion of the organization it is reported for.
+    instrument: counter
+    unit: "{span}"
+    attributes:
+      - ref: dash0.spam_filter.id
+        requirement_level: required
+
+  # ──────────────────────────────────────────────
+  # dash0.spam_filters.metric_data_points
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.spam_filters.metric_data_points
+    type: metric
+    metric_name: dash0.spam_filters.metric_data_points
+    stability: development
+    brief: >
+      The number of metric data points dropped by spam filters.
+    note: |
+      Emitted by the Dash0 telemetry ingestion pipeline when [spam filters](https://www.dash0.com/documentation/dash0/cost-control/spam-filters) drop metric data points.
+      Each data point is attributed to exactly one spam filter via the `dash0.spam_filter.id` attribute.
+      Recorded as operational telemetry; it does not count towards the ingestion of the organization it is reported for.
+    instrument: counter
+    unit: "{metric_datapoint}"
+    attributes:
+      - ref: dash0.spam_filter.id
+        requirement_level: required
+
+  # ──────────────────────────────────────────────
+  # dash0.spam_filters.web_events
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.spam_filters.web_events
+    type: metric
+    metric_name: dash0.spam_filters.web_events
+    stability: development
+    brief: >
+      The number of web events dropped by spam filters.
+    note: |
+      Emitted by the Dash0 telemetry ingestion pipeline when [spam filters](https://www.dash0.com/documentation/dash0/cost-control/spam-filters) drop web events.
+      Each data point is attributed to exactly one spam filter via the `dash0.spam_filter.id` attribute.
+      Recorded as operational telemetry; it does not count towards the ingestion of the organization it is reported for.
+    instrument: counter
+    unit: "{web_event}"
+    attributes:
+      - ref: dash0.spam_filter.id
+        requirement_level: required
