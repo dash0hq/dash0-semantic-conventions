@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: registry.dash0.spam_filter
+    type: attribute_group
+    display_name: Dash0 Spam Filter Attributes
+    brief: Attributes describing the spam filter that acted on telemetry.
+    attributes:
+      - id: dash0.spam_filter.id
+        type: string
+        stability: development
+        brief: >
+          Unique identifier of the spam filter that dropped the telemetry.
+        note: |
+          Set on every data point of the `dash0.spam_filters.*` metrics.
+          Each dropped signal is attributed to exactly one spam filter: the first filter whose conditions matched it.
+
+          See [spam filters](https://www.dash0.com/documentation/dash0/cost-control/spam-filters) for how filters are defined and managed.
+        examples: ["4fa60a41-7a76-4a3d-8b71-9a1b3e2a5c10"]

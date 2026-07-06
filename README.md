@@ -17,6 +17,7 @@ This is a temporary location; the content will be merged into the [Dash0 Docs](h
 - **Trace Origin** — Trace origin classification and context: `dash0.trace.origin.type`, `dash0.trace.origin.web.session.id`, `dash0.trace.origin.web.event.id`, `dash0.trace.origin.synthetic_check.check_id`, `dash0.trace.origin.synthetic_check.attempt_id`, `dash0.trace.origin.synthetic_check.follow_redirect`.
 - **Log** — Log enrichment: `dash0.log.message`, `dash0.log.pattern`, `dash0.log.ai.attributes_inferred`, `dash0.log.ai.message_inferred`, `dash0.log.ai.severity_inferred`.
 - **Span Event** — Span event conversion: `dash0.span_event.converted`.
+- **Spam Filter** — Spam filter attribution: `dash0.spam_filter.id`.
 - **OTLP Field Mappings** — Dash0-specific mappings of OTLP protocol fields to queryable attributes: `otel.trace.id`, `otel.span.id`, `otel.parent.id`, `otel.span.name`, `otel.span.kind`, `otel.span.status.code`, `otel.span.status.message`, `otel.span.event.name`, `otel.log.body`, `otel.log.severity.number`, `otel.log.severity.range`, `otel.log.severity.text`, `otel.metric.name`, `otel.metric.type`, `otel.metric.unit`, `otel.metric.overflow`.
 
 ### Events
@@ -35,3 +36,4 @@ This is a temporary location; the content will be merged into the [Dash0 Docs](h
 - **Synthetic Checks** (`dash0.synthetic_check.*`) — Synthetic check runs and HTTP timing breakdowns (DNS, connection, SSL, request, response, total duration).
 - **Alerting** (`dash0.check.*`, `dash0.issue.*`) — Check status, evaluation outcomes/values, and issue status.
 - **Dash0 Operator** (`dash0.operator.manager.*`) — Kubernetes operator worker pools, reconcile counts, errors, and timing.
+- **Spam Filters** (`dash0.spam_filters.*`) — Log records, spans, metric data points, and web events dropped by spam filters, attributed per filter.
