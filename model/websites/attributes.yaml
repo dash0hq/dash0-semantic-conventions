@@ -8,6 +8,7 @@ groups:
       All attributes available on web events in Dash0.
     attributes:
       - ref: otel.event.name
+        stability: stable
       - ref: otel.scope.name
       - ref: otel.scope.version
       - ref: dash0.auth.token

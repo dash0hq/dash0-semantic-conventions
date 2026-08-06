@@ -1,0 +1,21 @@
+{%- import 'stability.j2' as stability -%}
+
+# Entity registry
+
+The entities registry is the catalog of available Entities.
+
+> [!WARNING]
+>
+> The following registry overview is a work in progress.
+>
+> Relationships and signal associations are a work in progress.
+
+| Namespace | Entity | Stability |
+| --------- | ------ | --------- |
+{%- for bundle in ctx %}
+{%- for group in bundle.groups | sort(attribute='name') -%}
+    {%- set my_file_name = bundle.id | kebab_case ~ ".md#" ~ (group.name | kebab_case) %}
+| {{ bundle.id | title_case | acronym if loop.first }} | [{{ group.name }}]({{my_file_name}}) | {{ stability.badge(group.stability, group.deprecated) | trim }} |
+{%- endfor %}
+{%- endfor %}
+

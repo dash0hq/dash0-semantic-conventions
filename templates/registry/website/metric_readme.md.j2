@@ -1,0 +1,18 @@
+# Metric registry
+
+The metrics registry is the catalog of available Dash0 metrics.
+
+<div class="metric-registry-table">
+
+| Namespace | Metric | Instrument | Unit | Stability |
+| --------- | ------ | ---------- | ---- | --------- |
+{%- import 'stability.j2' as stability -%}
+{%- import 'metric_macros.j2' as metrics -%}
+{%- for bundle in ctx %}
+{%- for group in bundle.groups | sort(attribute='metric_name') -%}
+    {%- set my_file_name = bundle.id | kebab_case ~ ".md#" ~ (group.metric_name | kebab_case) %}
+| {{ bundle.id | title_case | acronym if loop.first }} | [{{ group.metric_name }}]({{my_file_name}}) <a href="https://app.dash0.com/goto/metrics/explorer?metric_name={{ group.metric_name }}" title="View {{ group.metric_name }} in Dash0"></a> | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ stability.badge(group.stability, group.deprecated) | trim }} |
+{%- endfor %}
+{%- endfor %}
+
+</div>
