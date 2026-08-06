@@ -7,3 +7,4 @@ schema_base_url: https://github.com/dash0hq/dash0-semantic-conventions/tree/main
 dependencies:
   - name: otel
     registry_path: https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v1.39.0.zip[model]
+    schema_url: https://opentelemetry.io/schemas/1.39.0
