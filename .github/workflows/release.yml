@@ -52,7 +52,7 @@ jobs:
         uses: dash0hq/sync-docs-action@3fbe55fed800da21ee24d6b6dba1a86435f61565 # v0.4.0
         with:
           source-root: ./docs-website/
-          transformations-file: ../.github/workflows/sync-docs/transformations.yaml
+          transformations-file: .github/workflows/sync-docs/transformations.yaml
           dry-run: "false"
           target-repository: ${{ secrets.SYNC_DOCUMENTATION_TARGET_REPOSITORY }}
           target-directory: ${{ secrets.SYNC_DOCUMENTATION_TARGET_DIRECTORY }}
