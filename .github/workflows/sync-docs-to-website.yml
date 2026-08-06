@@ -1,0 +1,74 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+name: Synchronize docs to dash0.com
+
+# Syncs the Weaver-generated semantic convention pages to dash0hq/dash0-website
+# via dash0hq/sync-docs-action. Can be triggered manually after a release, or
+# automatically by release.yml after the GitHub Pages deploy succeeds.
+#
+# In dry-run mode the action validates transformations and coverage without
+# opening a PR; no secrets are required.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: >-
+          Validate transformations only — do not create a pull request in
+          dash0hq/dash0-website.
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      dry-run:
+        description: >-
+          Validate transformations only — do not create a pull request in
+          dash0hq/dash0-website.
+        type: boolean
+        default: false
+    secrets:
+      DASH0_DOCS_REPO_GITHUB_PAT:
+        description: >-
+          Fine-grained PAT with contents:write + pull-requests:write on
+          dash0hq/dash0-website. Required when dry-run is false.
+        required: false
+      SYNC_DOCUMENTATION_TARGET_REPOSITORY:
+        description: owner/name of the target documentation repository.
+        required: false
+      SYNC_DOCUMENTATION_TARGET_DIRECTORY:
+        description: >-
+          Directory within the target repository that receives the transformed
+          pages.
+        required: false
+
+jobs:
+  sync-docs:
+    name: Synchronize docs to dash0.com
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup Weaver
+        uses: open-telemetry/weaver/.github/actions/setup-weaver@6efae3022af925deab04aa70924cd501443fb7f9 # v0.21.2
+
+      - name: Generate website documentation
+        run: ./scripts/generate-docs.sh ./docs-website/ website
+
+      - name: Sync docs to Dash0 website
+        uses: dash0hq/sync-docs-action@3fbe55fed800da21ee24d6b6dba1a86435f61565 # v0.4.0
+        with:
+          source-root: ./docs-website/
+          transformations-file: ../.github/workflows/sync-docs/transformations.yaml
+          dry-run: ${{ inputs.dry-run }}
+          target-repository: ${{ secrets.SYNC_DOCUMENTATION_TARGET_REPOSITORY }}
+          target-directory: ${{ secrets.SYNC_DOCUMENTATION_TARGET_DIRECTORY }}
+          target-github-token: ${{ secrets.DASH0_DOCS_REPO_GITHUB_PAT }}
+          pr-branch: sync-dash0-semantic-conventions-docs
+          pr-title: "docs: synchronize Dash0 semantic conventions"
+          pr-body: >-
+            This PR synchronizes the content of the Dash0 semantic conventions registry from
+            [dash0hq/dash0-semantic-conventions](https://github.com/dash0hq/dash0-semantic-conventions)
+            into the documentation on https://www.dash0.com/docs.
+          commit-message: "docs: synchronize Dash0 semantic conventions"
