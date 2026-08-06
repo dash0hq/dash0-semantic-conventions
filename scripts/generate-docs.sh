@@ -7,14 +7,16 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-OUTPUT_DIR="${1:-${REPO_ROOT}/docs}"
+_OUTPUT_ARG="${1:-${REPO_ROOT}/docs}"
+OUTPUT_DIR="$(cd "${_OUTPUT_ARG}" 2>/dev/null && pwd || { mkdir -p "${_OUTPUT_ARG}" && cd "${_OUTPUT_ARG}" && pwd; })"
+TEMPLATE_TARGET="${2:-markdown}"
 
 if command -v weaver &>/dev/null; then
   echo "Using local Weaver installation"
   weaver registry generate \
     --registry="${REPO_ROOT}/model" \
     --templates="${REPO_ROOT}/templates" \
-    markdown \
+    "${TEMPLATE_TARGET}" \
     "${OUTPUT_DIR}"
 else
   echo "Weaver not found, using Docker"
@@ -26,7 +28,7 @@ else
     registry generate \
     --registry=/model \
     --templates=/templates \
-    markdown \
+    "${TEMPLATE_TARGET}" \
     /docs/
 fi
 

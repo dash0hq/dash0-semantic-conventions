@@ -1,0 +1,10 @@
+{%- import 'entity_macros.j2' as entity %}
+
+# {{ ctx.id | title_case | acronym }}
+{% for e in ctx.groups | sort(attribute='name') %}
+## {{ e.name | title_case | acronym }}
+
+{{ entity.header(e) | trim }}
+
+{{ entity.all_attribute_table(e) | trim }}
+{% endfor %}

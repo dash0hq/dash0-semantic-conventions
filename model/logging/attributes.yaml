@@ -8,6 +8,7 @@ groups:
       All attributes available on log records in Dash0.
     attributes:
       - ref: otel.event.name
+        stability: stable
       - ref: otel.log.body
       - ref: otel.log.severity.number
       - ref: otel.log.severity.range

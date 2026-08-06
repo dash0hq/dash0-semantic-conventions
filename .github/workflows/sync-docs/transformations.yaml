@@ -1,0 +1,150 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+#
+# This file configures how Weaver-generated semantic convention docs are adapted
+# before syncing to the Dash0 website via dash0hq/sync-docs-action.
+#
+# Source paths are relative to docs-website/ (the website-template output directory).
+# Target paths are relative to SYNC_DOCUMENTATION_TARGET_DIRECTORY
+# (src/app/(core)/docs/content/).
+#
+# Whenever a new convention group is added to the model/, add a new entry to the
+# files: block below; the coverage block will catch any misses in CI.
+
+nav:
+  target: dash0/opentelemetry/semconvs/nav.json
+  order: 66
+  id: semconvs
+  parentPath: OpenTelemetry
+  title: Dash0 Semantic Conventions
+  groupTitles:
+    attributes: Attributes
+    metrics: Metrics
+    events: Events
+
+common:
+  - description: remove the leading top-level heading (the frontmatter title replaces it)
+    type: replace-regex
+    find: '^#\s+[^\n]*\n'
+    replace: ''
+    flags:
+      - multiline
+
+  - description: strip .md extension from relative links (website uses extensionless URLs)
+    type: replace-regex
+    find: '\.md([)#])'
+    replace: '\1'
+    flags:
+      - multiline
+    required: false
+
+coverage:
+  include:
+    - "**/*.md"
+  ignore: []
+
+files:
+  - source: README.md
+    target: dash0/opentelemetry/semconvs/overview.md
+    title: Overview
+    description: Overview of the Dash0 semantic conventions registry.
+
+  - source: attributes/README.md
+    target: dash0/opentelemetry/semconvs/attributes/overview.md
+    title: Attribute Registry
+    description: All Dash0-defined attributes, organised by namespace.
+
+  - source: attributes/log.md
+    target: dash0/opentelemetry/semconvs/attributes/log.md
+    title: Log Attributes
+    description: Attributes that Dash0 can add to log records or the associated resources.
+
+  - source: attributes/metric.md
+    target: dash0/opentelemetry/semconvs/attributes/metric.md
+    title: Metric Attributes
+    description: Attributes that Dash0 can add to metrics or the associated resources.
+
+  - source: attributes/span.md
+    target: dash0/opentelemetry/semconvs/attributes/span.md
+    title: Span Attributes
+    description: Attributes that Dash0 can add to spans or the associated resources.
+
+  - source: attributes/web-event.md
+    target: dash0/opentelemetry/semconvs/attributes/web-event.md
+    title: Web Event Attributes
+    description: Attributes that Dash0 can add to web events or the associated resources.
+
+  - source: metrics/README.md
+    target: dash0/opentelemetry/semconvs/metrics/overview.md
+    title: Metric Registry
+    description: Catalogue of all Dash0-defined metrics, organised by namespace.
+
+  - source: metrics/check.md
+    target: dash0/opentelemetry/semconvs/metrics/check.md
+    title: Check Metrics
+    description: Metrics for Dash0 synthetic check evaluations.
+
+  - source: metrics/gen-ai.md
+    target: dash0/opentelemetry/semconvs/metrics/gen-ai.md
+    title: Gen AI Metrics
+    description: Metrics for generative AI usage in Dash0.
+
+  - source: metrics/issue.md
+    target: dash0/opentelemetry/semconvs/metrics/issue.md
+    title: Issue Metrics
+    description: Metrics for Dash0 issues.
+
+  - source: metrics/logs.md
+    target: dash0/opentelemetry/semconvs/metrics/logs.md
+    title: Log Metrics
+    description: Metrics counting Dash0 log records.
+
+  - source: metrics/metrics.md
+    target: dash0/opentelemetry/semconvs/metrics/metrics.md
+    title: Metric Datapoint Metrics
+    description: Metrics counting Dash0 metric data points.
+
+  - source: metrics/operator.md
+    target: dash0/opentelemetry/semconvs/metrics/operator.md
+    title: Operator Metrics
+    description: Metrics emitted by the Dash0 Operator for Kubernetes.
+
+  - source: metrics/resources.md
+    target: dash0/opentelemetry/semconvs/metrics/resources.md
+    title: Resource Metrics
+    description: Metrics counting observed Dash0 resources.
+
+  - source: metrics/span.md
+    target: dash0/opentelemetry/semconvs/metrics/span.md
+    title: Span Event Metrics
+    description: Metrics counting Dash0 span events.
+
+  - source: metrics/spam-filters.md
+    target: dash0/opentelemetry/semconvs/metrics/spam-filters.md
+    title: Spam Filter Metrics
+    description: Metrics counting signals dropped by Dash0 spam filters.
+
+  - source: metrics/spans.md
+    target: dash0/opentelemetry/semconvs/metrics/spans.md
+    title: Span Metrics
+    description: Metrics counting and measuring Dash0 spans.
+
+  - source: metrics/synthetic-check.md
+    target: dash0/opentelemetry/semconvs/metrics/synthetic-check.md
+    title: Synthetic Check Metrics
+    description: Metrics for Dash0 synthetic HTTP check performance.
+
+  - source: metrics/web.md
+    target: dash0/opentelemetry/semconvs/metrics/web.md
+    title: Web Metrics
+    description: Metrics for Dash0 web monitoring.
+
+  - source: events/README.md
+    target: dash0/opentelemetry/semconvs/events/overview.md
+    title: Event Registry
+    description: All Dash0-defined events, organised by namespace.
+
+  - source: events/deployment.md
+    target: dash0/opentelemetry/semconvs/events/deployment.md
+    title: Deployment Events
+    description: Events emitted during Dash0 deployment lifecycle.
+

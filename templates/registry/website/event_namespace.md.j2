@@ -1,0 +1,12 @@
+{%- import 'event_macros.j2' as event %}
+{%- import 'attribute_table.j2' as at %}
+
+# {{ ctx.id | title_case | acronym }}
+{% for e in ctx.groups | sort(attribute='name') %}
+{{ event.header(e) | trim }}
+
+[View {{ e.name }} events in Dash0](https://app.dash0.com/goto/logs?filter=%5B%7B%22key%22%3A%22otel.event.name%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%22{{ e.name }}%22%7D%5D)
+
+{{ at.generate(e.attributes, [], "https://opentelemetry.io/docs/specs/semconv/attributes-registry", e.lineage.attributes) }}
+{{ event.body(e.body) }}
+{% endfor %}
