@@ -44,7 +44,7 @@ Two categories of attributes are available for grouping, depending on the metric
 
 **Resource attributes** — attributes set at the [resource](/docs/dash0/opentelemetry/semconvs/attributes/overview) level (e.g. `service.name`, `service.version`, `k8s.namespace.name`, `k8s.deployment.name`, `cloud.provider`).
 These are available on metrics derived from logs, spans, metric data points, and Gen AI signals.
-They are **not** available on synthetic check metrics (`dash0.synthetic_check.*`) or web metrics (`dash0.web.*`), which are not joined against a resource table.
+They are **not** available on synthetic check metrics (`dash0.synthetic_check.*`) or web metrics (`dash0.web.*`).
 
 **Signal attributes** — attributes set at the individual signal level, specific to each metric type:
 

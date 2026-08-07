@@ -72,3 +72,20 @@ jobs:
             [dash0hq/dash0-semantic-conventions](https://github.com/dash0hq/dash0-semantic-conventions)
             into the documentation on https://www.dash0.com/docs.
           commit-message: "docs: synchronize Dash0 semantic conventions"
+
+      - name: Sync standalone pages to Dash0 website
+        uses: dash0hq/sync-docs-action@3fbe55fed800da21ee24d6b6dba1a86435f61565 # v0.4.0
+        with:
+          source-root: ./docs-website/
+          transformations-file: ../.github/workflows/sync-docs/transformations-standalone.yaml
+          dry-run: ${{ inputs.dry-run }}
+          target-repository: ${{ secrets.SYNC_DOCUMENTATION_TARGET_REPOSITORY }}
+          target-directory: ${{ secrets.SYNC_DOCUMENTATION_TARGET_DIRECTORY }}
+          target-github-token: ${{ secrets.DASH0_DOCS_REPO_GITHUB_PAT }}
+          pr-branch: sync-dash0-semantic-conventions-docs
+          pr-title: "docs: synchronize Dash0 semantic conventions"
+          pr-body: >-
+            This PR synchronizes the content of the Dash0 semantic conventions registry from
+            [dash0hq/dash0-semantic-conventions](https://github.com/dash0hq/dash0-semantic-conventions)
+            into the documentation on https://www.dash0.com/docs.
+          commit-message: "docs: synchronize Dash0 semantic conventions (standalone pages)"
