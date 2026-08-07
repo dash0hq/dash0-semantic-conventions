@@ -11,13 +11,12 @@ groups:
     brief: >
       Counts the number of GenAI conversations ingested by Dash0.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.conversations` is a synthetic metric computed on-the-fly
       from the ingested span data.
 
       Deprecated PromQL alias: `dash0_gen_ai_conversations_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{conversation}"
 
@@ -43,14 +42,13 @@ groups:
     brief: >
       Distribution of GenAI conversation durations.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.conversations.duration` is a synthetic metric computed
       on-the-fly from the ingested span data.
 
       Deprecated PromQL aliases: `dash0_gen_ai_conversations_duration_seconds_bucket`,
       `dash0_gen_ai_conversations_duration_seconds_sum`, `dash0_gen_ai_conversations_duration_seconds_count`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: histogram
     unit: "s"
 
@@ -64,6 +62,7 @@ groups:
     brief: >
       Deprecated Prometheus alias for `dash0.gen_ai.conversations.duration`.
     note: |
+      [synthetic: spans, resources]
       Exposed in Prometheus as `dash0_gen_ai_conversations_duration_seconds_bucket`,
       `dash0_gen_ai_conversations_duration_seconds_sum`, and `dash0_gen_ai_conversations_duration_seconds_count`.
     instrument: histogram
@@ -79,14 +78,13 @@ groups:
     brief: >
       Counts the number of GenAI chat operations ingested by Dash0.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.chats` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span with `gen_ai.operation.name=chat` contributes a single count.
 
       Deprecated PromQL alias: `dash0_gen_ai_chats_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{chat}"
 
@@ -112,6 +110,7 @@ groups:
     brief: >
       Distribution of GenAI chat operation durations.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.chats.duration` is a synthetic metric computed on-the-fly
       from the ingested span data.
       The duration is the duration of each individual span with
@@ -120,8 +119,6 @@ groups:
       Deprecated PromQL aliases: `dash0_gen_ai_chats_duration_seconds_bucket`,
       `dash0_gen_ai_chats_duration_seconds_sum`, `dash0_gen_ai_chats_duration_seconds_count`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: histogram
     unit: "s"
 
@@ -135,6 +132,7 @@ groups:
     brief: >
       Deprecated Prometheus alias for `dash0.gen_ai.chats.duration`.
     note: |
+      [synthetic: spans, resources]
       Exposed in Prometheus as `dash0_gen_ai_chats_duration_seconds_bucket`,
       `dash0_gen_ai_chats_duration_seconds_sum`, and `dash0_gen_ai_chats_duration_seconds_count`.
     instrument: histogram
@@ -150,14 +148,13 @@ groups:
     brief: >
       Counts the number of GenAI tool call operations ingested by Dash0.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.tool_calls` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span with `gen_ai.operation.name=execute_tool` contributes a single count.
 
       Deprecated PromQL alias: `dash0_gen_ai_tool_calls_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{tool_call}"
 
@@ -183,6 +180,7 @@ groups:
     brief: >
       Distribution of GenAI tool call operation durations.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.tool_calls.duration` is a synthetic metric computed on-the-fly
       from the ingested span data.
       The duration is the duration of each individual span with
@@ -191,8 +189,6 @@ groups:
       Deprecated PromQL aliases: `dash0_gen_ai_tool_calls_duration_seconds_bucket`,
       `dash0_gen_ai_tool_calls_duration_seconds_sum`, `dash0_gen_ai_tool_calls_duration_seconds_count`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: histogram
     unit: "s"
 
@@ -206,6 +202,7 @@ groups:
     brief: >
       Deprecated Prometheus alias for `dash0.gen_ai.tool_calls.duration`.
     note: |
+      [synthetic: spans, resources]
       Exposed in Prometheus as `dash0_gen_ai_tool_calls_duration_seconds_bucket`,
       `dash0_gen_ai_tool_calls_duration_seconds_sum`, and `dash0_gen_ai_tool_calls_duration_seconds_count`.
     instrument: histogram
@@ -221,14 +218,13 @@ groups:
     brief: >
       Counts the number of GenAI subagent invocations ingested by Dash0.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.subagents` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span with `gen_ai.operation.name=invoke_agent` contributes a single count.
 
       Deprecated PromQL alias: `dash0_gen_ai_subagents_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{subagent}"
 
@@ -254,6 +250,7 @@ groups:
     brief: >
       Distribution of GenAI subagent invocation durations.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.subagents.duration` is a synthetic metric computed on-the-fly
       from the ingested span data.
       The duration is the duration of each individual span with
@@ -262,8 +259,6 @@ groups:
       Deprecated PromQL aliases: `dash0_gen_ai_subagents_duration_seconds_bucket`,
       `dash0_gen_ai_subagents_duration_seconds_sum`, `dash0_gen_ai_subagents_duration_seconds_count`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: histogram
     unit: "s"
 
@@ -277,6 +272,7 @@ groups:
     brief: >
       Deprecated Prometheus alias for `dash0.gen_ai.subagents.duration`.
     note: |
+      [synthetic: spans, resources]
       Exposed in Prometheus as `dash0_gen_ai_subagents_duration_seconds_bucket`,
       `dash0_gen_ai_subagents_duration_seconds_sum`, and `dash0_gen_ai_subagents_duration_seconds_count`.
     instrument: histogram
@@ -292,6 +288,7 @@ groups:
     brief: >
       Total GenAI input tokens consumed.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.tokens.input` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span contributes the value of its `gen_ai.usage.input_tokens`
@@ -299,8 +296,6 @@ groups:
 
       Deprecated PromQL alias: `dash0_gen_ai_tokens_input_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{token}"
 
@@ -326,6 +321,7 @@ groups:
     brief: >
       Total GenAI output tokens generated.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.tokens.output` is a synthetic metric computed on-the-fly
       from the ingested span data.
       Each span contributes the value of its `gen_ai.usage.output_tokens`
@@ -333,8 +329,6 @@ groups:
 
       Deprecated PromQL alias: `dash0_gen_ai_tokens_output_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{token}"
 
@@ -360,6 +354,7 @@ groups:
     brief: >
       Total GenAI input tokens served from cache.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.cache_tokens.input` is a synthetic metric computed
       on-the-fly from the ingested span data.
       Each span contributes the value of its
@@ -368,8 +363,6 @@ groups:
 
       Deprecated PromQL alias: `dash0_gen_ai_cache_tokens_input_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{token}"
 
@@ -395,6 +388,7 @@ groups:
     brief: >
       Total GenAI output tokens served from cache.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.cache_tokens.output` is a synthetic metric computed
       on-the-fly from the ingested span data.
       Each span contributes the value of its
@@ -403,8 +397,6 @@ groups:
 
       Deprecated PromQL alias: `dash0_gen_ai_cache_tokens_output_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{token}"
 
@@ -430,6 +422,7 @@ groups:
     brief: >
       Total USD cost attributed to GenAI spans.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.usage.cost` is a synthetic metric computed on-the-fly from
       the ingested span data.
       Each span contributes the value of its `dash0.gen_ai.usage.cost`
@@ -437,8 +430,6 @@ groups:
 
       Deprecated PromQL alias: `dash0_gen_ai_usage_cost_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "USD"
 
@@ -464,6 +455,7 @@ groups:
     brief: >
       Identity / metadata mapping for a GenAI conversation.
     note: |
+      [synthetic: spans, resources]
       `dash0.gen_ai.conversations.info` is a synthetic metric computed on-the-fly
       from the ingested span data. The value is always `1`; the info-style
       series exists to carry the conversation's metadata labels

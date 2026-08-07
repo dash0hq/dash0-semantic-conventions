@@ -37,6 +37,14 @@ common:
       - multiline
     required: false
 
+  - description: strip [synthetic] marker from metric notes (safety net; templates also strip it)
+    type: replace-regex
+    find: '^\[synthetic[^\]]*\]\n?'
+    replace: ''
+    flags:
+      - multiline
+    required: false
+
   - description: rewrite OTel process semconv relative link to absolute URL
     type: replace-regex
     find: '\]\(process\)'
@@ -83,6 +91,7 @@ files:
     target: dash0/opentelemetry/semconvs/metrics/overview.md
     title: Metric Registry
     description: Catalogue of all Dash0-defined metrics, organised by namespace.
+
 
   - source: metrics/check.md
     target: dash0/opentelemetry/semconvs/metrics/check.md

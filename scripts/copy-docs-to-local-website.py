@@ -24,9 +24,10 @@ except ImportError:
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOURCE_ROOT = os.path.join(REPO_ROOT, "docs-website")
-TRANSFORMATIONS_FILE = os.path.join(
-    REPO_ROOT, ".github/workflows/sync-docs/transformations.yaml"
-)
+TRANSFORMATIONS_FILES = [
+    os.path.join(REPO_ROOT, ".github/workflows/sync-docs/transformations.yaml"),
+    os.path.join(REPO_ROOT, ".github/workflows/sync-docs/transformations-standalone.yaml"),
+]
 WEBSITE_ROOT = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/git/dash0-website")
 TARGET_BASE = os.path.join(WEBSITE_ROOT, "src/app/(core)/docs/content")
 
@@ -135,81 +136,94 @@ def main():
         print(f"Error: dash0-website not found at {WEBSITE_ROOT}")
         sys.exit(1)
 
-    with open(TRANSFORMATIONS_FILE) as f:
-        config = yaml.safe_load(f)
-
     timestamp = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.000Z")
-    common_transforms = config.get("common", [])
-    nav_cfg = config.get("nav")
-    files_cfg = config.get("files", [])
+    all_written = []
+    all_errors = []
+    nav_written = []
+    nav_cfg_main = None
 
-    print(f"Source:  {SOURCE_ROOT}")
-    print(f"Target:  {TARGET_BASE}")
-    print(f"Pages:   {len(files_cfg)}")
-    print()
+    for tf_path in TRANSFORMATIONS_FILES:
+        with open(tf_path) as f:
+            config = yaml.safe_load(f)
 
-    written = []
-    errors = []
+        common_transforms = config.get("common", [])
+        nav_cfg = config.get("nav")
+        files_cfg = config.get("files", [])
 
-    for entry in files_cfg:
-        source_rel = entry["source"]
-        target_rel = entry["target"]
-        title = entry["title"]
-        description = entry.get("description", "")
+        if nav_cfg:
+            nav_cfg_main = nav_cfg
 
-        source_path = os.path.join(SOURCE_ROOT, source_rel)
-        target_path = os.path.join(TARGET_BASE, target_rel)
+        print(f"Source:  {SOURCE_ROOT}")
+        print(f"Target:  {TARGET_BASE}")
+        print(f"Pages ({os.path.basename(tf_path)}): {len(files_cfg)}")
+        print()
 
-        if not os.path.exists(source_path):
-            errors.append(f"  MISSING source: {source_rel}")
-            continue
+        written = []
+        errors = []
 
-        with open(source_path) as f:
-            content = f.read()
+        for entry in files_cfg:
+            source_rel = entry["source"]
+            target_rel = entry["target"]
+            title = entry["title"]
+            description = entry.get("description", "")
 
-        # Apply common transformations
-        try:
-            for t in common_transforms:
-                content = apply_transform(content, t)
-        except ValueError as e:
-            errors.append(f"  TRANSFORM ERROR {source_rel}: {e}")
-            continue
+            source_path = os.path.join(SOURCE_ROOT, source_rel)
+            target_path = os.path.join(TARGET_BASE, target_rel)
 
-        # Prepend frontmatter
-        title_val = yaml_scalar(title)
-        desc_val = yaml_scalar(description)
-        frontmatter = (
-            f"---\ntitle: {title_val}\n"
-            f"description: {desc_val}\n"
-            f"lastUpdated: {timestamp}\n---\n\n"
-        )
-        content = frontmatter + content.lstrip("\n")
+            if not os.path.exists(source_path):
+                errors.append(f"  MISSING source: {source_rel}")
+                continue
 
-        os.makedirs(os.path.dirname(target_path), exist_ok=True)
-        with open(target_path, "w") as f:
-            f.write(content)
+            with open(source_path) as f:
+                content = f.read()
 
-        print(f"  ✓ {source_rel}")
-        print(f"    → {target_rel}")
-        written.append(entry)
+            try:
+                for t in common_transforms:
+                    content = apply_transform(content, t)
+            except ValueError as e:
+                errors.append(f"  TRANSFORM ERROR {source_rel}: {e}")
+                continue
 
-    # Generate nav.json
-    if nav_cfg and written:
-        nav_data = build_nav_json(nav_cfg, written)
-        nav_target_path = os.path.join(TARGET_BASE, nav_cfg["target"])
+            title_val = yaml_scalar(title)
+            desc_val = yaml_scalar(description)
+            frontmatter = (
+                f"---\ntitle: {title_val}\n"
+                f"description: {desc_val}\n"
+                f"lastUpdated: {timestamp}\n---\n\n"
+            )
+            content = frontmatter + content.lstrip("\n")
+
+            os.makedirs(os.path.dirname(target_path), exist_ok=True)
+            with open(target_path, "w") as f:
+                f.write(content)
+
+            print(f"  ✓ {source_rel}")
+            print(f"    → {target_rel}")
+            written.append(entry)
+
+        if nav_cfg:
+            nav_written.extend(written)
+
+        all_written.extend(written)
+        all_errors.extend(errors)
+
+    # Generate nav.json from the main transformations file (with nav block)
+    if nav_cfg_main and nav_written:
+        nav_data = build_nav_json(nav_cfg_main, nav_written)
+        nav_target_path = os.path.join(TARGET_BASE, nav_cfg_main["target"])
         os.makedirs(os.path.dirname(nav_target_path), exist_ok=True)
         with open(nav_target_path, "w") as f:
             json.dump(nav_data, f, indent=2)
             f.write("\n")
-        print(f"\n  ✓ nav.json → {nav_cfg['target']}")
+        print(f"\n  ✓ nav.json → {nav_cfg_main['target']}")
 
     print(f"\n{'='*60}")
-    if errors:
+    if all_errors:
         print("ERRORS:")
-        for e in errors:
+        for e in all_errors:
             print(e)
         print()
-    print(f"Written {len(written)}/{len(files_cfg)} pages to {TARGET_BASE}")
+    print(f"Written {len(all_written)} pages to {TARGET_BASE}")
 
 
 if __name__ == "__main__":

@@ -11,14 +11,13 @@ groups:
     brief: >
       Counts the number of metric data points ingested by Dash0.
     note: |
+      [synthetic: metric_datapoints, resources]
       `dash0.metrics.datapoints` is a synthetic metric: it is not stored as a metric
       time series, but computed on-the-fly from the ingested metrics data. It can be
       filtered and grouped by any metric or resource attribute.
 
       Deprecated PromQL alias: `dash0_metrics_datapoints_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{metric_datapoint}"
 

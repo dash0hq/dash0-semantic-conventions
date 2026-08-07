@@ -1,0 +1,71 @@
+{%- import 'stability.j2' as stability -%}
+{%- import 'metric_macros.j2' as metrics -%}
+
+# Synthetic Metrics
+
+Dash0 provides synthetic metrics to help you analyze logs, spans, and related telemetry data dynamically without requiring predefined metric aggregations.
+
+Synthetic metrics are calculated on-the-fly from other telemetry ingested by Dash0.
+They can query only data that exists within your organization's retention period and are not charged on your bill.
+
+### Key Use Cases
+
+- Count and alert on logs, spans, span events, metric data points, and resources dynamically.
+- Avoid upfront metric definitions, making observability more flexible.
+- No additional charges on telemetry already sent to Dash0.
+- Enable advanced query-building for performance monitoring, anomaly detection, and billing analysis.
+
+### Retention and Availability
+
+Synthetic metrics rely on retained telemetry:
+
+- Logs, spans, and span events: **30-day** retention period.
+- Metric data points: **13-month** retention period.
+
+### Cost
+
+Synthetic metrics do not incur extra costs.
+You already pay for them by ingesting the raw telemetry (spans, span events, log records, metric data points) they are computed from.
+
+## Querying Synthetic Metrics
+
+Synthetic metrics do not carry pre-computed attribute dimensions.
+Instead, attributes are materialised on query by grouping in PromQL:
+
+```promql
+sum by (service_name) ({otel_metric_name="dash0.spans"})
+```
+
+This yields one time series per distinct value of `service.name`.
+
+### Available attributes
+
+Two categories of attributes are available for grouping, depending on the metric:
+
+**Resource attributes** — attributes set at the [resource](/docs/dash0/opentelemetry/semconvs/attributes/overview) level (e.g. `service.name`, `service.version`, `k8s.namespace.name`, `k8s.deployment.name`, `cloud.provider`).
+These are available on metrics derived from logs, spans, metric data points, and Gen AI signals.
+They are **not** available on synthetic check metrics (`dash0.synthetic_check.*`) or web metrics (`dash0.web.*`), which are not joined against a resource table.
+
+**Signal attributes** — attributes set at the individual signal level, specific to each metric type:
+
+- **Logs** (`dash0.logs`): `otel.log.severity.range`, `otel.log.severity.text`, `otel.event.name`, `dash0.log.pattern`, and others from the [Log Attributes](/docs/dash0/opentelemetry/semconvs/attributes/log) registry.
+- **Spans** (`dash0.spans`, `dash0.spans.duration`, `dash0.spans.red`): `dash0.operation.name`, `dash0.operation.type`, `otel.span.kind`, `otel.span.status.code`, `http.response.status_code`, `http.route`, and others from the [Span Attributes](/docs/dash0/opentelemetry/semconvs/attributes/span) registry.
+- **Span events** (`dash0.span.events`): all span attributes above, plus `otel.span.event.name`.
+- **Metric data points** (`dash0.metrics.datapoints`): `otel.metric.name`, `otel.metric.type`, `otel.metric.unit`, `otel.scope.name`.
+- **Resources** (`dash0.resources`): `dash0.resource.id`, `dash0.resource.name`, `dash0.resource.type`, plus any resource attribute.
+- **Synthetic checks** (`dash0.synthetic_check.*`): `dash0.check.id`, `dash0.check.name`, `dash0.check.type`, `dash0.synthetic_check.location`, `dash0.synthetic_check.outcome`, `http.response.status_code`.
+- **Web** (`dash0.web.*`): `page.url.path`, `page.url.domain`, `user_agent.name`, `user_agent.os.name`, `geo.country_iso_code`, `session.id`, and many others from the [Web Event Attributes](/docs/dash0/opentelemetry/semconvs/attributes/web-event) registry.
+- **Gen AI** (`dash0.gen_ai.*`): `gen_ai.operation.name`, `gen_ai.conversation.id`, plus all span attributes.
+
+## Synthetic Metric Reference
+
+| Namespace | Metric | Instrument | Unit | Stability |
+| --------- | ------ | ---------- | ---- | --------- |
+{%- for bundle in ctx %}
+{%- for group in bundle.groups | sort(attribute='metric_name') -%}
+{%- if group.note and '[synthetic' in group.note -%}
+    {%- set my_file_name = "/docs/dash0/opentelemetry/semconvs/metrics/" ~ (bundle.id | kebab_case) ~ "#" ~ (group.metric_name | kebab_case) %}
+| {{ bundle.id | title_case | acronym if loop.first }} | [{{ group.metric_name }}]({{my_file_name}}) <a href="https://app.dash0.com/goto/metrics/explorer?metric_name={{ group.metric_name }}" title="View {{ group.metric_name }} in Dash0"></a> | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ stability.badge(group.stability, group.deprecated) | trim }} |
+{%- endif -%}
+{%- endfor %}
+{%- endfor %}
