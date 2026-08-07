@@ -37,6 +37,12 @@ common:
       - multiline
     required: false
 
+  - description: rewrite OTel process semconv relative link to absolute URL
+    type: replace-regex
+    find: '\]\(process\)'
+    replace: '](https://opentelemetry.io/docs/specs/semconv/resource/process/)'
+    required: false
+
 coverage:
   include:
     - "**/*.md"
