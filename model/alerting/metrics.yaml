@@ -12,7 +12,15 @@ groups:
       Encodes the current state of a check as an enum.
     note: |
       Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
-      The value represents the check's overall status (e.g., ok, degraded, critical).
+      The check's overall state after grace-period logic has been applied.
+
+      | Value | Name | Description |
+      |-------|------|-------------|
+      | `-Inf` | `inactive` | The check is inactive (enablement conditions not met, or the check is disabled). |
+      | `0` | `healthy` | The check is passing; no thresholds have been exceeded. |
+      | `0.5` | `pending` | Within the trigger grace period — the threshold has been exceeded but not long enough to transition to degraded or critical. |
+      | `1` | `degraded` | The check has exceeded the degraded threshold and the grace period has elapsed. |
+      | `2` | `critical` | The check has exceeded the critical threshold and the grace period has elapsed. |
 
       Deprecated PromQL alias: `dash0_check_status`.
     instrument: gauge
@@ -41,6 +49,15 @@ groups:
       Encodes the outcome of check evaluations as an enum.
     note: |
       Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+      Encodes the immediate result of each evaluation cycle, before grace-period logic is applied.
+      Unlike `dash0.check.status`, this metric has no `pending` state.
+
+      | Value | Name | Description |
+      |-------|------|-------------|
+      | `-Inf` | `inactive` | Enablement conditions were not met; the evaluation did not run. |
+      | `0` | `healthy` | The evaluation result did not exceed any threshold. |
+      | `1` | `degraded` | The result exceeded the degraded threshold but not the critical threshold. |
+      | `2` | `critical` | The result exceeded the critical threshold. |
 
       Deprecated PromQL alias: `dash0_check_evaluation_outcome`.
     instrument: gauge
@@ -193,6 +210,13 @@ groups:
       Encodes the current issue status as an enum.
     note: |
       Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+      Issues are created when a check rule transitions to a failed state.
+      This metric only exists for checks that are currently failing — there are no healthy, pending, or inactive values.
+
+      | Value | Name | Description |
+      |-------|------|-------------|
+      | `1.0` | `degraded` | The issue represents one or more checks in degraded state. |
+      | `2.0` | `critical` | The issue represents one or more checks in critical state. |
 
       Deprecated PromQL alias: `dash0_issue_status`.
     instrument: gauge

@@ -8,6 +8,7 @@
 > Events can be used as [dashboard annotations](/docs/dash0/dashboards/add-annotations) to correlate deployments and other lifecycle moments with your telemetry data.
 {% for e in ctx.groups | sort(attribute='name') %}
 <span id="{{ e.name | kebab_case }}"></span>
+
 {{ event.header(e) | trim }}
 
 [View {{ e.name }} events in Dash0](https://app.dash0.com/goto/logs?filter=%5B%7B%22key%22%3A%22otel.event.name%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%22{{ e.name }}%22%7D%5D)
