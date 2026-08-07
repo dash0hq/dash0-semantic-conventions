@@ -1,10 +1,41 @@
-# Registry
+# Dash0 Semantic Conventions
 
-This is an automatically generated registry of available semantic conventions.
+Dash0 extends the [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/) with `dash0.*` attributes, metrics, and events that are specific to the Dash0 platform.
+Some of these conventions are automatically applied to your telemetry at ingestion time, while others are available for you to use in your own instrumentation or to query Dash0.
+Several `dash0.*` metrics are [synthetic metrics](/docs/dash0/miscellaneous/glossary/synthetic-metrics), that is they are metrics that are computed on-the-fly when you query them from ingested signal data, rather than being stored as independent time series.
+Dash0 semantic convention names appear throughout the Dash0 UI — in explorer filters, metric queries, dashboard variables, and annotation tooltips: understanding them helps you write precise queries and build more informative dashboards.
 
-{% if ctx.has_attributes %}- [Attributes](attributes/overview.md)
-{% endif %}{% if ctx.has_entities %}- [Entities](entities/overview.md)
-{% endif %}{% if ctx.has_events %}- [Events](events/overview.md)
-{% endif %}{% if ctx.has_metrics %}- [Metrics](metrics/overview.md)
+> [!TIP]
+>
+> The conventions are defined using [OpenTelemetry Weaver](https://github.com/open-telemetry/weaver), the same tool the OpenTelemetry project uses to manage the [OpenTelemetry semantic conventions](https://github.com/open-telemetry/semantic-conventions).
+> The source registry and a full Weaver-rendered reference of the Dash0 semantic conventions are [published on GitHub](https://dash0hq.github.io/dash0-semantic-conventions/) as a showcase of how to model custom semantic conventions with Weaver.
+
+{% if ctx.has_attributes %}
+## Attributes
+
+Dash0 automatically attaches attributes to your telemetry at ingestion time.
+They identify the resource that emitted a signal, the authentication token used, or operational metadata like the operation name of a span.
+
+Some attributes appear on multiple signal types (for example, `dash0.resource.id` is added to logs, spans, metrics and profiles), while others are specific to a single signal.
+
+[Browse the Attribute Registry](attributes/overview)
+
+{% endif %}{% if ctx.has_metrics %}
+## Metrics
+
+Dash0 emits operational metrics that count and measure the signals it processes.
+These are useful for understanding ingestion volume, troubleshooting pipelines, and building cost-control dashboards.
+
+Examples include `dash0.spans` (spans ingested), `dash0.logs` (log records ingested), and `dash0.spam_filters.spans` (spans dropped by spam filters).
+
+[Browse the Metric Registry](metrics/overview)
+
+{% endif %}{% if ctx.has_events %}
+## Events
+
+Dash0 defines events for key lifecycle moments such as service deployments.
+Events can be used as [dashboard annotations](/docs/dash0/dashboards/add-annotations) to correlate releases with your metric and log data.
+
+[Browse the Event Registry](events/overview)
+
 {% endif %}
-
