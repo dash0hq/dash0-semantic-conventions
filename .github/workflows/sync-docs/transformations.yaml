@@ -54,7 +54,8 @@ common:
 coverage:
   include:
     - "**/*.md"
-  ignore: []
+  ignore:
+    - metrics/synthetic-overview.md  # synced separately via transformations-standalone.yaml
 
 files:
   - source: README.md
