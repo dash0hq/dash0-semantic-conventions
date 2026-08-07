@@ -9,6 +9,7 @@
 # {{ ctx.id | title_case | acronym }}
 {% for group in ctx.groups | sort(attribute='metric_name') %}
 <span id="{{ group.metric_name | kebab_case }}"></span>
+
 ## `{{ group.metric_name }}`
 {%- if group.deprecated %}
 
