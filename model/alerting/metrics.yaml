@@ -87,6 +87,102 @@ groups:
     unit: "1"
 
   # ──────────────────────────────────────────────
+  # dash0.check.enablement_conditions.value
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.enablement_conditions.value
+    type: metric
+    metric_name: dash0.check.enablement_conditions.value
+    stability: stable
+    brief: >
+      Encodes whether a check's enablement condition passed.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+      The value is `1` when the condition passed and `0` when it failed.
+
+      When a check rule has multiple enablement conditions, one data point is
+      emitted per condition. The `dash0.enablement_condition.index` attribute
+      (1-based: 1, 2, 3, …) identifies which condition the data point relates to.
+
+      Deprecated PromQL alias: `dash0_check_enablement_conditions_value`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: dash0.enablement_condition.index
+        requirement_level: required
+
+  - id: metric.dash0_check_enablement_conditions_value
+    type: metric
+    metric_name: dash0_check_enablement_conditions_value
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.check.enablement_conditions.value
+    brief: >
+      Deprecated Prometheus alias for `dash0.check.enablement_conditions.value`.
+    instrument: gauge
+    unit: "1"
+
+  # ──────────────────────────────────────────────
+  # dash0.check.threshold.critical
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.threshold.critical
+    type: metric
+    metric_name: dash0.check.threshold.critical
+    stability: stable
+    brief: >
+      Represents the critical threshold configured for a check rule.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+      The value mirrors the critical threshold setting of the check rule, allowing
+      dashboards and queries to compare the evaluation value against its threshold.
+
+      Deprecated PromQL alias: `dash0_check_threshold_critical`.
+    instrument: gauge
+    unit: "1"
+
+  - id: metric.dash0_check_threshold_critical
+    type: metric
+    metric_name: dash0_check_threshold_critical
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.check.threshold.critical
+    brief: >
+      Deprecated Prometheus alias for `dash0.check.threshold.critical`.
+    instrument: gauge
+    unit: "1"
+
+  # ──────────────────────────────────────────────
+  # dash0.check.threshold.degraded
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.threshold.degraded
+    type: metric
+    metric_name: dash0.check.threshold.degraded
+    stability: stable
+    brief: >
+      Represents the degraded threshold configured for a check rule.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+      The value mirrors the degraded threshold setting of the check rule, allowing
+      dashboards and queries to compare the evaluation value against its threshold.
+
+      Deprecated PromQL alias: `dash0_check_threshold_degraded`.
+    instrument: gauge
+    unit: "1"
+
+  - id: metric.dash0_check_threshold_degraded
+    type: metric
+    metric_name: dash0_check_threshold_degraded
+    stability: stable
+    deprecated:
+      reason: renamed
+      renamed_to: dash0.check.threshold.degraded
+    brief: >
+      Deprecated Prometheus alias for `dash0.check.threshold.degraded`.
+    instrument: gauge
+    unit: "1"
+
+  # ──────────────────────────────────────────────
   # dash0.issue.status
   # ──────────────────────────────────────────────
   - id: metric.dash0.issue.status

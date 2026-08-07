@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: registry.dash0.enablement_condition
+    type: attribute_group
+    display_name: Dash0 Enablement Condition Attributes
+    brief: Attributes identifying individual enablement conditions within a check rule.
+    attributes:
+      - id: dash0.enablement_condition.index
+        type: int
+        stability: stable
+        brief: >
+          1-based index of the enablement condition within a check rule.
+        note: |
+          When a check rule has multiple enablement conditions, each condition emits
+          its own data point on `dash0.check.enablement_conditions.value`, distinguished
+          by this attribute (1, 2, 3, …).
+        examples: [1, 2, 3]
