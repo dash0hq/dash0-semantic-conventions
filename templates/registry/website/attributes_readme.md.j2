@@ -16,12 +16,6 @@ If applicable, application developers are encouraged to use existing attributes 
 
 All registered attributes are listed by namespace in this registry.
 
-> [!WARNING]
->
-> The following registry overview is a work in progress.
->
-> Further attribute namespaces are currently being migrated and will appear in this registry soon.
-
 {% for bundle in ctx %}
 {%- set my_file_name = bundle.id | kebab_case ~ ".md" -%}
 - [{{ bundle.id | title_case | acronym }}]({{ my_file_name }})
