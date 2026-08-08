@@ -11,6 +11,7 @@ groups:
     brief: >
       Counts the number of spans ingested by Dash0.
     note: |
+      [synthetic: spans, resources]
       `dash0.spans` is a synthetic metric: it is not stored as a metric time series,
       but computed on-the-fly from the ingested span data. It can be filtered and
       grouped by any span or resource attribute.
@@ -20,8 +21,7 @@ groups:
 
       Deprecated PromQL alias: `dash0_spans_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations, e.g.
+      For example:
       `sum by (service_name) ({otel_metric_name="dash0.spans"})` yields one
       time series per value of `service.name`.
     instrument: counter
@@ -49,6 +49,7 @@ groups:
     brief: >
       Distribution of span durations as a histogram.
     note: |
+      [synthetic: spans, resources]
       `dash0.spans.duration` is a synthetic metric: it is not stored as a metric
       time series, but computed on-the-fly from the ingested span data. It can be
       filtered and grouped by any span or resource attribute.
@@ -59,8 +60,6 @@ groups:
       Deprecated PromQL aliases: `dash0_spans_duration_seconds_bucket`,
       `dash0_spans_duration_seconds_sum`, `dash0_spans_duration_seconds_count`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: histogram
     unit: "s"
 
@@ -74,6 +73,7 @@ groups:
     brief: >
       Deprecated Prometheus alias for `dash0.spans.duration`.
     note: |
+      [synthetic]
       Exposed in Prometheus as `dash0_spans_duration_seconds_bucket`,
       `dash0_spans_duration_seconds_sum`, and `dash0_spans_duration_seconds_count`.
     instrument: histogram
@@ -89,14 +89,13 @@ groups:
     brief: >
       Counts the number of span events ingested by Dash0.
     note: |
+      [synthetic: spans, resources]
       `dash0.span.events` is a synthetic metric: it is not stored as a metric time
       series, but computed on-the-fly from the ingested tracing data. It can be
       filtered and grouped by any span event or resource attribute.
 
       Deprecated PromQL alias: `dash0_span_events_total`.
 
-      Synthetic metrics do not expose attributes by default. Attributes are
-      materialised through PromQL aggregations.
     instrument: counter
     unit: "{span_event}"
 

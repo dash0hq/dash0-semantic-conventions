@@ -26,7 +26,21 @@
 | Unit | `{{ group.unit }}` |
 | Stability | {{ stability.badge(group.stability, group.deprecated) | trim }} |
 {% if group.note -%}
-{{ group.note }}
+{%- set synthetic_marker = group.note.split('[synthetic')[1].split(']')[0] if '[synthetic' in group.note else '' %}
+{%- set rendered_note = group.note | replace('[synthetic' ~ synthetic_marker ~ ']', '') | replace('[synthetic]', '') | trim %}
+{% if rendered_note %}{{ rendered_note }}{% endif %}
+{%- endif %}
+{%- if group.note and '[synthetic' in group.note %}
+
+> [!NOTE]
+>
+> Synthetic metrics do not expose attributes by default. Attributes are materialised through PromQL aggregations.
+{%- endif %}
+{%- if group.note and '[synthetic' in group.note and group.instrument == 'counter' %}
+
+> [!NOTE]
+>
+> Counters always start from zero regardless of query timeframe and represent only the increase over time, providing a clear view of trends without retaining absolute counts.
 {%- endif %}
 {%- if group.attributes %}
 {{ at.generate(group.attributes, [], "https://opentelemetry.io/docs/specs/semconv/attributes-registry", group.lineage.attributes) }}

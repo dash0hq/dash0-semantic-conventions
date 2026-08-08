@@ -26,9 +26,44 @@
 | Instrument | {{ metrics.instrument(group.instrument) | trim }} |
 | Unit | `{{ group.unit }}` |
 | Stability | {{ stability.badge(group.stability, group.deprecated) | trim }} |
+{%- set category_labels = {
+  "resources":         "[resource attributes](/docs/dash0/opentelemetry/semconvs/attributes/overview)",
+  "logs":              "[log attributes](/docs/dash0/opentelemetry/semconvs/attributes/log)",
+  "spans":             "[span attributes](/docs/dash0/opentelemetry/semconvs/attributes/span)",
+  "span_events":       "[span event attributes](/docs/dash0/opentelemetry/semconvs/attributes/span)",
+  "metric_datapoints": "[metric attributes](/docs/dash0/opentelemetry/semconvs/attributes/metric)",
+  "synthetic_check":   "[check attributes](/docs/dash0/opentelemetry/semconvs/metrics/synthetic-check)",
+  "web_events":         "[web event attributes](/docs/dash0/opentelemetry/semconvs/attributes/web-event)",
+} %}
 {% if group.note %}
+{%- set synthetic_marker = group.note.split('[synthetic')[1].split(']')[0] if '[synthetic' in group.note else '' %}
+{%- set rendered_note = group.note | replace('[synthetic' ~ synthetic_marker ~ ']', '') | replace('[synthetic]', '') | trim %}
+{% if rendered_note %}
 
-{{ group.note }}
+{{ rendered_note }}
+{%- endif %}
+{%- endif %}
+{%- if group.note and '[synthetic' in group.note %}
+{%- set synthetic_marker = group.note.split('[synthetic')[1].split(']')[0] %}
+{%- set raw_cats = synthetic_marker.split(':')[1].strip() if ':' in synthetic_marker else '' %}
+{%- set categories = raw_cats.split(',') | map('trim') | list if raw_cats else [] %}
+{%- set ns = namespace(links=[]) %}
+{%- for cat in categories %}
+{%- if cat in category_labels %}
+{%- set ns.links = ns.links + [category_labels[cat]] %}
+{%- endif %}
+{%- endfor %}
+{%- set attr_links = ns.links %}
+
+> [!NOTE]
+>
+> This [synthetic metric](/docs/dash0/miscellaneous/glossary/synthetic-metrics#querying-synthetic-metrics) does not expose attributes by default. You can group by {% if attr_links %}{{ attr_links | join(' and ') }}{% else %}any resource or signal attribute{% endif %} using PromQL aggregations.
+{%- endif %}
+{%- if group.note and '[synthetic' in group.note and group.instrument == 'counter' %}
+
+> [!NOTE]
+>
+> Counters always start from zero regardless of query timeframe and represent only the increase over time, providing a clear view of trends without retaining absolute counts.
 {%- endif %}
 {%- if group.attributes %}
 {{ at.generate(group.attributes, [], "https://opentelemetry.io/docs/specs/semconv/attributes-registry", group.lineage.attributes) }}

@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+#
+# Standalone page syncs that land outside the dash0/opentelemetry/semconvs/
+# path tree. These have no nav block so they do not interfere with the semconvs
+# nav.json generation in transformations.yaml.
+#
+# Source paths are relative to docs-website/ (website-template output directory).
+# Target paths are relative to SYNC_DOCUMENTATION_TARGET_DIRECTORY
+# (src/app/(core)/docs/content/).
+
+common:
+  - description: remove the leading top-level heading (the frontmatter title replaces it)
+    type: replace-regex
+    find: '^#\s+[^\n]*\n'
+    replace: ''
+    flags:
+      - multiline
+
+  - description: strip .md extension from relative links (website uses extensionless URLs)
+    type: replace-regex
+    find: '\.md([)#])'
+    replace: '\1'
+    flags:
+      - multiline
+    required: false
+
+  - description: strip [synthetic] marker from metric notes (safety net)
+    type: replace-regex
+    find: '^\[synthetic[^\]]*\]\n?'
+    replace: ''
+    flags:
+      - multiline
+    required: false
+
+files:
+  - source: metrics/synthetic-overview.md
+    target: dash0/miscellaneous/glossary/synthetic-metrics.md
+    title: Synthetic Metrics
+    description: Dash0 metrics computed on-the-fly from ingested signal data at no extra cost.

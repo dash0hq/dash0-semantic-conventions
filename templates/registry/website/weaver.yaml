@@ -29,6 +29,10 @@ templates:
     filter: '.groups | map(select(.type == "metric")) | map(select(.metric_name | startswith("dash0."))) | group_by(.metric_name | split(".") | .[1]) | map({id: .[0].metric_name | split(".") | .[1], groups: .})'
     application_mode: single
     file_name: "metrics/README.md"
+  - pattern: synthetic_metrics_overview.md.j2
+    filter: '.groups | map(select(.type == "metric")) | map(select(.metric_name | startswith("dash0."))) | group_by(.metric_name | split(".") | .[1]) | map({id: .[0].metric_name | split(".") | .[1], groups: .})'
+    application_mode: single
+    file_name: "metrics/synthetic-overview.md"
   - pattern: metric_namespace.md.j2
     filter: '.groups | map(select(.type == "metric")) | map(select(.metric_name | startswith("dash0."))) | group_by(.metric_name | split(".") | .[1]) | map({id: .[0].metric_name | split(".") | .[1], groups: .})'
     application_mode: each
