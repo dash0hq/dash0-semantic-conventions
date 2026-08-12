@@ -11,15 +11,18 @@ groups:
     brief: >
       Exponential histogram of span durations used for RED (Rate, Errors, Duration) metrics.
     note: |
-      `dash0.spans.red` is generated the basis of 100% of received spans, before any sampling
-      is applied. Unlike the synthetic `dash0.spans.duration` metric, `dash0.spans.red` is
-      stored as a real metric time series with a fixed set of attributes.
+      `dash0.spans.red` is generated on the basis of 100 percent of the spans that Dash0 receives, before any [sampling rules](https://api-docs.dash0.com/reference/post_api-sampling-rules) are applied at ingestion.
+      Unlike the synthetic `dash0.spans.duration` metric, `dash0.spans.red` is stored as a real metric time series with a fixed set of attributes.
+
+      Spans that never reach Dash0 are not part of the calculation.
+      If you sample before sending to Dash0, for example with head sampling in the SDK or tail sampling in an upstream collector, `dash0.spans.red` is computed only on the spans that were forwarded.
+
+      Dash0 materializes `dash0.spans.red` at ingestion time for every service that sends spans.
+      No metric definition, recording rule, or span-to-metrics conversion has to be set up or maintained.
 
       The metric uses an exponential histogram instrument, which provides high
       accuracy across a wide range of durations without requiring predefined bucket
       boundaries.
-
-      This metrics exists only in conjunction with Intelligent Edge.
     instrument: histogram
     unit: "s"
     attributes:

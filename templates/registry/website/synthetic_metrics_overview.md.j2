@@ -27,10 +27,22 @@ Synthetic metrics rely on retained telemetry:
 Synthetic metrics do not incur extra costs.
 You already pay for them by ingesting the raw telemetry (spans, span events, log records, metric data points) they are computed from.
 
+### Sampling
+
+Synthetic metrics are computed from the telemetry that Dash0 received.
+Any sampling applied before the data reaches Dash0, for example head sampling in the SDK or tail sampling in a collector, reduces what the metrics can see, as do [sampling rules](https://api-docs.dash0.com/reference/post_api-sampling-rules) applied at ingestion.
+A synthetic metric therefore counts the signals that were forwarded and stored, not the signals that would have existed without sampling, and sampling that is biased toward particular signals skews the result accordingly.
+
+For span rates, error rates, and latency distributions that do not depend on the sampling applied at ingestion, use the stored [`dash0.spans.red`](/docs/dash0/opentelemetry/semconvs/metrics/spans#dash0-spans-red) metric.
+Dash0 computes it from every span it receives, before it applies sampling rules.
+
+[Adaptive Sampling](/docs/dash0/miscellaneous/glossary/adaptive-sampling) is a separate mechanism.
+It samples during query execution to keep queries over large volumes of data responsive, and does not change what Dash0 stores.
+
 ## Querying Synthetic Metrics
 
 Synthetic metrics do not carry pre-computed attribute dimensions.
-Instead, attributes are materialised on query by grouping in PromQL:
+Instead, attributes are materialized on query by grouping in PromQL:
 
 ```promql
 sum by (service_name) ({otel_metric_name="dash0.spans"})

@@ -26,7 +26,7 @@ groups:
         brief: >
           The type of the logical operation a span belongs to.
         note: |
-          Determined at ingestion time by evaluating span attributes against a prioritised
+          Determined at ingestion time by evaluating span attributes against a prioritized
           set of [operation naming rules](https://www.dash0.com/documentation/dash0/key-concepts/operation-names).
           Cannot be overridden by users; Dash0 always computes it from the span data.
         examples: ["http", "db", "rpc", "messaging", "headless", "rum", "unknown"]

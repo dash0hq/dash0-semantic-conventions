@@ -19,6 +19,6 @@ groups:
 
           This conversion is an opt-in, per-dataset setting that helps with the transition
           away from span events, which [OpenTelemetry is deprecating](https://opentelemetry.io/blog/2025/span-events-vs-links/)
-          in favour of log records linked with trace context.
+          in favor of log records linked with trace context.
 
           See [Span event to log record conversion](https://www.dash0.com/docs/dash0/telemetry/tracing/span-events-to-logs).
