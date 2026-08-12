@@ -17,7 +17,8 @@ groups:
       grouped by any span or resource attribute.
 
       `dash0.spans` counts the spans that Dash0 received and stored, so it is not a measure of the total request rate of a sampled service.
-      If spans are sampled before they reach Dash0, for example with head sampling in the SDK or tail sampling in a collector, the count reflects only the spans that were forwarded.
+      If spans are sampled before they reach Dash0, for example with head sampling in the SDK or tail sampling in a collector, the count reflects only the spans that were forwarded, and [sampling rules](https://api-docs.dash0.com/reference/post_api-sampling-rules) applied at ingestion reduce it further.
+      For request rates that do not depend on the sampling applied at ingestion, use `dash0.spans.red`, which is computed before that sampling decision is made.
 
       Deprecated PromQL alias: `dash0_spans_total`.
 
@@ -55,8 +56,9 @@ groups:
       filtered and grouped by any span or resource attribute.
 
       `dash0.spans.duration` describes the spans that Dash0 received and stored, not every span a service produced.
-      If spans are sampled before they reach Dash0, for example with head sampling in the SDK or tail sampling in a collector, the distribution describes only the spans that were forwarded.
+      If spans are sampled before they reach Dash0, for example with head sampling in the SDK or tail sampling in a collector, the distribution describes only the spans that were forwarded, and [sampling rules](https://api-docs.dash0.com/reference/post_api-sampling-rules) applied at ingestion narrow it further.
       Sampling that is biased toward particular spans, such as tail sampling that keeps errors and slow requests, skews the distribution accordingly.
+      For latency distributions that do not depend on the sampling applied at ingestion, use `dash0.spans.red`, which is computed before that sampling decision is made.
 
       Deprecated PromQL aliases: `dash0_spans_duration_seconds_bucket`,
       `dash0_spans_duration_seconds_sum`, `dash0_spans_duration_seconds_count`.
