@@ -36,8 +36,8 @@ A synthetic metric therefore counts the signals that were forwarded and stored, 
 For span rates, error rates, and latency distributions that do not depend on the sampling applied at ingestion, use the stored [`dash0.spans.red`](/docs/dash0/opentelemetry/semconvs/metrics/spans#dash0-spans-red) metric.
 Dash0 computes it from every span it receives, before it applies sampling rules.
 
-[Adaptive Sampling](/docs/dash0/miscellaneous/glossary/adaptive-sampling) is a separate mechanism.
-It samples during query execution to keep queries over large volumes of data responsive, and does not change what Dash0 stores.
+Adaptive Sampling affects the calculation of synthetic metrics, but not the stored `dash0.spans.red` time series.
+See [Adaptive Sampling](/docs/dash0/miscellaneous/glossary/adaptive-sampling) for details.
 
 ## Querying Synthetic Metrics
 
