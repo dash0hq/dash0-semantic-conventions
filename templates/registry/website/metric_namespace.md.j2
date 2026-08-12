@@ -58,6 +58,10 @@
 > [!NOTE]
 >
 > This [synthetic metric](/docs/dash0/miscellaneous/glossary/synthetic-metrics#querying-synthetic-metrics) does not expose attributes by default. You can group by {% if attr_links %}{{ attr_links | join(' and ') }}{% else %}any resource or signal attribute{% endif %} using PromQL aggregations.
+{%- if 'synthetic_check' not in categories %}
+>
+> It is computed from the telemetry that reached Dash0, so [sampling](/docs/dash0/miscellaneous/glossary/synthetic-metrics#sampling) applied before ingestion also reduces what it reports.
+{%- endif %}
 {%- endif %}
 {%- if group.note and '[synthetic' in group.note and group.instrument == 'counter' %}
 
