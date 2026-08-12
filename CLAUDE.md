@@ -38,7 +38,7 @@ The metric definitions were produced by:
 
 ### Key conventions
 
-- Synthetic metrics (scope `dash0.metric.synthetic`) do **not** declare attributes. Attributes are materialised dynamically through PromQL aggregations.
+- Synthetic metrics (scope `dash0.metric.synthetic`) do **not** declare attributes. Attributes are materialized dynamically through PromQL aggregations.
 - Deprecated Prometheus aliases (e.g., `dash0_spans_total`) get their own metric group entry with `deprecated: { reason: renamed, renamed_to: <otel_name> }`.
 - Every metric **must** have a `unit` field compliant with [UCUM](https://ucum.org/).
 
@@ -55,6 +55,7 @@ Follow these rules when writing or editing prose in this project.
 
 - **One sentence per line** (semantic line breaks).
   Each sentence starts on its own line; do not wrap mid-sentence.
+- Use **American spelling** (e.g., "materialized", "normalized", "catalog"), matching the [OpenTelemetry Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/).
 - Separate paragraphs with a single blank line.
 - Section headers use sentence case (e.g., "Key conventions").
 - Use inline Markdown links: `[visible text](url)`.

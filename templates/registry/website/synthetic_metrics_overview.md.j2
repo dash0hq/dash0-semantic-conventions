@@ -42,7 +42,7 @@ It samples during query execution to keep queries over large volumes of data res
 ## Querying Synthetic Metrics
 
 Synthetic metrics do not carry pre-computed attribute dimensions.
-Instead, attributes are materialised on query by grouping in PromQL:
+Instead, attributes are materialized on query by grouping in PromQL:
 
 ```promql
 sum by (service_name) ({otel_metric_name="dash0.spans"})

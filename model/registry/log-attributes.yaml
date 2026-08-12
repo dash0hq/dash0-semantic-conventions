@@ -10,7 +10,7 @@ groups:
         type: string
         stability: stable
         brief: >
-          Extracted or normalised log message text.
+          Extracted or normalized log message text.
         note: |
           Set by the Dash0 log parser. May differ from the raw log body when AI-based
           message extraction is applied (indicated by `dash0.log.ai.message_inferred`).

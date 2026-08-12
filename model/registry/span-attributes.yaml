@@ -10,12 +10,12 @@ groups:
         type: string
         stability: stable
         brief: >
-          Dash0-normalised name for a span.
+          Dash0-normalized name for a span.
         note: |
           Computed at ingestion time from span attributes using the same
           [operation naming rules](https://www.dash0.com/documentation/dash0/key-concepts/operation-names)
           that drive `dash0.operation.name`. While `dash0.operation.name` identifies the
-          logical operation, `dash0.span.name` is the per-span normalised name with
+          logical operation, `dash0.span.name` is the per-span normalized name with
           cardinality reduction applied (e.g., path parameters replaced with `:id`).
         examples: ["GET /api/product-offers/:id", "SELECT ... FROM my-table WHERE ..."]
 
@@ -26,7 +26,7 @@ groups:
           Classification of the span type.
         note: |
           Assigned at ingestion time using the same rule evaluation that produces
-          `dash0.operation.type`. Values are normalised to lowercase.
+          `dash0.operation.type`. Values are normalized to lowercase.
         examples: ["http", "db", "rpc", "messaging"]
 
   - id: registry.dash0.trace.origin
@@ -34,7 +34,7 @@ groups:
     display_name: Dash0 Trace Origin Attributes
     brief: >
       Attributes describing the origin of a trace, assigned at ingestion time
-      by analysing the trace ID structure.
+      by analyzing the trace ID structure.
     attributes:
       - id: dash0.trace.origin.type
         type: string
