@@ -17,8 +17,7 @@ groups:
       grouped by any span or resource attribute.
 
       `dash0.spans` counts the spans that Dash0 received and stored, so it is not a measure of the total request rate of a sampled service.
-      If spans are sampled before they reach Dash0, for example with head sampling in the SDK or tail sampling in a collector, the count reflects only the spans that were forwarded, and sampling that Dash0 applies at ingestion reduces it further.
-      For request rates that do not depend on the sampling Dash0 applies at ingestion, use `dash0.spans.red`, which is computed before that sampling decision is made.
+      If spans are sampled before they reach Dash0, for example with head sampling in the SDK or tail sampling in a collector, the count reflects only the spans that were forwarded.
 
       Deprecated PromQL alias: `dash0_spans_total`.
 
