@@ -24,11 +24,11 @@ groups:
           Only present when the run is tied to a specific automation definition.
 
   # ──────────────────────────────────────────────
-  # dash0.automations.credits.consumed
+  # dash0.automations.credits.usage
   # ──────────────────────────────────────────────
-  - id: metric.dash0.automations.credits.consumed
+  - id: metric.dash0.automations.credits.usage
     type: metric
-    metric_name: dash0.automations.credits.consumed
+    metric_name: dash0.automations.credits.usage
     stability: development
     brief: >
       Credits consumed by Agent0 automation invocations, per organization.
