@@ -1,0 +1,41 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.automations.workflow_runs
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.automations.workflow_runs
+    type: metric
+    metric_name: dash0.automations.workflow_runs
+    stability: development
+    brief: >
+      Number of Agent0 automation runs, by terminal status.
+    note: |
+      Published into the triggering organization's own dataset, so it can be
+      queried directly.
+
+      Attributes carried on each data point: `organization.technical_id`,
+      `status` (the run's terminal status), and `automation_id` (when the
+      run is tied to a specific automation definition).
+    instrument: counter
+    unit: "1"
+
+  # ──────────────────────────────────────────────
+  # dash0.automations.credits
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.automations.credits
+    type: metric
+    metric_name: dash0.automations.credits
+    stability: development
+    brief: >
+      Credits consumed by Agent0 automation invocations, per organization.
+    note: |
+      Published into the triggering organization's own dataset, so it can be
+      queried directly.
+
+      Attributes carried on each data point: `gen_ai.agent.name`,
+      `organization.technical_id`, `gen_ai.agent.surface`, and
+      `automation_id` (when the invocation is tied to a specific
+      automation definition).
+    instrument: counter
+    unit: "1"
