@@ -16,12 +16,10 @@ groups:
     instrument: counter
     unit: "{run}"
     attributes:
+      - ref: dash0.automation.id
+        requirement_level: required
       - ref: dash0.automation.status
         requirement_level: required
-      - ref: dash0.automation.id
-        requirement_level: recommended
-        brief: >
-          Only present when the run is tied to a specific automation definition.
 
   # ──────────────────────────────────────────────
   # dash0.automations.credits.usage
@@ -38,9 +36,7 @@ groups:
     instrument: counter
     unit: "{credit}"
     attributes:
+      - ref: dash0.automation.id
+        requirement_level: required
       - ref: gen_ai.agent.name
         requirement_level: required
-      - ref: dash0.automation.id
-        requirement_level: recommended
-        brief: >
-          Only present when the invocation is tied to a specific automation definition.
