@@ -2,40 +2,45 @@
 
 groups:
   # ──────────────────────────────────────────────
-  # dash0.automations.workflow_runs
+  # dash0.automations.run
   # ──────────────────────────────────────────────
-  - id: metric.dash0.automations.workflow_runs
+  - id: metric.dash0.automations.run
     type: metric
-    metric_name: dash0.automations.workflow_runs
+    metric_name: dash0.automations.run
     stability: development
     brief: >
       Number of Agent0 automation runs, by terminal status.
     note: |
       Published into the triggering organization's own dataset, so it can be
       queried directly.
-
-      Attributes carried on each data point: `organization.technical_id`,
-      `status` (the run's terminal status), and `automation_id` (when the
-      run is tied to a specific automation definition).
     instrument: counter
-    unit: "1"
+    unit: "{run}"
+    attributes:
+      - ref: dash0.automation.status
+        requirement_level: required
+      - ref: dash0.automation.id
+        requirement_level: recommended
+        brief: >
+          Only present when the run is tied to a specific automation definition.
 
   # ──────────────────────────────────────────────
-  # dash0.automations.credits
+  # dash0.automations.credits.consumed
   # ──────────────────────────────────────────────
-  - id: metric.dash0.automations.credits
+  - id: metric.dash0.automations.credits.consumed
     type: metric
-    metric_name: dash0.automations.credits
+    metric_name: dash0.automations.credits.consumed
     stability: development
     brief: >
       Credits consumed by Agent0 automation invocations, per organization.
     note: |
       Published into the triggering organization's own dataset, so it can be
       queried directly.
-
-      Attributes carried on each data point: `gen_ai.agent.name`,
-      `organization.technical_id`, `gen_ai.agent.surface`, and
-      `automation_id` (when the invocation is tied to a specific
-      automation definition).
     instrument: counter
-    unit: "1"
+    unit: "{credit}"
+    attributes:
+      - ref: gen_ai.agent.name
+        requirement_level: required
+      - ref: dash0.automation.id
+        requirement_level: recommended
+        brief: >
+          Only present when the invocation is tied to a specific automation definition.
