@@ -38,5 +38,3 @@ groups:
     attributes:
       - ref: dash0.automation.id
         requirement_level: required
-      - ref: gen_ai.agent.name
-        requirement_level: required
