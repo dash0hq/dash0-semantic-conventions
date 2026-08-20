@@ -94,6 +94,11 @@ files:
     description: Catalog of all Dash0-defined metrics, organized by namespace.
 
 
+  - source: metrics/automations.md
+    target: dash0/opentelemetry/semconvs/metrics/automations.md
+    title: Automation Metrics
+    description: Metrics for Agent0 automation runs.
+
   - source: metrics/check.md
     target: dash0/opentelemetry/semconvs/metrics/check.md
     title: Check Metrics

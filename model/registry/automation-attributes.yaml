@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: registry.dash0.automation
+    type: attribute_group
+    display_name: Dash0 Automation Attributes
+    brief: Attributes identifying an Agent0 automation and its runs.
+    attributes:
+      - id: dash0.automation.id
+        type: string
+        stability: development
+        brief: >
+          Unique identifier of the automation definition a run or invocation is tied to.
+        examples: ["incident-triage", "cost-anomaly-detector"]
+
+      - id: dash0.automation.status
+        type: string
+        stability: development
+        brief: >
+          Terminal status of an automation run.
+        examples: ["completed", "error", "guardrail_failure"]
