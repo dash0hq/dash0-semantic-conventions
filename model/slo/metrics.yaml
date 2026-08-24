@@ -322,7 +322,7 @@ groups:
       the 5-minute window. Feeds the short-window success-ratio and burn-rate
       recording rules.
     instrument: gauge
-    unit: "1"
+    unit: "{event}"
     attributes: *slo_attrs
 
   - id: metric.dash0.slo.events.good.1h
@@ -336,7 +336,7 @@ groups:
       success-ratio rules (6h, 1d, 3d) to avoid re-scanning raw event streams
       over multi-day ranges.
     instrument: gauge
-    unit: "1"
+    unit: "{event}"
     attributes: *slo_attrs
 
   - id: metric.dash0.slo.events.5min
@@ -350,7 +350,7 @@ groups:
       the 5-minute window. Only events eligible for the SLI are counted;
       events excluded by the SLI filter are not.
     instrument: gauge
-    unit: "1"
+    unit: "{event}"
     attributes: *slo_attrs
 
   - id: metric.dash0.slo.events.1h
@@ -363,5 +363,5 @@ groups:
       Produced by a recording rule, pre-aggregated as the denominator
       companion to `dash0.slo.events.good.1h`.
     instrument: gauge
-    unit: "1"
+    unit: "{event}"
     attributes: *slo_attrs
