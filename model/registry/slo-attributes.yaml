@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  - id: registry.dash0.slo
+    type: attribute_group
+    display_name: Dash0 SLO Attributes
+    brief: Attributes identifying a Dash0 Service Level Objective.
+    attributes:
+      - id: dash0.slo.id
+        type: string
+        stability: development
+        brief: >
+          Unique identifier of the SLO.
+        examples: ["b3d1e2f4-5678-4abc-9def-0123456789ab"]
+
+      - id: dash0.slo.name
+        type: string
+        stability: development
+        brief: >
+          Human-readable name of the SLO.
+        examples: ["Checkout API availability"]
+
+  - id: registry.dash0.dataset
+    type: attribute_group
+    display_name: Dash0 Dataset Attributes
+    brief: Attributes identifying the Dash0 dataset telemetry or metrics belong to.
+    attributes:
+      - id: dash0.dataset
+        type: string
+        stability: development
+        brief: >
+          Dash0 dataset identifier; used to organize and scope telemetry and metrics.
+        examples: ["production"]
