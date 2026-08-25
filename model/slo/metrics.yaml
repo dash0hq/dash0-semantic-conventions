@@ -243,9 +243,9 @@ groups:
       Google SRE multi-window multi-burn-rate, fast tier, pre-composed so an
       alert can target one series instead of writing the AND of two windows.
       Value is 1 when a short and long window both exceed the tier threshold,
-      otherwise 0:
-        `dash0.slo.burn_rate.5min` >= 14.4 AND `dash0.slo.burn_rate.1h` >= 14.4
-        `dash0.slo.burn_rate.30min` >= 6.0 AND `dash0.slo.burn_rate.6h` >= 6.0
+      otherwise 0. Examples for a 28 day window SLO:
+        `dash0.slo.burn_rate.5min` >= 13.4 AND `dash0.slo.burn_rate.1h` >= 13.4
+        `dash0.slo.burn_rate.30min` >= 5.6 AND `dash0.slo.burn_rate.6h` >= 5.6
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -261,8 +261,8 @@ groups:
       Google SRE multi-window multi-burn-rate, slow tier, pre-composed so an
       alert can target one series instead of writing the AND of two windows.
       Value is 1 when a short and long window both exceed the tier threshold,
-      otherwise 0:
-        `dash0.slo.burn_rate.2h` >= 3.0 AND `dash0.slo.burn_rate.1d` >= 3.0
+      otherwise 0. Examples for a 28 day window SLO:
+        `dash0.slo.burn_rate.2h` >= 2.8 AND `dash0.slo.burn_rate.1d` >= 2.8
         `dash0.slo.burn_rate.6h` >= 1.0 AND `dash0.slo.burn_rate.3d` >= 1.0
     instrument: gauge
     unit: "1"
