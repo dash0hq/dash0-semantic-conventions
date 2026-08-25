@@ -32,3 +32,21 @@ groups:
       Deprecated Prometheus alias for `dash0.metrics.datapoints`.
     instrument: counter
     unit: "{metric_datapoint}"
+
+  # ──────────────────────────────────────────────
+  # dash0.metrics.timeseries
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.metrics.timeseries
+    type: metric
+    metric_name: dash0.metrics.timeseries
+    stability: development
+    brief: >
+      Reports the number of distinct metric time series ingested by Dash0.
+    note: |
+      [synthetic: metric_datapoints, resources]
+      `dash0.metrics.timeseries` is a synthetic metric: it is not stored as a metric
+      time series, but computed on-the-fly from the ingested metrics data. It reports
+      the number of distinct time series (cardinality) and can be filtered and grouped
+      by any metric or resource attribute, the same way as `dash0.metrics.datapoints`.
+    instrument: gauge
+    unit: "{metric_timeseries}"
