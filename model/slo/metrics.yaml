@@ -11,9 +11,8 @@ groups:
     brief: >
       The SLO's objective target as a fraction (e.g. 0.999).
     note: |
-      Produced by a recording rule that emits a constant value per SLO. Range
-      (0, 1). The allowed error budget is `1 - target`; both
-      `dash0.slo.burn_rate.<window>` and `dash0.slo.budget.remaining` use that
+      Constant value per SLO in the range (0, 1). The allowed error budget is `1 - target`; both
+      `dash0.slo.burn_rate.<window>` and `dash0.slo.budget.remaining` use this
       as the reference.
     instrument: gauge
     unit: "1"
@@ -33,8 +32,8 @@ groups:
     brief: >
       The SLO's overall success ratio over its compliance window.
     note: |
-      Produced by a recording rule. Computed as good events divided by total
-      events over the full SLO compliance window. Range [0, 1]; `1.0` means
+      Computed as good events divided by total
+      events over the full SLO compliance window, for example 28 days. Range [0, 1]; `1.0` means
       every event in the window was good. This is the value that decides
       whether the SLO met its objective. The windowed
       `dash0.slo.success_ratio.<window>` series are the rolling-window
@@ -50,7 +49,7 @@ groups:
     brief: >
       Success ratio over the trailing 5-minute window.
     note: |
-      Produced by a recording rule. Computed as good events divided by total
+      Computed as good events divided by total
       events over the window. Range [0, 1]. Feeds the 5-minute burn rate.
     instrument: gauge
     unit: "1"
@@ -63,8 +62,7 @@ groups:
     brief: >
       Success ratio over the trailing 30-minute window.
     note: |
-      Produced by a recording rule. See `dash0.slo.success_ratio.5min` for
-      value semantics.
+      See `dash0.slo.success_ratio.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -76,8 +74,7 @@ groups:
     brief: >
       Success ratio over the trailing 1-hour window.
     note: |
-      Produced by a recording rule. See `dash0.slo.success_ratio.5min` for
-      value semantics.
+      See `dash0.slo.success_ratio.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -89,8 +86,7 @@ groups:
     brief: >
       Success ratio over the trailing 2-hour window.
     note: |
-      Produced by a recording rule. See `dash0.slo.success_ratio.5min` for
-      value semantics.
+      See `dash0.slo.success_ratio.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -102,9 +98,7 @@ groups:
     brief: >
       Success ratio over the trailing 6-hour window.
     note: |
-      Produced by a recording rule, computed from hourly pre-aggregates to
-      avoid re-scanning raw events over multi-hour ranges. See
-      `dash0.slo.success_ratio.5min` for value semantics.
+      See `dash0.slo.success_ratio.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -116,8 +110,7 @@ groups:
     brief: >
       Success ratio over the trailing 1-day window.
     note: |
-      Produced by a recording rule, computed from hourly pre-aggregates. See
-      `dash0.slo.success_ratio.5min` for value semantics.
+      See `dash0.slo.success_ratio.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -129,8 +122,7 @@ groups:
     brief: >
       Success ratio over the trailing 3-day window.
     note: |
-      Produced by a recording rule, computed from hourly pre-aggregates. See
-      `dash0.slo.success_ratio.5min` for value semantics.
+      See `dash0.slo.success_ratio.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -142,9 +134,7 @@ groups:
     brief: >
       Success ratio over the trailing 7-day window.
     note: |
-      Produced by a recording rule, computed from hourly pre-aggregates. Backs
-      the "last 7 days" compliance stat in the SLO overview. There is
-      deliberately no `dash0.slo.burn_rate.7d` companion: burn-rate alert
+      There is deliberately no `dash0.slo.burn_rate.7d` companion: burn-rate alert
       windows stop at 3 days, and the 7-day success ratio exists for
       compliance display only. See `dash0.slo.success_ratio.5min` for value
       semantics.
@@ -162,8 +152,7 @@ groups:
     brief: >
       Pre-aggregated SLO burn rate over a 5-minute lookback window.
     note: |
-      Produced by a recording rule. Value is the ratio of the observed failure
-      rate in the window (1 minus the success ratio) to the allowed budget
+      Value is the ratio of the observed failure rate in the window (1 minus the success ratio) to the allowed budget
       fraction (1 minus the target). A value of 1.0 means the budget is being
       consumed at exactly the allowed rate; a value of 14.4 means it is being
       consumed 14.4x faster than allowed.
@@ -178,8 +167,7 @@ groups:
     brief: >
       Pre-aggregated SLO burn rate over a 30-minute lookback window.
     note: |
-      Produced by a recording rule. See `dash0.slo.burn_rate.5min` for value
-      semantics.
+      See `dash0.slo.burn_rate.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -191,8 +179,7 @@ groups:
     brief: >
       Pre-aggregated SLO burn rate over a 1-hour lookback window.
     note: |
-      Produced by a recording rule. See `dash0.slo.burn_rate.5min` for value
-      semantics.
+      See `dash0.slo.burn_rate.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -204,8 +191,7 @@ groups:
     brief: >
       Pre-aggregated SLO burn rate over a 2-hour lookback window.
     note: |
-      Produced by a recording rule. See `dash0.slo.burn_rate.5min` for value
-      semantics.
+      See `dash0.slo.burn_rate.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -217,8 +203,7 @@ groups:
     brief: >
       Pre-aggregated SLO burn rate over a 6-hour lookback window.
     note: |
-      Produced by a recording rule. See `dash0.slo.burn_rate.5min` for value
-      semantics.
+      See `dash0.slo.burn_rate.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -230,8 +215,7 @@ groups:
     brief: >
       Pre-aggregated SLO burn rate over a 1-day lookback window.
     note: |
-      Produced by a recording rule. See `dash0.slo.burn_rate.5min` for value
-      semantics.
+      See `dash0.slo.burn_rate.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -243,8 +227,7 @@ groups:
     brief: >
       Pre-aggregated SLO burn rate over a 3-day lookback window.
     note: |
-      Produced by a recording rule. See `dash0.slo.burn_rate.5min` for value
-      semantics.
+      See `dash0.slo.burn_rate.5min` for value semantics.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -295,9 +278,7 @@ groups:
     brief: >
       Remaining error budget as a fraction of the original budget.
     note: |
-      Produced by a recording rule. Value is a ratio computed as
-      `1 - ((1 - success_ratio) / (1 - target))`. `1.0` means the budget is
-      fully intact and `0.0` means it is fully exhausted. The range is
+      `1.0` means the budget is fully intact and `0.0` means it is fully exhausted. The range is
       (-inf, 1]: only the upper bound is clamped, so an over-budget SLO reads
       negative and a burndown chart can render the breach below the axis. A
       value at or below zero means the budget is exhausted and the SLO is in
@@ -316,9 +297,8 @@ groups:
     brief: >
       Count of good events over the trailing 5-minute window.
     note: |
-      Produced by a recording rule. The numerator of the success ratio over
-      the 5-minute window. Feeds the short-window success-ratio and burn-rate
-      recording rules.
+      The numerator of the success ratio over the 5-minute window.
+      Feeds the short-window success-ratio and burn-rate recording rules.
     instrument: gauge
     unit: "{event}"
     attributes: *slo_attrs
@@ -330,9 +310,7 @@ groups:
     brief: >
       Count of good events over the trailing 1-hour window.
     note: |
-      Produced by a recording rule, pre-aggregated for use by the long-window
-      success-ratio rules (6h, 1d, 3d) to avoid re-scanning raw event streams
-      over multi-day ranges.
+      See `dash0.slo.events.good.5min` for value semantics.
     instrument: gauge
     unit: "{event}"
     attributes: *slo_attrs
@@ -344,8 +322,7 @@ groups:
     brief: >
       Count of total eligible events over the trailing 5-minute window.
     note: |
-      Produced by a recording rule. The denominator of the success ratio over
-      the 5-minute window. Only events eligible for the SLI are counted;
+      The denominator of the success ratio over the 5-minute window. Only events eligible for the SLI are counted;
       events excluded by the SLI filter are not.
     instrument: gauge
     unit: "{event}"
@@ -358,8 +335,7 @@ groups:
     brief: >
       Count of total eligible events over the trailing 1-hour window.
     note: |
-      Produced by a recording rule, pre-aggregated as the denominator
-      companion to `dash0.slo.events.good.1h`.
+      See `dash0.slo.events.5min` for value semantics.
     instrument: gauge
     unit: "{event}"
     attributes: *slo_attrs
