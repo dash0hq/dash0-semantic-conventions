@@ -1,0 +1,341 @@
+# SPDX-FileCopyrightText: Copyright 2026 Dash0 Inc.
+
+groups:
+  # ──────────────────────────────────────────────
+  # dash0.slo.target
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.slo.target
+    type: metric
+    metric_name: dash0.slo.target
+    stability: development
+    brief: >
+      The SLO's objective target as a fraction (e.g. 0.999).
+    note: |
+      Constant value per SLO in the range (0, 1). The allowed error budget is `1 - target`; both
+      `dash0.slo.burn_rate.<window>` and `dash0.slo.budget.remaining` use this
+      as the reference.
+    instrument: gauge
+    unit: "1"
+    attributes: &slo_attrs
+      - ref: dash0.slo.id
+        requirement_level: required
+      - ref: dash0.slo.name
+        requirement_level: required
+
+  # ──────────────────────────────────────────────
+  # dash0.slo.success_ratio
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.slo.success_ratio
+    type: metric
+    metric_name: dash0.slo.success_ratio
+    stability: development
+    brief: >
+      The SLO's overall success ratio over its compliance window.
+    note: |
+      Computed as good events divided by total
+      events over the full SLO compliance window, for example 28 days. Range [0, 1]; `1.0` means
+      every event in the window was good. This is the value that decides
+      whether the SLO met its objective. The windowed
+      `dash0.slo.success_ratio.<window>` series are the rolling-window
+      counterparts that feed the burn rate.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.success_ratio.5min
+    type: metric
+    metric_name: dash0.slo.success_ratio.5min
+    stability: development
+    brief: >
+      Success ratio over the trailing 5-minute window.
+    note: |
+      Computed as good events divided by total
+      events over the window. Range [0, 1]. Feeds the 5-minute burn rate.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.success_ratio.30min
+    type: metric
+    metric_name: dash0.slo.success_ratio.30min
+    stability: development
+    brief: >
+      Success ratio over the trailing 30-minute window.
+    note: |
+      See `dash0.slo.success_ratio.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.success_ratio.1h
+    type: metric
+    metric_name: dash0.slo.success_ratio.1h
+    stability: development
+    brief: >
+      Success ratio over the trailing 1-hour window.
+    note: |
+      See `dash0.slo.success_ratio.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.success_ratio.2h
+    type: metric
+    metric_name: dash0.slo.success_ratio.2h
+    stability: development
+    brief: >
+      Success ratio over the trailing 2-hour window.
+    note: |
+      See `dash0.slo.success_ratio.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.success_ratio.6h
+    type: metric
+    metric_name: dash0.slo.success_ratio.6h
+    stability: development
+    brief: >
+      Success ratio over the trailing 6-hour window.
+    note: |
+      See `dash0.slo.success_ratio.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.success_ratio.1d
+    type: metric
+    metric_name: dash0.slo.success_ratio.1d
+    stability: development
+    brief: >
+      Success ratio over the trailing 1-day window.
+    note: |
+      See `dash0.slo.success_ratio.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.success_ratio.3d
+    type: metric
+    metric_name: dash0.slo.success_ratio.3d
+    stability: development
+    brief: >
+      Success ratio over the trailing 3-day window.
+    note: |
+      See `dash0.slo.success_ratio.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.success_ratio.7d
+    type: metric
+    metric_name: dash0.slo.success_ratio.7d
+    stability: development
+    brief: >
+      Success ratio over the trailing 7-day window.
+    note: |
+      There is deliberately no `dash0.slo.burn_rate.7d` companion: burn-rate alert
+      windows stop at 3 days, and the 7-day success ratio exists for
+      compliance display only. See `dash0.slo.success_ratio.5min` for value
+      semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  # ──────────────────────────────────────────────
+  # dash0.slo.burn_rate.<window>
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.slo.burn_rate.5min
+    type: metric
+    metric_name: dash0.slo.burn_rate.5min
+    stability: development
+    brief: >
+      Pre-aggregated SLO burn rate over a 5-minute lookback window.
+    note: |
+      Value is the ratio of the observed failure rate in the window (1 minus the success ratio) to the allowed budget
+      fraction (1 minus the target). A value of 1.0 means the budget is being
+      consumed at exactly the allowed rate; a value of 14.4 means it is being
+      consumed 14.4x faster than allowed.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.burn_rate.30min
+    type: metric
+    metric_name: dash0.slo.burn_rate.30min
+    stability: development
+    brief: >
+      Pre-aggregated SLO burn rate over a 30-minute lookback window.
+    note: |
+      See `dash0.slo.burn_rate.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.burn_rate.1h
+    type: metric
+    metric_name: dash0.slo.burn_rate.1h
+    stability: development
+    brief: >
+      Pre-aggregated SLO burn rate over a 1-hour lookback window.
+    note: |
+      See `dash0.slo.burn_rate.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.burn_rate.2h
+    type: metric
+    metric_name: dash0.slo.burn_rate.2h
+    stability: development
+    brief: >
+      Pre-aggregated SLO burn rate over a 2-hour lookback window.
+    note: |
+      See `dash0.slo.burn_rate.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.burn_rate.6h
+    type: metric
+    metric_name: dash0.slo.burn_rate.6h
+    stability: development
+    brief: >
+      Pre-aggregated SLO burn rate over a 6-hour lookback window.
+    note: |
+      See `dash0.slo.burn_rate.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.burn_rate.1d
+    type: metric
+    metric_name: dash0.slo.burn_rate.1d
+    stability: development
+    brief: >
+      Pre-aggregated SLO burn rate over a 1-day lookback window.
+    note: |
+      See `dash0.slo.burn_rate.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.burn_rate.3d
+    type: metric
+    metric_name: dash0.slo.burn_rate.3d
+    stability: development
+    brief: >
+      Pre-aggregated SLO burn rate over a 3-day lookback window.
+    note: |
+      See `dash0.slo.burn_rate.5min` for value semantics.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.burn_rate.fast
+    type: metric
+    metric_name: dash0.slo.burn_rate.fast
+    stability: development
+    brief: >
+      Fast-burn alert signal: the budget is being consumed fast enough to
+      exhaust the window soon.
+    note: |
+      Google SRE multi-window multi-burn-rate, fast tier, pre-composed so an
+      alert can target one series instead of writing the AND of two windows.
+      Value is 1 when a short and long window both exceed the tier threshold,
+      otherwise 0. Examples for a 28 day window SLO:
+        `dash0.slo.burn_rate.5min` >= 13.4 AND `dash0.slo.burn_rate.1h` >= 13.4
+        `dash0.slo.burn_rate.30min` >= 5.6 AND `dash0.slo.burn_rate.6h` >= 5.6
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.burn_rate.slow
+    type: metric
+    metric_name: dash0.slo.burn_rate.slow
+    stability: development
+    brief: >
+      Slow-burn alert signal: the budget is being consumed gradually but
+      persistently.
+    note: |
+      Google SRE multi-window multi-burn-rate, slow tier, pre-composed so an
+      alert can target one series instead of writing the AND of two windows.
+      Value is 1 when a short and long window both exceed the tier threshold,
+      otherwise 0. Examples for a 28 day window SLO:
+        `dash0.slo.burn_rate.2h` >= 2.8 AND `dash0.slo.burn_rate.1d` >= 2.8
+        `dash0.slo.burn_rate.6h` >= 1.0 AND `dash0.slo.burn_rate.3d` >= 1.0
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  # ──────────────────────────────────────────────
+  # dash0.slo.budget.remaining
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.slo.budget.remaining
+    type: metric
+    metric_name: dash0.slo.budget.remaining
+    stability: development
+    brief: >
+      Remaining error budget as a fraction of the original budget.
+    note: |
+      `1.0` means the budget is fully intact and `0.0` means it is fully exhausted. The range is
+      (-inf, 1]: only the upper bound is clamped, so an over-budget SLO reads
+      negative and a burndown chart can render the breach below the axis. A
+      value at or below zero means the budget is exhausted and the SLO is in
+      violation; the magnitude says by how much.
+    instrument: gauge
+    unit: "1"
+    attributes: *slo_attrs
+
+  # ──────────────────────────────────────────────
+  # dash0.slo.events.<good>.<window>
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.slo.events.good.5min
+    type: metric
+    metric_name: dash0.slo.events.good.5min
+    stability: development
+    brief: >
+      Count of good events over the trailing 5-minute window.
+    note: |
+      The numerator of the success ratio over the 5-minute window.
+      Feeds the short-window success-ratio and burn-rate recording rules.
+    instrument: gauge
+    unit: "{event}"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.events.good.1h
+    type: metric
+    metric_name: dash0.slo.events.good.1h
+    stability: development
+    brief: >
+      Count of good events over the trailing 1-hour window.
+    note: |
+      See `dash0.slo.events.good.5min` for value semantics.
+    instrument: gauge
+    unit: "{event}"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.events.5min
+    type: metric
+    metric_name: dash0.slo.events.5min
+    stability: development
+    brief: >
+      Count of total eligible events over the trailing 5-minute window.
+    note: |
+      The denominator of the success ratio over the 5-minute window. Only events eligible for the SLI are counted;
+      events excluded by the SLI filter are not.
+    instrument: gauge
+    unit: "{event}"
+    attributes: *slo_attrs
+
+  - id: metric.dash0.slo.events.1h
+    type: metric
+    metric_name: dash0.slo.events.1h
+    stability: development
+    brief: >
+      Count of total eligible events over the trailing 1-hour window.
+    note: |
+      See `dash0.slo.events.5min` for value semantics.
+    instrument: gauge
+    unit: "{event}"
+    attributes: *slo_attrs

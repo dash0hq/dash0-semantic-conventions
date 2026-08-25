@@ -134,6 +134,11 @@ files:
     title: Resource Metrics
     description: Metrics counting observed Dash0 resources.
 
+  - source: metrics/slo.md
+    target: dash0/opentelemetry/semconvs/metrics/slo.md
+    title: SLO Metrics
+    description: Metrics for Dash0 Service Level Objectives.
+
   - source: metrics/span.md
     target: dash0/opentelemetry/semconvs/metrics/span.md
     title: Span Event Metrics
