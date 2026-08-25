@@ -22,8 +22,6 @@ groups:
         requirement_level: required
       - ref: dash0.slo.name
         requirement_level: required
-      - ref: dash0.dataset
-        requirement_level: required
 
   # ──────────────────────────────────────────────
   # dash0.slo.success_ratio
