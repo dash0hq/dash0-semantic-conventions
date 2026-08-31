@@ -39,7 +39,7 @@ groups:
   - id: metric.dash0.metrics.timeseries
     type: metric
     metric_name: dash0.metrics.timeseries
-    stability: development
+    stability: stable
     brief: >
       Reports the number of distinct metric time series ingested by Dash0.
     note: |
