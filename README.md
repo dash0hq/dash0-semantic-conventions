@@ -28,7 +28,7 @@ This is a temporary location; the content will be merged into the [Dash0 Docs](h
 
 - **Tracing** (`dash0.spans`, `dash0.spans.duration`, `dash0.span.events`) — Span counts, duration distributions, and span event counts.
 - **Logging** (`dash0.logs`) — Log record counts.
-- **Metrics** (`dash0.metrics.datapoints`) — Metric data point counts.
+- **Metrics** (`dash0.metrics.datapoints`, `dash0.metrics.timeseries`) — Metric data point counts and distinct time series counts.
 - **Resources** (`dash0.resources`) — Resource counts and resource-related attributes like `dash0.resource.id`.
 - **RED Metrics** (`dash0.spans.red`) — Pre-aggregated Rate/Error/Duration exponential histogram over spans.
 - **Website Monitoring** (`dash0.web.*`) — Web events, bounces, errors, page views, requests, sessions, users, and Core Web Vitals (CLS, INP, LCP).
