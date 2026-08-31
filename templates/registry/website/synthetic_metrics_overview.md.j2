@@ -10,7 +10,7 @@ They can query only data that exists within your organization's retention period
 
 ### Key Use Cases
 
-- Count and alert on logs, spans, span events, metric data points, and resources dynamically.
+- Count and alert on logs, spans, span events, metric data points, metric time series, and resources dynamically.
 - Avoid upfront metric definitions, making observability more flexible.
 - No additional charges on telemetry already sent to Dash0.
 - Enable advanced query-building for performance monitoring, anomaly detection, and billing analysis.
@@ -63,7 +63,7 @@ They are **not** available on synthetic check metrics (`dash0.synthetic_check.*`
 - **Logs** (`dash0.logs`): `otel.log.severity.range`, `otel.log.severity.text`, `otel.event.name`, `dash0.log.pattern`, and others from the [Log Attributes](/docs/dash0/opentelemetry/semconvs/attributes/log) registry.
 - **Spans** (`dash0.spans`, `dash0.spans.duration`, `dash0.spans.red`): `dash0.operation.name`, `dash0.operation.type`, `otel.span.kind`, `otel.span.status.code`, `http.response.status_code`, `http.route`, and others from the [Span Attributes](/docs/dash0/opentelemetry/semconvs/attributes/span) registry.
 - **Span events** (`dash0.span.events`): all span attributes above, plus `otel.span.event.name`.
-- **Metric data points** (`dash0.metrics.datapoints`): `otel.metric.name`, `otel.metric.type`, `otel.metric.unit`, `otel.scope.name`.
+- **Metrics** (`dash0.metrics.datapoints`, `dash0.metrics.timeseries`): `otel.metric.name`, `otel.metric.type`, `otel.metric.unit`, `otel.scope.name`.
 - **Resources** (`dash0.resources`): `dash0.resource.id`, `dash0.resource.name`, `dash0.resource.type`, plus any resource attribute.
 - **Synthetic checks** (`dash0.synthetic_check.*`): `dash0.check.id`, `dash0.check.name`, `dash0.check.type`, `dash0.synthetic_check.location`, `dash0.synthetic_check.outcome`, `http.response.status_code`.
 - **Web** (`dash0.web.*`): `page.url.path`, `page.url.domain`, `user_agent.name`, `user_agent.os.name`, `geo.country_iso_code`, `session.id`, and many others from the [Web Event Attributes](/docs/dash0/opentelemetry/semconvs/attributes/web-event) registry.
