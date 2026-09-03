@@ -83,9 +83,10 @@ groups:
     metric_name: dash0.check.evaluation.value
     stability: stable
     brief: >
-      The value returned by a check evaluation.
+      The expression value returned by a check evaluation: the observed quantity for static and change-gate rules, or the dimensionless anomaly score for baseline rules.
     note: |
       Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`).
+      A baseline rule reports the z-score-like distance from its seasonal prediction, not the observed quantity in the monitored metric's unit.
 
       Deprecated PromQL alias: `dash0_check_evaluation_value`.
     instrument: gauge
