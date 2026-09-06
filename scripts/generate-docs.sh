@@ -24,7 +24,7 @@ else
     -v "${REPO_ROOT}/model:/model" \
     -v "${REPO_ROOT}/templates:/templates" \
     -v "${OUTPUT_DIR}:/docs" \
-    otel/weaver:latest \
+    "$(cat "${REPO_ROOT}/.github/weaver.image")" \
     registry generate \
     --registry=/model \
     --templates=/templates \
