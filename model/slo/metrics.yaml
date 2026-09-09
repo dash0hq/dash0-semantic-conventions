@@ -235,12 +235,12 @@ groups:
       Rolling 1-hour sum of the `dash0.slo.events.good.5min` samples.
     note: |
       Not a count of good events. `dash0.slo.events.good.5min` is recorded every
-      30 seconds and each sample covers the trailing 5 minutes, so the hourly
-      sum adds about 120 overlapping samples and reads roughly 10 times the
-      number of good events in the hour. It is the numerator of the success
-      ratios, burn rates, and `dash0.slo.budget.remaining` for the 6h and longer
-      windows. Use it only in a ratio against `dash0.slo.events.1h`, where the
-      overlap cancels.
+      minute and each sample covers the trailing 5 minutes, so the hourly sum
+      adds about 60 overlapping samples and reads roughly 5 times the number of
+      good events in the hour. It is the numerator of the success ratios, burn
+      rates, and `dash0.slo.budget.remaining` for the 6h and longer windows. Use
+      it only in a ratio against `dash0.slo.events.1h`, where the overlap
+      cancels.
     instrument: gauge
     unit: "{event}"
     attributes: *slo_attrs
@@ -265,11 +265,11 @@ groups:
     brief: >
       Rolling 1-hour sum of the `dash0.slo.events.5min` samples.
     note: |
-      Not a count of events. `dash0.slo.events.5min` is recorded every 30
-      seconds and each sample covers the trailing 5 minutes, so the hourly sum
-      adds about 120 overlapping samples and reads roughly 10 times the number
-      of eligible events in the hour. It is the denominator of the success
-      ratios, burn rates, and `dash0.slo.budget.remaining` for the 6h and longer
+      Not a count of events. `dash0.slo.events.5min` is recorded every minute
+      and each sample covers the trailing 5 minutes, so the hourly sum adds
+      about 60 overlapping samples and reads roughly 5 times the number of
+      eligible events in the hour. It is the denominator of the success ratios,
+      burn rates, and `dash0.slo.budget.remaining` for the 6h and longer
       windows. Use it only in a ratio against `dash0.slo.events.good.1h`, where
       the overlap cancels.
     instrument: gauge
