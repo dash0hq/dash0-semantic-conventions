@@ -152,15 +152,22 @@ groups:
     metric_name: dash0.slo.burn_rate.fast
     stability: development
     brief: >
-      Fast-burn alert signal: the budget is being consumed fast enough to
-      exhaust the window soon.
+      Fast-burn pressure: how close the fast multi-window tiers are to firing,
+      scaled so that 1 means a tier is at its threshold.
     note: |
       Google SRE multi-window multi-burn-rate, fast tier, pre-composed so an
       alert can target one series instead of writing the AND of two windows.
-      Value is 1 when a short and long window both exceed the tier threshold,
-      otherwise 0. Examples for a 28 day window SLO:
-        `dash0.slo.burn_rate.5min` >= 13.4 AND `dash0.slo.burn_rate.1h` >= 13.4
-        `dash0.slo.burn_rate.30min` >= 5.6 AND `dash0.slo.burn_rate.6h` >= 5.6
+      The value is continuous, not a 0/1 flag. For each tier it is the smaller
+      of the tier's long-window and short-window burn rates divided by the tier
+      threshold, and the recorded value is the larger of the two tiers. `1`
+      means a tier is exactly at its threshold, above `1` is how far past it,
+      below `1` is how close. Alert with `>= 1`. A tier only contributes while
+      both of its burn rate series have a sample, so a missing input leaves the
+      tier out instead of reading `0`. A tier threshold is the tier's budget
+      share times the SLO window divided by the tier's long window, never below
+      1. Tiers for a 28 day window SLO:
+        critical: `dash0.slo.burn_rate.1h` with `dash0.slo.burn_rate.5min`, threshold 13.44 (2% of the budget in 1h)
+        high: `dash0.slo.burn_rate.6h` with `dash0.slo.burn_rate.30min`, threshold 5.6 (5% of the budget in 6h)
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -170,15 +177,17 @@ groups:
     metric_name: dash0.slo.burn_rate.slow
     stability: development
     brief: >
-      Slow-burn alert signal: the budget is being consumed gradually but
-      persistently.
+      Slow-burn pressure: how close the slow multi-window tiers are to firing,
+      scaled so that 1 means a tier is at its threshold.
     note: |
       Google SRE multi-window multi-burn-rate, slow tier, pre-composed so an
       alert can target one series instead of writing the AND of two windows.
-      Value is 1 when a short and long window both exceed the tier threshold,
-      otherwise 0. Examples for a 28 day window SLO:
-        `dash0.slo.burn_rate.2h` >= 2.8 AND `dash0.slo.burn_rate.1d` >= 2.8
-        `dash0.slo.burn_rate.6h` >= 1.0 AND `dash0.slo.burn_rate.3d` >= 1.0
+      Same value semantics as `dash0.slo.burn_rate.fast`: continuous, the larger
+      over the two slow tiers of the smaller of the tier's two burn rates
+      divided by the tier threshold, `1` means a tier is at its threshold, and
+      a tier with a missing input is left out. Tiers for a 28 day window SLO:
+        warning: `dash0.slo.burn_rate.1d` with `dash0.slo.burn_rate.2h`, threshold 2.8 (10% of the budget in 1 day)
+        break-even: `dash0.slo.burn_rate.3d` with `dash0.slo.burn_rate.6h`, threshold 1 (10% of the budget in 3 days is 0.93, raised to the floor of 1)
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -223,9 +232,15 @@ groups:
     metric_name: dash0.slo.events.good.1h
     stability: development
     brief: >
-      Count of good events over the trailing 1-hour window.
+      Rolling 1-hour sum of the `dash0.slo.events.good.5min` samples.
     note: |
-      See `dash0.slo.events.good.5min` for value semantics.
+      Not a count of good events. `dash0.slo.events.good.5min` is recorded every
+      minute and each sample covers the trailing 5 minutes, so the hourly sum
+      adds about 60 overlapping samples and reads roughly 5 times the number of
+      good events in the hour. It is the numerator of the success ratios, burn
+      rates, and `dash0.slo.budget.remaining` for the 6h and longer windows. Use
+      it only in a ratio against `dash0.slo.events.1h`, where the overlap
+      cancels.
     instrument: gauge
     unit: "{event}"
     attributes: *slo_attrs
@@ -248,9 +263,15 @@ groups:
     metric_name: dash0.slo.events.1h
     stability: development
     brief: >
-      Count of total eligible events over the trailing 1-hour window.
+      Rolling 1-hour sum of the `dash0.slo.events.5min` samples.
     note: |
-      See `dash0.slo.events.5min` for value semantics.
+      Not a count of events. `dash0.slo.events.5min` is recorded every minute
+      and each sample covers the trailing 5 minutes, so the hourly sum adds
+      about 60 overlapping samples and reads roughly 5 times the number of
+      eligible events in the hour. It is the denominator of the success ratios,
+      burn rates, and `dash0.slo.budget.remaining` for the 6h and longer
+      windows. Use it only in a ratio against `dash0.slo.events.good.1h`, where
+      the overlap cancels.
     instrument: gauge
     unit: "{event}"
     attributes: *slo_attrs
