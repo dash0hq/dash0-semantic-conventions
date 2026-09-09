@@ -32,97 +32,11 @@ groups:
     brief: >
       The SLO's overall success ratio over its compliance window.
     note: |
-      Computed as good events divided by total
-      events over the full SLO compliance window, for example 28 days. Range [0, 1]; `1.0` means
-      every event in the window was good. This is the value that decides
-      whether the SLO met its objective. The windowed
-      `dash0.slo.success_ratio.<window>` series are the rolling-window
-      counterparts that feed the burn rate.
-    instrument: gauge
-    unit: "1"
-    attributes: *slo_attrs
-
-  - id: metric.dash0.slo.success_ratio.5min
-    type: metric
-    metric_name: dash0.slo.success_ratio.5min
-    stability: development
-    brief: >
-      Success ratio over the trailing 5-minute window.
-    note: |
-      Computed as good events divided by total
-      events over the window. Range [0, 1]. Feeds the 5-minute burn rate.
-    instrument: gauge
-    unit: "1"
-    attributes: *slo_attrs
-
-  - id: metric.dash0.slo.success_ratio.30min
-    type: metric
-    metric_name: dash0.slo.success_ratio.30min
-    stability: development
-    brief: >
-      Success ratio over the trailing 30-minute window.
-    note: |
-      See `dash0.slo.success_ratio.5min` for value semantics.
-    instrument: gauge
-    unit: "1"
-    attributes: *slo_attrs
-
-  - id: metric.dash0.slo.success_ratio.1h
-    type: metric
-    metric_name: dash0.slo.success_ratio.1h
-    stability: development
-    brief: >
-      Success ratio over the trailing 1-hour window.
-    note: |
-      See `dash0.slo.success_ratio.5min` for value semantics.
-    instrument: gauge
-    unit: "1"
-    attributes: *slo_attrs
-
-  - id: metric.dash0.slo.success_ratio.2h
-    type: metric
-    metric_name: dash0.slo.success_ratio.2h
-    stability: development
-    brief: >
-      Success ratio over the trailing 2-hour window.
-    note: |
-      See `dash0.slo.success_ratio.5min` for value semantics.
-    instrument: gauge
-    unit: "1"
-    attributes: *slo_attrs
-
-  - id: metric.dash0.slo.success_ratio.6h
-    type: metric
-    metric_name: dash0.slo.success_ratio.6h
-    stability: development
-    brief: >
-      Success ratio over the trailing 6-hour window.
-    note: |
-      See `dash0.slo.success_ratio.5min` for value semantics.
-    instrument: gauge
-    unit: "1"
-    attributes: *slo_attrs
-
-  - id: metric.dash0.slo.success_ratio.1d
-    type: metric
-    metric_name: dash0.slo.success_ratio.1d
-    stability: development
-    brief: >
-      Success ratio over the trailing 1-day window.
-    note: |
-      See `dash0.slo.success_ratio.5min` for value semantics.
-    instrument: gauge
-    unit: "1"
-    attributes: *slo_attrs
-
-  - id: metric.dash0.slo.success_ratio.3d
-    type: metric
-    metric_name: dash0.slo.success_ratio.3d
-    stability: development
-    brief: >
-      Success ratio over the trailing 3-day window.
-    note: |
-      See `dash0.slo.success_ratio.5min` for value semantics.
+      Computed as good events divided by total events over the full SLO compliance window, for example 28 days.
+      Range [0, 1]; `1.0` means every event in the window was good.
+      This is the value that decides whether the SLO met its objective.
+      Only two success ratios are recorded: this metric over the compliance window and `dash0.slo.success_ratio.7d`.
+      The 5min, 30min, 1h, 2h, 6h, 1d, and 3d windows derive their ratio from `dash0.slo.burn_rate.<window>` as `1 - dash0.slo.burn_rate.<window> * (1 - dash0.slo.target)`, reading both series at the same instant.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -134,10 +48,11 @@ groups:
     brief: >
       Success ratio over the trailing 7-day window.
     note: |
-      There is deliberately no `dash0.slo.burn_rate.7d` companion: burn-rate alert
-      windows stop at 3 days, and the 7-day success ratio exists for
-      compliance display only. See `dash0.slo.success_ratio.5min` for value
-      semantics.
+      Computed as good events divided by total events over the window.
+      Range [0, 1]; `1.0` means every event in the window was good.
+      Only two success ratios are recorded: `dash0.slo.success_ratio` over the compliance window and this metric.
+      The 5min, 30min, 1h, 2h, 6h, 1d, and 3d windows derive their ratio from `dash0.slo.burn_rate.<window>` as `1 - dash0.slo.burn_rate.<window> * (1 - dash0.slo.target)`, reading both series at the same instant.
+      There is deliberately no `dash0.slo.burn_rate.7d` companion: burn-rate alert windows stop at 3 days, and the 7-day success ratio exists for compliance display only.
     instrument: gauge
     unit: "1"
     attributes: *slo_attrs
@@ -298,7 +213,7 @@ groups:
       Count of good events over the trailing 5-minute window.
     note: |
       The numerator of the success ratio over the 5-minute window.
-      Feeds the short-window success-ratio and burn-rate recording rules.
+      Feeds the short-window burn-rate recording rules.
     instrument: gauge
     unit: "{event}"
     attributes: *slo_attrs
