@@ -21,6 +21,14 @@ When adding or modifying conventions:
 3. Add or update test data under `tests/`.
 4. Run `make test` to verify all test data.
 
+## Annotations
+
+Attribute annotations are restricted to an allowlist enforced by the [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) policy in `policies/annotations.rego`, which `make check` runs.
+Currently, the only allowed annotation is `dash0.transform_access`, with the values `read` or `write`.
+Groups must not declare annotations.
+
+To introduce a new annotation, add it to `allowed_annotations` in `policies/annotations.rego`.
+
 ## Test data
 
 Test data lives under the `tests/` directory as plain JSON files:
@@ -78,7 +86,7 @@ make generate-docs
 
 All pull requests are validated in CI, which runs:
 
-1. `weaver registry check` — model validation
+1. `weaver registry check` — model validation, including the policies under `policies/`
 2. `weaver registry resolve` — full registry resolution
 3. Live-check tests against all files in `tests/valid/` and `tests/invalid/`
 

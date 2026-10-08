@@ -9,5 +9,6 @@ weaver_image="$(cat "${SCRIPT_DIR}/../weaver.image")"
 
 docker run --rm \
   -v "${project_root}/model:/model" \
+  -v "${project_root}/policies:/policies" \
   "$weaver_image" \
-  registry check -r /model
+  registry check -r /model -p /policies
