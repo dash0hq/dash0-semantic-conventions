@@ -19,6 +19,9 @@ groups:
 
           Can be overridden by setting the attribute before telemetry reaches Dash0.
         examples: ["GET /api/users", "SELECT ... FROM orders", "publish orders-topic"]
+        annotations:
+          dash0:
+            transform_access: write
 
       - id: dash0.operation.type
         type: string
