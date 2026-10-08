@@ -15,6 +15,9 @@ groups:
           Set at ingestion time by the Dash0 backend.
           Useful for identifying which token was used when multiple authentication tokens are in use.
         examples: ["abc1234"]
+        annotations:
+          dash0:
+            transform_access: read
 
       - id: dash0.resource.id
         type: string
@@ -53,6 +56,9 @@ groups:
 
           See [identify resources by name and type](https://www.dash0.com/documentation/dash0/monitoring/resources/identify-resources-by-name-and-type).
         examples: ["my-service-pod-abc123", "checkout-service"]
+        annotations:
+          dash0:
+            transform_access: write
 
       - id: dash0.resource.type
         type: string
@@ -65,6 +71,9 @@ groups:
 
           See [identify resources by name and type](https://www.dash0.com/documentation/dash0/monitoring/resources/identify-resources-by-name-and-type).
         examples: ["k8s.pod", "k8s.deployment", "host", "container", "aws.lambda", "gcp.cloud.run", "vercel.project", "browser"]
+        annotations:
+          dash0:
+            transform_access: read
 
       - id: dash0.operator.collector_managed_by
         type: string
