@@ -23,11 +23,31 @@ When adding or modifying conventions:
 
 ## Annotations
 
-Attribute annotations are restricted to an allowlist enforced by the [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) policy in `policies/annotations.rego`, which `make check` runs.
-Currently, the only allowed annotation is `dash0.transform_access`, with the values `read` or `write`.
-Groups must not declare annotations.
+Annotations are restricted to an allowlist enforced by the [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) policy in `policies/annotations.rego`, which `make check` runs.
+Each element that can carry annotations has its own allowlist, which maps a namespace to its allowed keys, and each key to its allowed values.
 
-To introduce a new annotation, add it to `allowed_annotations` in `policies/annotations.rego`.
+| Element | Allowlist | Currently allowed |
+| --- | --- | --- |
+| Attribute | `allowed_attribute_annotations` | `dash0.transform_access` |
+| Group | `allowed_group_annotations` | `code_generation.metric_value_type` |
+| Enum member | `allowed_member_annotations` | Nothing |
+
+To introduce a new annotation, add it to the allowlist of the element it applies to, and document it below.
+An `annotations` block that declares nothing is reported as an improvement, which also fails `make check`; remove the block instead.
+
+### `dash0.transform_access`
+
+TODO: describe what a transform is and what access to an attribute means for it.
+
+The annotation takes a single value:
+
+| Value | Meaning |
+| --- | --- |
+| `read` | The attribute may be read, but not written. |
+| `write` | The attribute may be written as well as read, since `write` implies `read`. |
+
+An attribute without the annotation may be written, and therefore read as well.
+Annotate an attribute only to narrow that default, or to state the default explicitly where it is worth calling out.
 
 ## Test data
 
