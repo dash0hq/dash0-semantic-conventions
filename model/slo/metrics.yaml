@@ -19,8 +19,6 @@ groups:
     attributes: &slo_attrs
       - ref: dash0.slo.id
         requirement_level: required
-      - ref: dash0.slo.name
-        requirement_level: required
 
   # ──────────────────────────────────────────────
   # dash0.slo.success_ratio
