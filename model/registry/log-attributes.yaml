@@ -29,6 +29,9 @@ groups:
 
           See [AI log patterns](https://www.dash0.com/documentation/dash0/logging/ai-log-patterns).
         examples: ["Error occurred", "Connection refused to host *"]
+        annotations:
+          dash0:
+            transform_access: write
 
       - id: dash0.log.ai.attributes_inferred
         type: boolean
