@@ -39,6 +39,23 @@ groups:
     unit: "{enum}"
 
   # ──────────────────────────────────────────────
+  # dash0.check.last_status_change
+  # ──────────────────────────────────────────────
+  - id: metric.dash0.check.last_status_change
+    type: metric
+    metric_name: dash0.check.last_status_change
+    stability: development
+    brief: >
+      The Unix time, in seconds, at which the check last changed its state.
+    note: |
+      Emitted by the check evaluation pipeline (scope `dash0-issue-metrics`) beside `dash0.check.status`, with the same attributes and on the same evaluations.
+      Every change of `dash0.check.status` counts, including a change from `degraded` to `critical`.
+      Editing a check starts a new check version, whose value starts at its first evaluation.
+      Aggregate with `max`, because summing or averaging timestamps has no meaning.
+    instrument: gauge
+    unit: "s"
+
+  # ──────────────────────────────────────────────
   # dash0.check.evaluation.outcome
   # ──────────────────────────────────────────────
   - id: metric.dash0.check.evaluation.outcome
