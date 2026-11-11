@@ -33,6 +33,7 @@ This is a temporary location; the content will be merged into the [Dash0 Docs](h
 - **RED Metrics** (`dash0.spans.red`) — Pre-aggregated Rate/Error/Duration exponential histogram over spans.
 - **Website Monitoring** (`dash0.web.*`) — Web events, bounces, errors, page views, requests, sessions, users, and Core Web Vitals (CLS, INP, LCP).
 - **GenAI** (`dash0.genai.*`) — GenAI conversation, chats, tool calls, tokens.
+- **GenAI evaluations** (`dash0.gen_ai.evaluation.score`, `dash0.gen_ai.evaluation.label`) count successful customer evaluation verdicts by score or label.
 - **Synthetic Checks** (`dash0.synthetic_check.*`) — Synthetic check runs and HTTP timing breakdowns (DNS, connection, SSL, request, response, total duration).
 - **Alerting** (`dash0.check.*`, `dash0.issue.*`) — Check status, evaluation outcomes/values, and issue status.
 - **Dash0 Operator** (`dash0.operator.manager.*`) — Kubernetes operator worker pools, reconcile counts, errors, and timing.
