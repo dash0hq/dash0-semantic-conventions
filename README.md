@@ -34,7 +34,7 @@ This is a temporary location; the content will be merged into the [Dash0 Docs](h
 - **Website Monitoring** (`dash0.web.*`) — Web events, bounces, errors, page views, requests, sessions, users, and Core Web Vitals (CLS, INP, LCP).
 - **GenAI** (`dash0.genai.*`) — GenAI conversation, chats, tool calls, tokens.
 - **Synthetic Checks** (`dash0.synthetic_check.*`) — Synthetic check runs and HTTP timing breakdowns (DNS, connection, SSL, request, response, total duration).
-- **Alerting** (`dash0.check.*`, `dash0.issue.*`) — Check status, evaluation outcomes/values, and issue status.
+- **Alerting** (`dash0.check.*`, `dash0.issue.*`) — Check status, last status change, evaluation outcomes/values, and issue status.
 - **Dash0 Operator** (`dash0.operator.manager.*`) — Kubernetes operator worker pools, reconcile counts, errors, and timing.
 - **Spam Filters** (`dash0.spam_filters.*`) — Log records, spans, metric data points, and web events dropped by spam filters, attributed per filter.
 - **Automations** (`dash0.automations.*`) — Agent0 automation run counts and credit consumption, published into the triggering organization's own dataset.
