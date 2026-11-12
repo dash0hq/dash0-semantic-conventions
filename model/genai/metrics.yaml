@@ -494,7 +494,6 @@ groups:
       [synthetic: logs]
       `dash0.gen_ai.evaluation.score` is a synthetic metric computed at query time from evaluation results.
       Each successful numeric verdict with a finite score between 0 and 1, inclusive, contributes 1 sample.
-      Built-in evaluations are excluded.
 
       Deprecated PromQL aliases: `dash0_gen_ai_evaluation_score_bucket`, `dash0_gen_ai_evaluation_score_sum`, and `dash0_gen_ai_evaluation_score_count`.
     instrument: histogram
@@ -522,7 +521,6 @@ groups:
       [synthetic: logs]
       `dash0.gen_ai.evaluation.label` is a synthetic metric computed at query time from evaluation results.
       Each successful verdict with a nonempty `gen_ai.evaluation.score.label` contributes 1 count.
-      Built-in evaluations are excluded.
 
       Deprecated PromQL alias: `dash0_gen_ai_evaluation_label_total`.
     instrument: counter
