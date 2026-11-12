@@ -11,6 +11,7 @@ It builds on top of the [OpenTelemetry Semantic Conventions](https://opentelemet
 model/
   registry_manifest.yaml          # Registry manifest with OTel semconv dependency
   <namespace>                     # Different folders, organize by functional area
+  .cursor/BUGBOT.md               # Review rules for model changes (Cursor Bugbot); keep in sync with the conventions below
 policies/                         # Rego policies run by `make check` (e.g., annotation allowlist)
 tests/
   valid/                          # JSON test data expected to pass validation
