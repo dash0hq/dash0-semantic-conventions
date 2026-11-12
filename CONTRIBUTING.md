@@ -111,3 +111,15 @@ All pull requests are validated in CI, which runs:
 3. Live-check tests against all files in `tests/valid/` and `tests/invalid/`
 
 Please make sure all checks pass locally before opening a PR.
+
+### Automated review
+
+[Cursor Bugbot](https://docs.cursor.com/bugbot) reviews changes under `model/` for design and semantic quality, following the rules in [`model/.cursor/BUGBOT.md`](model/.cursor/BUGBOT.md).
+Those rules adapt the OpenTelemetry [semantic convention model review instructions](https://github.com/open-telemetry/semantic-conventions/blob/main/.github/instructions/model-yaml.instructions.md) and add the conventions specific to this registry.
+
+The rules pin the upstream instructions to a commit.
+To find upstream changes that the rules have not picked up yet, run:
+
+```sh
+scripts/check-upstream-review-guide.sh
+```
