@@ -37,3 +37,5 @@ files:
     target: dash0/miscellaneous/glossary/synthetic-metrics.md
     title: Synthetic Metrics
     description: Dash0 metrics computed on-the-fly from ingested signal data at no extra cost.
+    tags:
+      - metrics
