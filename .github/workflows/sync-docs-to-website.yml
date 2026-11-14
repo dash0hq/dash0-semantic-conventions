@@ -64,7 +64,7 @@ jobs:
         run: ./scripts/generate-docs.sh ./docs-website/ website
 
       - name: Sync docs to Dash0 website
-        uses: dash0hq/sync-docs-action@3fbe55fed800da21ee24d6b6dba1a86435f61565 # v0.4.0
+        uses: dash0hq/sync-docs-action@c30aaaaa93f3f8a88b9f9e3acd31cfff3e086954 # v0.6.0
         with:
           source-root: ./docs-website/
           transformations-file: ../.github/workflows/sync-docs/transformations.yaml
@@ -81,7 +81,7 @@ jobs:
           commit-message: "docs: synchronize Dash0 semantic conventions"
 
       - name: Sync standalone pages to Dash0 website
-        uses: dash0hq/sync-docs-action@3fbe55fed800da21ee24d6b6dba1a86435f61565 # v0.4.0
+        uses: dash0hq/sync-docs-action@c30aaaaa93f3f8a88b9f9e3acd31cfff3e086954 # v0.6.0
         with:
           source-root: ./docs-website/
           transformations-file: ../.github/workflows/sync-docs/transformations-standalone.yaml
