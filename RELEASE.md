@@ -21,5 +21,7 @@ Publishing a release automatically:
 
 > **Before the first syncing release**, ensure the following repository
 > secrets are set in `dash0hq/dash0-semantic-conventions` settings:
-> `DASH0_DOCS_REPO_GITHUB_PAT`, `SYNC_DOCUMENTATION_TARGET_REPOSITORY`,
-> `SYNC_DOCUMENTATION_TARGET_DIRECTORY`.
+> `SYNC_DOCUMENTATION_TARGET_REPOSITORY`, `SYNC_DOCUMENTATION_TARGET_DIRECTORY`.
+> The repository also needs access to the `DOCS_SYNC_APP_CLIENT_ID` organization
+> variable and the `DOCS_SYNC_APP_PRIVATE_KEY` organization secret of the GitHub
+> App "Dash0 Docs Sync", which opens the pull request.

@@ -27,10 +27,10 @@ on:
         type: boolean
         default: false
     secrets:
-      DASH0_DOCS_REPO_GITHUB_PAT:
+      DOCS_SYNC_APP_PRIVATE_KEY:
         description: >-
-          Fine-grained PAT with contents:write + pull-requests:write on
-          dash0hq/dash0-website. Required when dry-run is false.
+          Private key of the GitHub App that opens the pull request in the
+          documentation repository. Required when dry-run is false.
         required: false
       SYNC_DOCUMENTATION_TARGET_REPOSITORY:
         description: owner/name of the target documentation repository.
@@ -60,6 +60,17 @@ jobs:
         with:
           version: ${{ steps.weaver.outputs.version }}
 
+      - name: Create GitHub App token for the documentation repository
+        id: app-token
+        if: ${{ !inputs.dry-run }}
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ vars.DOCS_SYNC_APP_CLIENT_ID }}
+          private-key: ${{ secrets.DOCS_SYNC_APP_PRIVATE_KEY }}
+          repositories: ${{ secrets.SYNC_DOCUMENTATION_TARGET_REPOSITORY }}
+          permission-contents: write
+          permission-pull-requests: write
+
       - name: Generate website documentation
         run: ./scripts/generate-docs.sh ./docs-website/ website
 
@@ -71,7 +82,7 @@ jobs:
           dry-run: ${{ inputs.dry-run }}
           target-repository: ${{ secrets.SYNC_DOCUMENTATION_TARGET_REPOSITORY }}
           target-directory: ${{ secrets.SYNC_DOCUMENTATION_TARGET_DIRECTORY }}
-          target-github-token: ${{ secrets.DASH0_DOCS_REPO_GITHUB_PAT }}
+          target-github-token: ${{ steps.app-token.outputs.token }}
           pr-branch: sync-dash0-semantic-conventions-docs
           pr-title: "docs: synchronize Dash0 semantic conventions"
           pr-body: >-
@@ -88,7 +99,7 @@ jobs:
           dry-run: ${{ inputs.dry-run }}
           target-repository: ${{ secrets.SYNC_DOCUMENTATION_TARGET_REPOSITORY }}
           target-directory: ${{ secrets.SYNC_DOCUMENTATION_TARGET_DIRECTORY }}
-          target-github-token: ${{ secrets.DASH0_DOCS_REPO_GITHUB_PAT }}
+          target-github-token: ${{ steps.app-token.outputs.token }}
           pr-branch: sync-dash0-semantic-conventions-docs
           pr-title: "docs: synchronize Dash0 semantic conventions"
           pr-body: >-
