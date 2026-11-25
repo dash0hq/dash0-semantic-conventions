@@ -31,6 +31,8 @@ groups:
       - ref: dash0.resource.hash
       - ref: dash0.resource.name
       - ref: dash0.resource.type
+      - ref: dash0.integration.id
+      - ref: dash0.cloud.tags
       - ref: dash0.operator.collector_managed_by
       - ref: dash0.operator.collector_role
       - ref: dash0.operator.uid

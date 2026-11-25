@@ -12,6 +12,7 @@ This is a temporary location; the content will be merged into the [Dash0 Docs](h
 ### Attributes
 
 - **Resource** — Resource identity and classification: `dash0.resource.id`, `dash0.resource.hash`, `dash0.resource.name`, `dash0.resource.type`.
+- **Integration** — Telemetry collected by a Dash0 cloud integration: `dash0.integration.id`, `dash0.cloud.tags.<key>`.
 - **Operation** — Operation naming and typing: `dash0.operation.name`, `dash0.operation.type`.
 - **Span** — Span identity: `dash0.span.name`, `dash0.span.type`.
 - **Trace Origin** — Trace origin classification and context: `dash0.trace.origin.type`, `dash0.trace.origin.web.session.id`, `dash0.trace.origin.web.event.id`, `dash0.trace.origin.synthetic_check.check_id`, `dash0.trace.origin.synthetic_check.attempt_id`, `dash0.trace.origin.synthetic_check.follow_redirect`.
